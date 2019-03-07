@@ -1,0 +1,81 @@
+PARSER_BEGIN(Parser)
+
+public class Parser{
+	public static void main(String[] args) {
+			try {
+				new Parser(new java.io.StringReader(args[0])).init();
+				System.out.println("Syntax is okay");
+			} catch (Throwable e) {
+				// Catching Throwable is ugly but JavaCC throws Error objects!
+				System.out.println("Syntax check failed: " + e.getMessage());
+			}
+		}
+}
+
+PARSER_END(Parser)
+
+TOKEN: {        < PUBLIC : "public" > 
+        |       < CLASS : "class">  
+	|       < STATIC : "static" > 
+        |       < VOID : "void" > 
+        |       < MAIN : "main" > 
+        
+        |       < RETURN : "return" > 
+        |       < EXTENDS : "extends" > 
+        |       < NEW : "new" > 
+        |       < PRINT : "System.out.println"> 
+        |       < IF : "if" > 
+        |       < ELSE : "else" > 
+        |       < LENGHT : "lenght" >
+        |       < WHILE : "while" > 
+        
+        |       < STRING : "String" > 
+        |       < INT : "int" > 
+        |       < BOOLEAN : "boolean" > 
+        
+        |       < TRUE : "true" > 
+        |       < FALSE : "false" > 
+        |       < THIS : "this" > 
+   
+        |       < #DIGIT: ["0"-"9"]> // perguntar pro heron se precisa desse # pq no livro tinha
+        |       < #IDENTIFIER: ["a"-"z"] (["a"-"z"] | <DIGIT>)*>
+        |       < #INTEGER: (<DIGIT>)+ >
+        |       < #REAL: ((<DIGIT>)+ "." (<DIGIT>)*) | ((<DIGIT>)* "." (<DIGIT>)+) >
+        |       < INTEGER_LITERAL: <IDENTIFIER> | <INTEGER> | <REAL> >  
+        
+        |       < LPAREN: "("> 
+        |       < RPAREN: ")">
+        |       < LCOLCH: "["> 
+        |       < RCOLCH: "]"> 
+        |       < LBRACE: "{"> 
+        |       < RBRACE: "}"> 
+        |       < RBRACE_INTERROG: ")?">
+        |       < SEMI_COMMA: ";"> 
+        |       < DOT: "." > 
+        |       < BANG: "!" > 
+        |       < COMMA: "," >
+      
+        |       < EQUAL: "="> 
+        |       < AND: "&&">
+        |       < LESS_THEN: "<"> 
+        |       < BIGGER_THEN: ">">
+        |       < PLUS : "+" > 
+        |       < MINUS : "-"> 
+        |       < STAR: "*">
+
+        |       <EOF>
+}
+	   
+SKIP : {        <"--"(["a"-"z"])*("\n" | "\r" | "\r\n")> // ajeitar esse comentário pq é /* */
+        |       " " 
+        |       "\t" 
+        |       "\n"
+}
+
+void init(): {} {
+        (       <PUBLIC> | <CLASS> | <STATIC> | <VOID> | <MAIN> | <RETURN> | <EXTENDS> | <NEW> | <PRINT> | <IF> | <ELSE> | <LENGHT> | <WHILE> 
+                | <STRING> | <INT> | <BOOLEAN> | <TRUE> | <FALSE> | <THIS> | <DIGIT> | <IDENTIFIER> | <INTEGER> | <REAL> | <INTEGER_LITERAL> 
+                | <LPAREN> | <RPAREN> | <LCOLCH> | <RCOLCH> | <LBRACE> | <RBRACE> | <RBRACE_INTERROG> | <SEMI_COMMA> | <DOT> 
+                | <BANG> | <COMMA> | <EQUAL> | <AND> | <LESS_THEN> | <BIGGER_THEN> | <PLUS> | <MINUS> | <STAR> )* <EOF>
+
+}
