@@ -14,5 +14,5 @@
 $ cd analisador_lexico
 $ javacc Parser.jj
 $ javac *.java
-$ java Parser < minijava.java
+$ java Parser minijava.java
 ```

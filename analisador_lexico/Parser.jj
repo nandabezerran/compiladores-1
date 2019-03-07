@@ -2,8 +2,9 @@ PARSER_BEGIN(Parser)
 
 public class Parser{
 	public static void main(String[] args) {
-			try {
+                        try {
 				new Parser(new java.io.StringReader(args[0])).init();
+                                System.out.println(args[0]);
 				System.out.println("Syntax is okay");
 			} catch (Throwable e) {
 				// Catching Throwable is ugly but JavaCC throws Error objects!
