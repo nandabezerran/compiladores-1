@@ -9,7 +9,25 @@ public class Parser{
 				// Catching Throwable is ugly but JavaCC throws Error objects!
 				System.out.println("Syntax check failed: " + e.getMessage());
 			}
-		}
+
+                /*
+                Parser parser;
+                try {
+                        parser = new Parser(new FileInputStream(args[0]));
+                } catch (FileNotFoundException e) {
+                        System.out.println("File not Found: " + args[0]);
+                }
+
+                try{
+                        parser.init();
+                        System("Sucessooooooo");
+                } catch (ParseException e){
+                        System.out.println("Erro no parse: " e);
+                } catch(TokenMsgError e){
+                        System.out.println("Erro na leitura do Token:" + e);
+                }
+                */
+	}
 }
 
 PARSER_END(Parser)
@@ -37,11 +55,11 @@ TOKEN: {        < PUBLIC : "public" >
         |       < FALSE : "false" > 
         |       < THIS : "this" > 
    
-        |       < #DIGIT: ["0"-"9"]> // perguntar pro heron se precisa desse # pq no livro tinha
+        |       < #DIGIT: ["0"-"9"]> // E.R LOCAIS SÃO REPRESENTADAS POR #
         |       < IDENTIFIER: ["a"-"z"] (["a"-"z"] | <DIGIT>)*>
         |       < #INTEGER: (<DIGIT>)+ >
         |       < #REAL: ((<DIGIT>)+ "." (<DIGIT>)*) | ((<DIGIT>)* "." (<DIGIT>)+) >
-        |       < INTEGER_LITERAL: <IDENTIFIER> | <INTEGER> | <REAL> >  
+        |       < INTEGER_LITERAL: (<IDENTIFIER>) | (<INTEGER>) | (<REAL>) >  
         
         |       < LPAREN: "("> 
         |       < RPAREN: ")">
