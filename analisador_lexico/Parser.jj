@@ -38,7 +38,7 @@ TOKEN: {        < PUBLIC : "public" >
         |       < THIS : "this" > 
    
         |       < #DIGIT: ["0"-"9"]> // perguntar pro heron se precisa desse # pq no livro tinha
-        |       < #IDENTIFIER: ["a"-"z"] (["a"-"z"] | <DIGIT>)*>
+        |       < IDENTIFIER: ["a"-"z"] (["a"-"z"] | <DIGIT>)*>
         |       < #INTEGER: (<DIGIT>)+ >
         |       < #REAL: ((<DIGIT>)+ "." (<DIGIT>)*) | ((<DIGIT>)* "." (<DIGIT>)+) >
         |       < INTEGER_LITERAL: <IDENTIFIER> | <INTEGER> | <REAL> >  
@@ -62,8 +62,6 @@ TOKEN: {        < PUBLIC : "public" >
         |       < PLUS : "+" > 
         |       < MINUS : "-"> 
         |       < STAR: "*">
-
-        |       <EOF>
 }
 	   
 SKIP : {        <"--"(["a"-"z"])*("\n" | "\r" | "\r\n")> // ajeitar esse comentário pq é /* */
@@ -74,7 +72,7 @@ SKIP : {        <"--"(["a"-"z"])*("\n" | "\r" | "\r\n")> // ajeitar esse coment�
 
 void init(): {} {
         (       <PUBLIC> | <CLASS> | <STATIC> | <VOID> | <MAIN> | <RETURN> | <EXTENDS> | <NEW> | <PRINT> | <IF> | <ELSE> | <LENGHT> | <WHILE> 
-                | <STRING> | <INT> | <BOOLEAN> | <TRUE> | <FALSE> | <THIS> | <DIGIT> | <IDENTIFIER> | <INTEGER> | <REAL> | <INTEGER_LITERAL> 
+                | <STRING> | <INT> | <BOOLEAN> | <TRUE> | <FALSE> | <THIS> |  <IDENTIFIER> | <INTEGER_LITERAL> 
                 | <LPAREN> | <RPAREN> | <LCOLCH> | <RCOLCH> | <LBRACE> | <RBRACE> | <RBRACE_INTERROG> | <SEMI_COMMA> | <DOT> 
                 | <BANG> | <COMMA> | <EQUAL> | <AND> | <LESS_THEN> | <BIGGER_THEN> | <PLUS> | <MINUS> | <STAR> )* <EOF>
 
