@@ -1,96 +1,90 @@
 PARSER_BEGIN(Parser)
 
 public class Parser{
-	public static void main(String[] args) {
+ public static void main(String[] args) {
                         try {
-				new Parser(new java.io.StringReader(args[0])).init();
+    new Parser(new java.io.FileInputStream(args[0])).init();
                                 System.out.println(args[0]);
-				System.out.println("Syntax is okay");
-			} catch (Throwable e) {
-				// Catching Throwable is ugly but JavaCC throws Error objects!
-				System.out.println("Syntax check failed: " + e.getMessage());
-			}
-
-                /*
-                Parser parser;
-                try {
-                        parser = new Parser(new FileInputStream(args[0]));
-                } catch (FileNotFoundException e) {
-                        System.out.println("File not Found: " + args[0]);
-                }
-
-                try{
-                        parser.init();
-                        System("Sucessooooooo");
-                } catch (ParseException e){
-                        System.out.println("Erro no parse: " e);
-                } catch(TokenMsgError e){
-                        System.out.println("Erro na leitura do Token:" + e);
-                }
-                */
-	}
+    System.out.println("Syntax is okay");
+   } catch (Throwable e) {
+    // Catching Throwable is ugly but JavaCC throws Error objects!
+    System.out.println("Syntax check failed: " + e.getMessage());
+                        } 
+                        
+                      /*  catch (FileNotFoundException e) {
+                                 System.out.println("File not Found: " + args[0]);
+                        } catch (ParseException e){
+                                System.out.println("Erro no parse: " e);
+                        } catch(TokenMsgError e){
+                                System.out.println("Erro na leitura do Token:" + e);
+                       } */
+                
+ }
 }
 
 PARSER_END(Parser)
 
-TOKEN: {        < PUBLIC : "public" > 
-        |       < CLASS : "class">  
-	|       < STATIC : "static" > 
-        |       < VOID : "void" > 
-        |       < MAIN : "main" > 
+TOKEN: {        < PUBLIC : "public" >{System.out.print("PUBLIC ");} 
+        |       < CLASS : "class">  {System.out.print("CLASS ");} 
+ |       < STATIC : "static" > {System.out.print("STATIC ");} 
+        |       < VOID : "void" > {System.out.print("VOID ");} 
+        |       < MAIN : "main" > {System.out.print("MAIN ");} 
         
-        |       < RETURN : "return" > 
-        |       < EXTENDS : "extends" > 
-        |       < NEW : "new" > 
-        |       < PRINT : "System.out.println"> 
-        |       < IF : "if" > 
-        |       < ELSE : "else" > 
-        |       < LENGHT : "lenght" >
-        |       < WHILE : "while" > 
+        |       < RETURN : "return" > {System.out.print("RETURN ");} 
+        |       < EXTENDS : "extends" > {System.out.print("EXTENDS ");} 
+        |       < NEW : "new" > {System.out.print("NEW ");} 
+        |       < PRINT : "System.out.println"> {System.out.print("PRINT ");} 
+        |       < IF : "if" > {System.out.print("IF ");} 
+        |       < ELSE : "else" > {System.out.print("ELSE ");} 
+        |       < LENGHT : "lenght" > {System.out.print("LENGHT ");} 
+        |       < WHILE : "while" > {System.out.print("WHILE ");} 
         
-        |       < STRING : "String" > 
-        |       < INT : "int" > 
-        |       < BOOLEAN : "boolean" > 
+        |       < STRING : "String" > {System.out.print("STRING ");} 
+        |       < INT : "int" > {System.out.print("INT ");} 
+        |       < BOOLEAN : "boolean" > {System.out.print("BOOLEAN ");} 
         
-        |       < TRUE : "true" > 
-        |       < FALSE : "false" > 
-        |       < THIS : "this" > 
+        |       < TRUE : "true" > {System.out.print("TRUE ");} 
+        |       < FALSE : "false" > {System.out.print("FALSE ");} 
+        |       < THIS : "this" > {System.out.print("THIS ");} 
    
+        // AJEITAR ESSAS E.R. QUE TÃO algumas bugada ou ERRADA
         |       < #DIGIT: ["0"-"9"]> // E.R LOCAIS SÃO REPRESENTADAS POR #
-        |       < IDENTIFIER: ["a"-"z"] (["a"-"z"] | <DIGIT>)*>
-        |       < #INTEGER: (<DIGIT>)+ >
-        |       < #REAL: ((<DIGIT>)+ "." (<DIGIT>)*) | ((<DIGIT>)* "." (<DIGIT>)+) >
-        |       < INTEGER_LITERAL: (<IDENTIFIER>) | (<INTEGER>) | (<REAL>) >  
+        |       < IDENTIFIER: ["a"-"z"] (["a"-"z"] | ["0"-"9"])*>
+        |       < #INTEGER: (["0"-"9"])+ >
+        |       < #REAL: ((["0"-"9"])+ "." (["0"-"9"])*) | ((["0"-"9"])* "." (["0"-"9"])+) >
+        |       < INTEGER_LITERAL: (["a"-"z"] (["a"-"z"] | ["0"-"9"])*) | ((["0"-"9"])+) | (<REAL>) >  
         
-        |       < LPAREN: "("> 
-        |       < RPAREN: ")">
-        |       < LCOLCH: "["> 
-        |       < RCOLCH: "]"> 
-        |       < LBRACE: "{"> 
-        |       < RBRACE: "}"> 
-        |       < RBRACE_INTERROG: ")?">
-        |       < SEMI_COMMA: ";"> 
-        |       < DOT: "." > 
-        |       < BANG: "!" > 
-        |       < COMMA: "," >
+        |       < LPAREN: "("> {System.out.print("LPAREN ");} 
+        |       < RPAREN: ")"> {System.out.print("RPAREN ");} 
+        |       < LCOLCH: "["> {System.out.print("LCOLCH ");} 
+        |       < RCOLCH: "]"> {System.out.print("RCOLCH ");} 
+        |       < LBRACE: "{"> {System.out.print("LBRACE ");} 
+        |       < RBRACE: "}"> {System.out.print("RBRACE ");} 
+        |       < RBRACE_INTERROG: ")?"> {System.out.print("RBRACE_INTERROG ");} 
+        |       < SEMI_COMMA: ";"> {System.out.print("SEMI_COMMA ");} 
+        |       < DOT: "." > {System.out.print("DOT ");} 
+        |       < BANG: "!" > {System.out.print("BANG ");} 
+        |       < COMMA: "," > {System.out.print("COMMA ");} 
       
-        |       < EQUAL: "="> 
-        |       < AND: "&&">
-        |       < LESS_THEN: "<"> 
-        |       < BIGGER_THEN: ">">
-        |       < PLUS : "+" > 
-        |       < MINUS : "-"> 
-        |       < STAR: "*">
+        |       < EQUAL: "="> {System.out.print("EQUAL ");} 
+        |       < AND: "&&"> {System.out.print("AND ");} 
+        |       < LESS_THEN: "<"> {System.out.print("LESS_THEN ");} 
+        |       < BIGGER_THEN: ">"> {System.out.print("BIGGER_THEN ");} 
+        |       < PLUS : "+" > {System.out.print("PLUS ");} 
+        |       < MINUS : "-"> {System.out.print("MINUS ");} 
+        |       < STAR: "*"> {System.out.print("STAR ");} 
 }
-	   
+    
 SKIP : {        <"--"(["a"-"z"])*("\n" | "\r" | "\r\n")> // ajeitar esse comentário pq é /* */
         |       " " 
         |       "\t" 
         |       "\n"
+        |       "\r"
 }
 
 void init(): {} {
-        (       <PUBLIC> | <CLASS> | <STATIC> | <VOID> | <MAIN> | <RETURN> | <EXTENDS> | <NEW> | <PRINT> | <IF> | <ELSE> | <LENGHT> | <WHILE> 
+        (
+<PUBLIC> | <CLASS> | <STATIC> | <VOID> | <MAIN> | <RETURN> | <EXTENDS> | <NEW> | <PRINT> | <IF> | <ELSE> | <LENGHT> | <WHILE> 
                 | <STRING> | <INT> | <BOOLEAN> | <TRUE> | <FALSE> | <THIS> |  <IDENTIFIER> | <INTEGER_LITERAL> 
                 | <LPAREN> | <RPAREN> | <LCOLCH> | <RCOLCH> | <LBRACE> | <RBRACE> | <RBRACE_INTERROG> | <SEMI_COMMA> | <DOT> 
                 | <BANG> | <COMMA> | <EQUAL> | <AND> | <LESS_THEN> | <BIGGER_THEN> | <PLUS> | <MINUS> | <STAR> )* <EOF>
