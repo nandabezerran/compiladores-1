@@ -116,11 +116,22 @@ void MethodDeclaration(): {}{
 }
 
 void Type(): {}{
-    
+    // ver como funciona esse lookahead http://cs.lmu.edu/~ray/notes/javacc/
+    LOOKAHEAD(2)
+    <INT> <LCOLCH><RCOLCH>
+    | <INT>
+    | Identifier()
+    | <BOOLEAN>
 }
 
 void Statetement(): {}{
-    
+    <LBRACE> (Statement())* <RBRACE>
+    | <IF> <LPAREN> Expression() <RPAREN> Statement() <ELSE> Statement()
+    | <WHILE> <LPAREN> Expression() <RPAREN> Statement()
+    | <PRINT> <LPAREN> Expression() <RPAREN> <SEMI_COMMA>
+    | LOOKAHEAD(2) 
+    Identifier() <EQUAL> Expression() <SEMI_COMMA>
+    | Identifier() <LCOLCH> Expression() <RCOLCH> <EQUAL> Expression() <SEMI_COMMA>
 }
 
 void Expression(): {}{
