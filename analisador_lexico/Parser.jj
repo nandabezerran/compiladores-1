@@ -94,3 +94,39 @@ void init(): {} {
         
         )* <EOF>
 }
+
+void Goal(): {}{
+
+}
+
+void MainClass(): {}{
+    
+}
+
+void ClassDeclaration(): {}{
+    
+}
+
+void VarDeclaration(): {}{
+    
+}
+
+void MethodDeclaration(): {}{
+    
+}
+
+void Type(): {}{
+    
+}
+
+void Statetement(): {}{
+    
+}
+
+void Expression(): {}{
+    
+}
+
+void Identifier(): {}{
+    
+}
