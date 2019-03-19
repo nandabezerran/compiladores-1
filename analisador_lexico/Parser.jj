@@ -96,23 +96,23 @@ void init(): {} {
 }
 
 void Goal(): {}{
-
+	MainClass() <LPAREN> (ClassDeclaration())* <RPAREN> <EOF>
 }
 
 void MainClass(): {}{
-    
+    <CLASS> Identifier() <LBRACE> <PUBLIC> <STATIC> <VOID> <MAIN> <LPAREN> <STRING> <LCOLCH> <RCOLCH> <IDENTIFIER> <RPAREN> <LBRACE> Statement() <RBRACE> <RBRACE>
 }
 
 void ClassDeclaration(): {}{
-    
+    <CLASS> Identifier() <LPAREN> <EXTENDS> Identifier() <RPAREN> <LBRACE> (VarDeclaration())* (Statement())* <RETURN> Expression() <SEMI_COMMA> <RBRACE>
 }
 
 void VarDeclaration(): {}{
-    
+    Type() Identifier () <SEMI_COMMA>
 }
 
 void MethodDeclaration(): {}{
-    
+    <PUBLIC> Type() Identifier() <LPAREN> (Type() Identifier() (<COMMA> Type() Identifier())*) <RPAREN> <LBRACE> (VarDeclaration())* (Statement())* <RETURN> Expression() <SEMI_COMMA> <RBRACE>
 }
 
 void Type(): {}{
