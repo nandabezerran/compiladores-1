@@ -115,3 +115,19 @@ void MethodDeclaration(): {}{
     <PUBLIC> Type() Identifier() <LPAREN> (Type() Identifier() (<COMMA> Type() Identifier())*) <RPAREN> <LBRACE> (VarDeclaration())* (Statement())* <RETURN> Expression() <SEMI_COMMA> <RBRACE>
 }
 
+void Type(): {}{
+
+}
+
+void Statetement(): {}{
+
+}
+
+void Expression(): {}{
+    
+}
+
+void Identifier(): {}{
+    
+}
+
