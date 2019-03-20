@@ -124,7 +124,7 @@ void Type(): {}{
     | <BOOLEAN>
 }
 
-void Statetement(): {}{
+void Statement(): {}{
     <LBRACE> (Statement())* <RBRACE>
     | <IF> <LPAREN> Expression() <RPAREN> Statement() <ELSE> Statement()
     | <WHILE> <LPAREN> Expression() <RPAREN> Statement()
@@ -135,9 +135,9 @@ void Statetement(): {}{
 }
 
 void Expression(): {}{
-    
+
 }
 
 void Identifier(): {}{
-    
+
 }
