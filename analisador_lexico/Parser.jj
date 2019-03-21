@@ -1,4 +1,4 @@
-PARSER_BEGIN(Parser)
+﻿PARSER_BEGIN(Parser)
 
 public class Parser{
     public static void main(String[] args) {
@@ -93,26 +93,27 @@ void init(): {} {
 }
 
 void Goal(): {}{
-
+	MainClass() (ClassDeclaration())* <EOF>
 }
 
 void MainClass(): {}{
-    
+    <CLASS> Identifier() <LBRACE> <PUBLIC> <STATIC> <VOID> <MAIN> <LPAREN> <STRING> <LCOLCH> <RCOLCH> Identifier() <RPAREN> <LBRACE> Statement() <RBRACE> <RBRACE>
 }
 
 void ClassDeclaration(): {}{
-    
+    <CLASS> Identifier() <LPAREN> <EXTENDS> Identifier() <RPAREN> <LBRACE> (VarDeclaration())* (Statement())* <RETURN> Expression() <SEMI_COMMA> <RBRACE>
 }
 
 void VarDeclaration(): {}{
-    
+    Type() Identifier () <SEMI_COMMA>
 }
 
 void MethodDeclaration(): {}{
-    
+    <PUBLIC> Type() Identifier() <LPAREN> (Type() Identifier() (<COMMA> Type() Identifier())*) <RPAREN> <LBRACE> (VarDeclaration())* (Statement())* <RETURN> Expression() <SEMI_COMMA> <RBRACE>
 }
 
 void Type(): {}{
+
     // ver como funciona esse lookahead http://cs.lmu.edu/~ray/notes/javacc/
     LOOKAHEAD(2)
     <INT> <LCOLCH><RCOLCH>
@@ -130,6 +131,7 @@ void Statement(): {}{
     | LOOKAHEAD(2) 
     Identifier() <EQUAL> Expression() <SEMI_COMMA>
     | Identifier() <LCOLCH> Expression() <RCOLCH> <EQUAL> Expression() <SEMI_COMMA>
+>>>>>>> 4d0914e15fb571406fb6273f6c3e9654df36ca2d
 }
 
 void Expression(): {}{
@@ -139,3 +141,4 @@ void Expression(): {}{
 void Identifier(): {}{
 
 }
+
