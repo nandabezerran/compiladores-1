@@ -101,7 +101,7 @@ void MainClass(): {}{
 }
 
 void ClassDeclaration(): {}{
-    <CLASS> Identifier() <LPAREN> <EXTENDS> Identifier() <RPAREN> <LBRACE> (VarDeclaration())* (Statement())* <RETURN> Expression() <SEMI_COMMA> <RBRACE>
+    <CLASS> Identifier() <LPAREN> <EXTENDS> Identifier() <RPAREN> <LBRACE> (LOOKAHEAD(2) VarDeclaration())* (Statement())* <RETURN> Expression() <SEMI_COMMA> <RBRACE>
 }
 
 void VarDeclaration(): {}{
@@ -109,7 +109,7 @@ void VarDeclaration(): {}{
 }
 
 void MethodDeclaration(): {}{
-    <PUBLIC> Type() Identifier() <LPAREN> (Type() Identifier() (<COMMA> Type() Identifier())*) <RPAREN> <LBRACE> (VarDeclaration())* (Statement())* <RETURN> Expression() <SEMI_COMMA> <RBRACE>
+    <PUBLIC> Type() Identifier() <LPAREN> (Type() Identifier() (<COMMA> Type() Identifier())*) <RPAREN> <LBRACE> ( LOOKAHEAD(2) VarDeclaration())* (Statement())* <RETURN> Expression() <SEMI_COMMA> <RBRACE>
 }
 
 void Type(): {}{
