@@ -1,4 +1,4 @@
-PARSER_BEGIN(Parser)
+﻿PARSER_BEGIN(Parser)
 
 public class Parser{
     public static void main(String[] args) {
@@ -44,14 +44,12 @@ TOKEN: {        < PUBLIC : "public" >{System.out.print("PUBLIC ");}
         |       < FALSE : "false" > {System.out.print("FALSE ");} 
         |       < THIS : "this" > {System.out.print("THIS ");} 
    
-        // AJEITAR ESSAS E.R. QUE TÃO algumas bugada ou ERRADA
-        // VARIAVEIS LOCAIS SÃO REPRESENTADAS POR #
+        // Verificar se a definição dessas e.r. funcionam e se são suficientes
         |       < #DIGIT: ["0"-"9"]> 
         |       < #LETTER: ["A"-"Z"]|["a"-"z"]>
         |       < #INTEGER: (<DIGIT>)+ >
         |       < #REAL: ((<DIGIT>)+ "." (<DIGIT>)*) | ((<DIGIT>)* "." (<DIGIT>)+) >
         |       < IDENTIFIER: <LETTER> (<LETTER> | <DIGIT> | "_")*> {System.out.print("IDENTIFIER{"+matchedToken.image+"} ");} 
-        // Duvida no que esse abaixo realmente representa (?)
         |       < INTEGER_LITERAL: (["a"-"z"] (["a"-"z"] | ["0"-"9"])*) | ((["0"-"9"])+) | (<REAL>) >  {System.out.print("INTEGER_LITERAL{"+matchedToken.image+"} ");}  
                 
         |       < LPAREN: "("> {System.out.print("LPAREN ");} 
@@ -75,10 +73,9 @@ TOKEN: {        < PUBLIC : "public" >{System.out.print("PUBLIC ");}
         |       < STAR: "*"> {System.out.print("STAR ");} 
 }
     
-SKIP : {        <"--"(["a"-"z"])*("\n" | "\r" | "\r\n")> // ajeitar esse comentário pq é /* */
-        |       <"/*"> // ajeitar a E.R. daqui pq tem as coisas no meio do comentário /* */
-        |       <"*/">
-        |       <"//">
+SKIP : {        <"--"(["a"-"z"])*("\n" | "\r" | "\r\n")>
+        |       <"/*" (["a"-"z"] | ["A"-"Z"] | " " | ["0"-"9"] | "_" | "ç" | "\n" | "\r" | "\t")* "*/"> // Verificar se a definição dessas e.r. funcionam e se são suficientes
+        |       <"//" (["a"-"z"] | ["A"-"Z"] | " " | ["0"-"9"] | "_" | "ç" | "\r" | "\t")* > // Verificar se a definição dessas e.r. funcionam e se são suficientes
         |       " " 
         |       "\t" 
         |       "\n"
@@ -117,17 +114,31 @@ void MethodDeclaration(): {}{
 
 void Type(): {}{
 
+    // ver como funciona esse lookahead http://cs.lmu.edu/~ray/notes/javacc/
+    LOOKAHEAD(2)
+    <INT> <LCOLCH><RCOLCH>
+    | <INT>
+    | Identifier()
+    | <BOOLEAN>
 }
 
-void Statetement(): {}{
-
+void Statement(): {}{
+    <LBRACE> (Statement())* <RBRACE>
+    | <IF> <LPAREN> Expression() <RPAREN> Statement() <ELSE> Statement()
+    | <WHILE> <LPAREN> Expression() <RPAREN> Statement()
+    | <PRINT> <LPAREN> Expression() <RPAREN> <SEMI_COMMA>
+    
+    | LOOKAHEAD(2) 
+    Identifier() <EQUAL> Expression() <SEMI_COMMA>
+    | Identifier() <LCOLCH> Expression() <RCOLCH> <EQUAL> Expression() <SEMI_COMMA>
+>>>>>>> 4d0914e15fb571406fb6273f6c3e9654df36ca2d
 }
 
 void Expression(): {}{
-    
+
 }
 
 void Identifier(): {}{
-    
+
 }
 
