@@ -1,4 +1,4 @@
-﻿PARSER_BEGIN(Parser)
+PARSER_BEGIN(Parser)
 
 public class Parser{
     public static void main(String[] args) {
@@ -74,8 +74,8 @@ TOKEN: {        < PUBLIC : "public" >{System.out.print("PUBLIC ");}
 }
     
 SKIP : {        <"--"(["a"-"z"])*("\n" | "\r" | "\r\n")>
-        |       <"/*" (["a"-"z"] | ["A"-"Z"] | " " | ["0"-"9"] | "_" | "ç" | "\n" | "\r" | "\t")* "*/"> // Verificar se a definição dessas e.r. funcionam e se são suficientes
-        |       <"//" (["a"-"z"] | ["A"-"Z"] | " " | ["0"-"9"] | "_" | "ç" | "\r" | "\t")* > // Verificar se a definição dessas e.r. funcionam e se são suficientes
+        |       <"/*" (~[])* "*/"> // Verificar se a definição dessas e.r. funcionam e se são suficientes
+        |       <"//" (~["\n","\r"])* ("\n"|"\r"|"\r\n")> // Verificar se a definição dessas e.r. funcionam e se são suficientes
         |       " " 
         |       "\t" 
         |       "\n"
@@ -134,11 +134,27 @@ void Statement(): {}{
 
 }
 
-void Expression(): {}{
+void Exp(): {}{
+	(<AND> | <LESS_THEN> | <PLUS> | <MINUS> | <STAR> ) Expression() Exp()
+	| <LCOLCH> Expression() <RCOLCH> Exp()
+	| LOOKAHEAD(2) <DOT> <LENGHT> Exp()
+	| <DOT> Identifier() <LPAREN> (Expression()(<SEMI_COMMA>Expression())*)? <RPAREN> Exp()
+	| {}//conferir se a derivação do vazio é assim	
+}
 
+void Expression(): {}{
+	<INTEGER_LITERAL> Exp()
+	| <TRUE> Exp()
+	| <FALSE> Exp()
+	| Identifier() Exp()
+	| <THIS> Exp()
+	| LOOKAHEAD(2) <NEW> <INT> <LCOLCH> Expression() <RCOLCH> Exp()
+	| <NEW> Identifier() <LPAREN> <RPAREN> Exp()
+	| <BANG> Expression() Exp() 
+	| <LPAREN> Expression() <RPAREN> Exp()
 }
 
 void Identifier(): {}{
-
+	<IDENTIFIER>
 }
 
