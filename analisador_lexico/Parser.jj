@@ -131,7 +131,7 @@ void Statement(): {}{
     | LOOKAHEAD(2) 
     Identifier() <EQUAL> Expression() <SEMI_COMMA>
     | Identifier() <LCOLCH> Expression() <RCOLCH> <EQUAL> Expression() <SEMI_COMMA>
->>>>>>> 4d0914e15fb571406fb6273f6c3e9654df36ca2d
+
 }
 
 void Expression(): {}{
