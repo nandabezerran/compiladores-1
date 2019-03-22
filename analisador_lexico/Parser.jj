@@ -33,7 +33,7 @@ TOKEN: {        < PUBLIC : "public" >{System.out.print("PUBLIC ");}
         |       < PRINT : "System.out.println"> {System.out.print("PRINT ");} 
         |       < IF : "if" > {System.out.print("IF ");} 
         |       < ELSE : "else" > {System.out.print("ELSE ");} 
-        |       < LENGHT : "lenght" > {System.out.print("LENGHT ");} 
+        |       < LENGTH : "length" > {System.out.print("LENGTH");} 
         |       < WHILE : "while" > {System.out.print("WHILE ");} 
         
         |       < STRING : "String" > {System.out.print("STRING ");} 
@@ -84,7 +84,7 @@ SKIP : {        <"--"(["a"-"z"])*("\n" | "\r" | "\r\n")>
 
 // void init(): {} {
 //         (
-//             <PUBLIC> | <CLASS> | <STATIC> | <VOID> | <MAIN> | <RETURN> | <EXTENDS> | <NEW> | <PRINT> | <IF> | <ELSE> | <LENGHT> | <WHILE> 
+//             <PUBLIC> | <CLASS> | <STATIC> | <VOID> | <MAIN> | <RETURN> | <EXTENDS> | <NEW> | <PRINT> | <IF> | <ELSE> | <LENGTH> | <WHILE> 
 //         |   <STRING> | <INT> | <BOOLEAN> | <TRUE> | <FALSE> | <THIS> |  <IDENTIFIER> | <INTEGER_LITERAL> 
 //         |   <LPAREN> | <RPAREN> | <LCOLCH> | <RCOLCH> | <LBRACE> | <RBRACE> | <RBRACE_INTERROG> | <SEMI_COMMA> | <DOT> 
 //         |   <BANG> | <COMMA> | <EQUAL> | <AND> | <LESS_THEN> | <BIGGER_THEN> | <PLUS> | <MINUS> | <STAR> 
@@ -137,8 +137,8 @@ void Statement(): {}{
 void Exp(): {}{
 	(<AND> | <LESS_THEN> | <PLUS> | <MINUS> | <STAR> ) Expression() Exp()
 	| <LCOLCH> Expression() <RCOLCH> Exp()
-	| LOOKAHEAD(2) <DOT> <LENGHT> Exp()
-	| <DOT> Identifier() <LPAREN> (Expression()(<SEMI_COMMA>Expression())*)? <RPAREN> Exp()
+	| LOOKAHEAD(3) <DOT> <LENGTH> Exp()
+	| <DOT> Identifier() <LPAREN> (Expression()(<COMMA>Expression())*)? <RPAREN> Exp()
 	| {}//conferir se a derivação do vazio é assim	
 }
 
