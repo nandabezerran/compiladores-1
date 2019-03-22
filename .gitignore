@@ -15,3 +15,9 @@ analisador_lexico/Token.class
 analisador_lexico/TokenMgrError.class
 analisador_lexico/Fac.class
 analisador_lexico/Factorial.class
+analisador_lexico/Parser$1.class
+analisador_lexico/JJCalls.class
+analisador_lexico/Parser$JJCalls.class
+analisador_lexico/Parser$LookaheadSuccess.class
+analisador_lexico/BinarySearch.class
+analisador_lexico/BS.class
