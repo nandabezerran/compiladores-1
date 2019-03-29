@@ -4,18 +4,11 @@ public class Parser{
     public static void main(String[] args) {
         try {
             new Parser(new java.io.FileInputStream(args[0])).Goal();                
-            //System.out.println(args[0]);
             System.out.println("Syntax is okay");
         } catch (Throwable e) {
             // Catching Throwable is ugly but JavaCC throws Error objects!
             System.out.println("Syntax check failed: " + e.getMessage());
-        } /*  catch (FileNotFoundException e) {
-            System.out.println("File not Found: " + args[0]);
-        } catch (ParseException e){
-            System.out.println("Erro no parse: " e);
-        } catch(TokenMsgError e){
-            System.out.println("Erro na leitura do Token:" + e);
-        } */        
+        }         
     }
 }
 
@@ -44,7 +37,6 @@ TOKEN: {        < PUBLIC : "public" >{System.out.print("PUBLIC ");}
         |       < FALSE : "false" > {System.out.print("FALSE ");} 
         |       < THIS : "this" > {System.out.print("THIS ");} 
    
-        // Verificar se a definição dessas e.r. funcionam e se são suficientes
         |       < #DIGIT: ["0"-"9"]> 
         |       < #LETTER: ["A"-"Z"]|["a"-"z"]>
         |       < #INTEGER: (<DIGIT>)+ >
@@ -74,8 +66,8 @@ TOKEN: {        < PUBLIC : "public" >{System.out.print("PUBLIC ");}
 }
     
 SKIP : {        <"--"(["a"-"z"])*("\n" | "\r" | "\r\n")>
-        |       <"/*" (~[])* "*/"> // Verificar se a definição dessas e.r. funcionam e se são suficientes
-        |       <"//" (~["\n","\r"])* ("\n"|"\r"|"\r\n")> // Verificar se a definição dessas e.r. funcionam e se são suficientes
+        |       <"/*" (~[])* "*/"> 
+        |       <"//" (~["\n","\r"])* ("\n"|"\r"|"\r\n")> 
         |       " " 
         |       "\t" 
         |       "\n"
@@ -114,7 +106,6 @@ void MethodDeclaration(): {}{
 
 void Type(): {}{
 
-    // ver como funciona esse lookahead http://cs.lmu.edu/~ray/notes/javacc/
     LOOKAHEAD(2)
     <INT> <LCOLCH><RCOLCH>
     | <INT>
@@ -139,7 +130,7 @@ void Exp(): {}{
 	| <LCOLCH> Expression() <RCOLCH> Exp()
 	| LOOKAHEAD(3) <DOT> <LENGTH> Exp()
 	| <DOT> Identifier() <LPAREN> (Expression()(<COMMA>Expression())*)? <RPAREN> Exp()
-	| {}//conferir se a derivação do vazio é assim	
+	| {}	
 }
 
 void Expression(): {}{
