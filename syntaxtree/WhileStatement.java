@@ -1,12 +1,22 @@
 package syntaxtree;
 
-public class WhileStatement extends Statement {
+import visitor.Visitor;
+import visitor.TypeVisitor;
 
-    public abstract Type accept(TypeVisitor v) {
-        return v.visit(this);
+public class WhileStatement extends Statement {
+    public Expression e;
+    public Statement s1;
+
+    public WhileStatement(Expression e, Statement s1) {
+        this.e = e;
+        this.s1 = s1;
     }
-    
-    public String toString(){
-        return s;
+
+    public void accept(Visitor v) {
+        v.visit(this);
+    }
+
+    public Type accept(TypeVisitor v) {
+        return v.visit(this);
     }
 }
