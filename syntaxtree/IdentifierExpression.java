@@ -4,6 +4,12 @@ import visitor.TypeVisitor;
 
 public class IdentifierExpression extends Expression {
 
+	public String s;
+
+	public IdentifierExpression(String s){
+		this.s = s;
+	}
+
     public abstract void accept(Visitor v) {
         return v.visit(this);
     }

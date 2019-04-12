@@ -4,6 +4,12 @@ import visitor.TypeVisitor;
 
 public class NewIdentifierExpression extends Expression {
 
+	public Identifier id;
+
+	public NewIdentifierExpression(Identifier id){
+		this.id = id;
+	} 
+
     public abstract void accept(Visitor v) {
         return v.visit(this);
     }
