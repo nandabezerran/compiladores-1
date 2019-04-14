@@ -16,7 +16,7 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
   
   // Identifier i1,i2;
   // Statement s;
-  public Type visit(MainClass n) {
+  public Type visit(Main n) {
     n.i1.accept(this);
     n.i2.accept(this);
     n.s.accept(this);
@@ -26,7 +26,7 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
   // Identifier i;
   // VarDeclList vl;
   // MethodDeclList ml;
-  public Type visit(ClassDeclSimple n) {
+  public Type visit(Class n) {
     n.i.accept(this);
     for ( int i = 0; i < n.vl.size(); i++ ) {
         n.vl.elementAt(i).accept(this);
@@ -55,7 +55,7 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
 
   // Type t;
   // Identifier i;
-  public Type visit(VarDecl n) {
+  public Type visit(VarDefinition n) {
     n.t.accept(this);
     n.i.accept(this);
     return null;
@@ -67,7 +67,7 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
   // VarDeclList vl;
   // StatementList sl;
   // Exp e;
-  public Type visit(MethodDecl n) {
+  public Type visit(MethodDefinition n) {
     n.t.accept(this);
     n.i.accept(this);
     for ( int i = 0; i < n.fl.size(); i++ ) {

@@ -16,7 +16,7 @@ public class PrettyPrintVisitor implements Visitor {
   
   // Identifier i1,i2;
   // Statement s;
-  public void visit(MainClass n) {
+  public void visit(Main n) {
     System.out.print("class ");
     n.i1.accept(this);
     System.out.println(" {");
@@ -32,7 +32,7 @@ public class PrettyPrintVisitor implements Visitor {
   // Identifier i;
   // VarDeclList vl;
   // MethodDeclList ml;
-  public void visit(ClassDeclSimple n) {
+  public void visit(Class n) {
     System.out.print("class ");
     n.i.accept(this);
     System.out.println(" { ");
@@ -74,7 +74,7 @@ public class PrettyPrintVisitor implements Visitor {
 
   // Type t;
   // Identifier i;
-  public void visit(VarDecl n) {
+  public void visit(VarDefinition n) {
     n.t.accept(this);
     System.out.print(" ");
     n.i.accept(this);
@@ -87,7 +87,7 @@ public class PrettyPrintVisitor implements Visitor {
   // VarDeclList vl;
   // StatementList sl;
   // Exp e;
-  public void visit(MethodDecl n) {
+  public void visit(MethodDefinition n) {
     System.out.print("  public ");
     n.t.accept(this);
     System.out.print(" ");

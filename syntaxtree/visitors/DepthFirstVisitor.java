@@ -15,7 +15,7 @@ public class DepthFirstVisitor implements Visitor {
   
   // Identifier i1,i2;
   // Statement s;
-  public void visit(MainClass n) {
+  public void visit(Main n) {
     n.i1.accept(this);
     n.i2.accept(this);
     n.s.accept(this);
@@ -24,7 +24,7 @@ public class DepthFirstVisitor implements Visitor {
   // Identifier i;
   // VarDeclList vl;
   // MethodDeclList ml;
-  public void visit(ClassDeclSimple n) {
+  public void visit(Class n) {
     n.i.accept(this);
     for ( int i = 0; i < n.vl.size(); i++ ) {
         n.vl.elementAt(i).accept(this);
@@ -51,7 +51,7 @@ public class DepthFirstVisitor implements Visitor {
 
   // Type t;
   // Identifier i;
-  public void visit(VarDecl n) {
+  public void visit(VarDefinition n) {
     n.t.accept(this);
     n.i.accept(this);
   }
@@ -62,7 +62,7 @@ public class DepthFirstVisitor implements Visitor {
   // VarDeclList vl;
   // StatementList sl;
   // Exp e;
-  public void visit(MethodDecl n) {
+  public void visit(MethodDefinition n) {
     n.t.accept(this);
     n.i.accept(this);
     for ( int i = 0; i < n.fl.size(); i++ ) {
