@@ -157,49 +157,49 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
   }
 
   // Exp e1,e2;
-  public Type visit(And n) {
+  public Type visit(AndExpression n) {
     n.e1.accept(this);
     n.e2.accept(this);
     return null;
   }
 
   // Exp e1,e2;
-  public Type visit(LessThan n) {
+  public Type visit(LessExpression n) {
     n.e1.accept(this);
     n.e2.accept(this);
     return null;
   }
 
   // Exp e1,e2;
-  public Type visit(Plus n) {
+  public Type visit(PlusExpression  n) {
     n.e1.accept(this);
     n.e2.accept(this);
     return null;
   }
 
   // Exp e1,e2;
-  public Type visit(Minus n) {
+  public Type visit(MinusExpression n) {
     n.e1.accept(this);
     n.e2.accept(this);
     return null;
   }
 
   // Exp e1,e2;
-  public Type visit(Times n) {
+  public Type visit(MultExpression n) {
     n.e1.accept(this);
     n.e2.accept(this);
     return null;
   }
 
   // Exp e1,e2;
-  public Type visit(ArrayLookup n) {
+  public Type visit(ListExpression n) {
     n.e1.accept(this);
     n.e2.accept(this);
     return null;
   }
 
   // Exp e;
-  public Type visit(ArrayLength n) {
+  public Type visit(LengthExpression n) {
     n.e.accept(this);
     return null;
   }
@@ -207,7 +207,7 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
   // Exp e;
   // Identifier i;
   // ExpList el;
-  public Type visit(Call n) {
+  public Type visit(BigExpression n) {
     n.e.accept(this);
     n.i.accept(this);
     for ( int i = 0; i < n.el.size(); i++ ) {
@@ -217,40 +217,40 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
   }
 
   // int i;
-  public Type visit(IntegerLiteral n) {
+  public Type visit(IntegerLiteralExpression n) {
     return null;
   }
 
-  public Type visit(True n) {
+  public Type visit(TrueExpression n) {
     return null;
   }
 
-  public Type visit(False n) {
+  public Type visit(FalseExpression n) {
     return null;
   }
 
   // String s;
-  public Type visit(IdentifierExp n) {
+  public Type visit(IdentifierExpression n) {
     return null;
   }
 
-  public Type visit(This n) {
+  public Type visit(ThisExpression n) {
     return null;
   }
 
   // Exp e;
-  public Type visit(NewArray n) {
+  public Type visit(NewIntegerExpression n) {
     n.e.accept(this);
     return null;
   }
 
   // Identifier i;
-  public Type visit(NewObject n) {
+  public Type visit(NewIdentifierExpressiont n) {
     return null;
   }
 
   // Exp e;
-  public Type visit(Not n) {
+  public Type visit(NotExpression n) {
     n.e.accept(this);
     return null;
   }

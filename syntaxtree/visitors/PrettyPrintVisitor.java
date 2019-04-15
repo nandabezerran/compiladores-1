@@ -200,7 +200,7 @@ public class PrettyPrintVisitor implements Visitor {
   }
 
   // Exp e1,e2;
-  public void visit(And n) {
+  public void visit(AndExpression n) {
     System.out.print("(");
     n.e1.accept(this);
     System.out.print(" && ");
@@ -209,7 +209,7 @@ public class PrettyPrintVisitor implements Visitor {
   }
 
   // Exp e1,e2;
-  public void visit(LessThan n) {
+  public void visit(LessExpression n) {
     System.out.print("(");
     n.e1.accept(this);
     System.out.print(" < ");
@@ -218,7 +218,7 @@ public class PrettyPrintVisitor implements Visitor {
   }
 
   // Exp e1,e2;
-  public void visit(Plus n) {
+  public void visit(PlusExpression n) {
     System.out.print("(");
     n.e1.accept(this);
     System.out.print(" + ");
@@ -227,7 +227,7 @@ public class PrettyPrintVisitor implements Visitor {
   }
 
   // Exp e1,e2;
-  public void visit(Minus n) {
+  public void visit(MinusExpression n) {
     System.out.print("(");
     n.e1.accept(this);
     System.out.print(" - ");
@@ -236,7 +236,7 @@ public class PrettyPrintVisitor implements Visitor {
   }
 
   // Exp e1,e2;
-  public void visit(Times n) {
+  public void visit(MultExpression n) {
     System.out.print("(");
     n.e1.accept(this);
     System.out.print(" * ");
@@ -245,7 +245,7 @@ public class PrettyPrintVisitor implements Visitor {
   }
 
   // Exp e1,e2;
-  public void visit(ArrayLookup n) {
+  public void visit(ListExpression n) {
     n.e1.accept(this);
     System.out.print("[");
     n.e2.accept(this);
@@ -253,7 +253,7 @@ public class PrettyPrintVisitor implements Visitor {
   }
 
   // Exp e;
-  public void visit(ArrayLength n) {
+  public void visit(LengthExpression n) {
     n.e.accept(this);
     System.out.print(".length");
   }
@@ -261,7 +261,7 @@ public class PrettyPrintVisitor implements Visitor {
   // Exp e;
   // Identifier i;
   // ExpList el;
-  public void visit(Call n) {
+  public void visit(BigExpression n) {
     n.e.accept(this);
     System.out.print(".");
     n.i.accept(this);
@@ -274,43 +274,43 @@ public class PrettyPrintVisitor implements Visitor {
   }
 
   // int i;
-  public void visit(IntegerLiteral n) {
+  public void visit(IntegerLiteralExpression n) {
     System.out.print(n.i);
   }
 
-  public void visit(True n) {
+  public void visit(TrueExpression n) {
     System.out.print("true");
   }
 
-  public void visit(False n) {
+  public void visit(FalseExpression n) {
     System.out.print("false");
   }
 
   // String s;
-  public void visit(IdentifierExp n) {
+  public void visit(IdentifierExpression n) {
     System.out.print(n.s);
   }
 
-  public void visit(This n) {
+  public void visit(ThisExpression n) {
     System.out.print("this");
   }
 
   // Exp e;
-  public void visit(NewArray n) {
+  public void visit(NewIntegerExpression n) {
     System.out.print("new int [");
     n.e.accept(this);
     System.out.print("]");
   }
 
   // Identifier i;
-  public void visit(NewObject n) {
+  public void visit(NewIdentifierExpressiont n) {
     System.out.print("new ");
     System.out.print(n.i.s);
     System.out.print("()");
   }
 
   // Exp e;
-  public void visit(Not n) {
+  public void visit(NotExpression n) {
     System.out.print("!");
     n.e.accept(this);
   }
