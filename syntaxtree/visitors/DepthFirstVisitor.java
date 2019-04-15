@@ -140,50 +140,50 @@ public class DepthFirstVisitor implements Visitor {
   }
 
   // Exp e1,e2;
-  public void visit(And n) {
+  public void visit(AndExpression n) {
     n.e1.accept(this);
     n.e2.accept(this);
   }
 
   // Exp e1,e2;
-  public void visit(LessThan n) {
+  public void visit(LessExpression n) {
     n.e1.accept(this);
     n.e2.accept(this);
   }
 
   // Exp e1,e2;
-  public void visit(Plus n) {
+  public void visit(PlusExpression n) {
     n.e1.accept(this);
     n.e2.accept(this);
   }
 
   // Exp e1,e2;
-  public void visit(Minus n) {
+  public void visit(MinusExpression n) {
     n.e1.accept(this);
     n.e2.accept(this);
   }
 
   // Exp e1,e2;
-  public void visit(Times n) {
+  public void visit(MultExpression n) {
     n.e1.accept(this);
     n.e2.accept(this);
   }
 
   // Exp e1,e2;
-  public void visit(ArrayLookup n) {
+  public void visit(ListExpression n) {
     n.e1.accept(this);
     n.e2.accept(this);
   }
 
   // Exp e;
-  public void visit(ArrayLength n) {
+  public void visit(LengthExpression n) {
     n.e.accept(this);
   }
 
   // Exp e;
   // Identifier i;
   // ExpList el;
-  public void visit(Call n) {
+  public void visit(BigExpression n) {
     n.e.accept(this);
     n.i.accept(this);
     for ( int i = 0; i < n.el.size(); i++ ) {
@@ -192,33 +192,38 @@ public class DepthFirstVisitor implements Visitor {
   }
 
   // int i;
-  public void visit(IntegerLiteral n) {
+  public void visit(IntegerLiteralExpression n) {
   }
 
-  public void visit(True n) {
+  public void visit(TrueExpression n) {
   }
 
-  public void visit(False n) {
+  public void visit(FalseExpression n) {
   }
 
   // String s;
-  public void visit(IdentifierExp n) {
+  public void visit(IdentifierExpression n) {
   }
 
-  public void visit(This n) {
+  public void visit(ThisExpression n) {
   }
 
   // Exp e;
-  public void visit(NewArray n) {
+  public void visit(NewIntegerExpression n) {
     n.e.accept(this);
   }
 
   // Identifier i;
-  public void visit(NewObject n) {
+  public void visit(NewIdentifierExpressiont n) {
   }
 
   // Exp e;
-  public void visit(Not n) {
+  public void visit(NotExpression n) {
+    n.e.accept(this);
+  }
+
+  //Não tinha no doc do minijava, mas acho que ta faatando
+  public void visit(BlockExpression n) {
     n.e.accept(this);
   }
 
