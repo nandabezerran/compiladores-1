@@ -122,7 +122,7 @@ public class PrettyPrintVisitor implements Visitor {
     n.i.accept(this);
   }
 
-  public void visit(IntArrayType n) {
+  public void visit(ArrayType n) {
     System.out.print("int []");
   }
 
@@ -140,7 +140,7 @@ public class PrettyPrintVisitor implements Visitor {
   }
 
   // StatementList sl;
-  public void visit(Block n) {
+  public void visit(BlockStatement n) {
     System.out.println("{ ");
     for ( int i = 0; i < n.sl.size(); i++ ) {
         System.out.print("      ");
@@ -152,7 +152,7 @@ public class PrettyPrintVisitor implements Visitor {
 
   // Exp e;
   // Statement s1,s2;
-  public void visit(If n) {
+  public void visit(IfStatement n) {
     System.out.print("if (");
     n.e.accept(this);
     System.out.println(") ");
@@ -165,7 +165,7 @@ public class PrettyPrintVisitor implements Visitor {
 
   // Exp e;
   // Statement s;
-  public void visit(While n) {
+  public void visit(WhileStatement n) {
     System.out.print("while (");
     n.e.accept(this);
     System.out.print(") ");
@@ -173,7 +173,7 @@ public class PrettyPrintVisitor implements Visitor {
   }
 
   // Exp e;
-  public void visit(Print n) {
+  public void visit(PrintStatement n) {
     System.out.print("System.out.println(");
     n.e.accept(this);
     System.out.print(");");
@@ -181,7 +181,7 @@ public class PrettyPrintVisitor implements Visitor {
   
   // Identifier i;
   // Exp e;
-  public void visit(Assign n) {
+  public void visit(AssignStatement n) {
     n.i.accept(this);
     System.out.print(" = ");
     n.e.accept(this);
@@ -190,7 +190,7 @@ public class PrettyPrintVisitor implements Visitor {
 
   // Identifier i;
   // Exp e1,e2;
-  public void visit(ArrayAssign n) {
+  public void visit(ArrayAssignStatement n) {
     n.i.accept(this);
     System.out.print("[");
     n.e1.accept(this);

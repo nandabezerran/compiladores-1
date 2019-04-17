@@ -84,7 +84,7 @@ public class DepthFirstVisitor implements Visitor {
     n.i.accept(this);
   }
 
-  public void visit(IntArrayType n) {
+  public void visit(ArrayType n) {
   }
 
   public void visit(BooleanType n) {
@@ -98,7 +98,7 @@ public class DepthFirstVisitor implements Visitor {
   }
 
   // StatementList sl;
-  public void visit(Block n) {
+  public void visit(BlockStatement n) {
     for ( int i = 0; i < n.sl.size(); i++ ) {
         n.sl.elementAt(i).accept(this);
     }
@@ -106,7 +106,7 @@ public class DepthFirstVisitor implements Visitor {
 
   // Exp e;
   // Statement s1,s2;
-  public void visit(If n) {
+  public void visit(IfStatement n) {
     n.e.accept(this);
     n.s1.accept(this);
     n.s2.accept(this);
@@ -114,26 +114,26 @@ public class DepthFirstVisitor implements Visitor {
 
   // Exp e;
   // Statement s;
-  public void visit(While n) {
+  public void visit(WhileStatement n) {
     n.e.accept(this);
     n.s.accept(this);
   }
 
   // Exp e;
-  public void visit(Print n) {
+  public void visit(PrintStatement n) {
     n.e.accept(this);
   }
   
   // Identifier i;
   // Exp e;
-  public void visit(Assign n) {
+  public void visit(AssignStatement n) {
     n.i.accept(this);
     n.e.accept(this);
   }
 
   // Identifier i;
   // Exp e1,e2;
-  public void visit(ArrayAssign n) {
+  public void visit(ArrayAssigStatementn n) {
     n.i.accept(this);
     n.e1.accept(this);
     n.e2.accept(this);

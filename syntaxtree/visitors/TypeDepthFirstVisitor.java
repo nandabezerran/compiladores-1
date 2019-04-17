@@ -91,7 +91,7 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
     return null;
   }
 
-  public Type visit(IntArrayType n) {
+  public Type visit(ArrayType n) {
     return null;
   }
 
@@ -118,7 +118,7 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
 
   // Exp e;
   // Statement s1,s2;
-  public Type visit(If n) {
+  public Type visit(IfStatement n) {
     n.e.accept(this);
     n.s1.accept(this);
     n.s2.accept(this);
@@ -127,21 +127,21 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
 
   // Exp e;
   // Statement s;
-  public Type visit(While n) {
+  public Type visit(WhileStatement n) {
     n.e.accept(this);
     n.s.accept(this);
     return null;
   }
 
   // Exp e;
-  public Type visit(Print n) {
+  public Type visit(PrintStatement n) {
     n.e.accept(this);
     return null;
   }
   
   // Identifier i;
   // Exp e;
-  public Type visit(Assign n) {
+  public Type visit(AssignStatement n) {
     n.i.accept(this);
     n.e.accept(this);
     return null;
@@ -149,7 +149,7 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
 
   // Identifier i;
   // Exp e1,e2;
-  public Type visit(ArrayAssign n) {
+  public Type visit(ArrayAssignStatement n) {
     n.i.accept(this);
     n.e1.accept(this);
     n.e2.accept(this);

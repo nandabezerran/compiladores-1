@@ -3,17 +3,17 @@ import visitor.Visitor;
 import visitor.TypeVisitor;
 
 public class BlockStatement extends Statement {
-	public Statement s1;
+	public StatementList sl;
 
-	public BlockStatement(Statement s1){
+	public BlockStatement(tatementLSist sl){
 		this.s1 = s1;
 	}
 
-   	public abstract void accept(Visitor v) {
+   	public void accept(Visitor v) {
         return v.visit(this);
     }
 
-    public abstract Type accept(TypeVisitor v) {
+    public Type accept(TypeVisitor v) {
         return v.visit(this);
     }
 }

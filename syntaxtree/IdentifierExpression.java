@@ -10,11 +10,11 @@ public class IdentifierExpression extends Expression {
 		this.s = s;
 	}
 
-    public abstract void accept(Visitor v) {
+    public void accept(Visitor v) {
         return v.visit(this);
     }
 
-    public abstract Type accept(TypeVisitor v) {
+    public Type accept(TypeVisitor v) {
         return v.visit(this);
     }
 }
