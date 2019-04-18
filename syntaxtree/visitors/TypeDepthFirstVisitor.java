@@ -68,18 +68,18 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
   // StatementList sl;
   // Exp e;
   public Type visit(MethodDefinition n) {
-    n.t.accept(this);
-    n.i.accept(this);
-    for ( int i = 0; i < n.fl.size(); i++ ) {
+    n.type.accept(this);
+    n.identifier.accept(this);
+    for ( int i = 0; i < n.formalList.size(); i++ ) {
         n.fl.elementAt(i).accept(this);
     }
-    for ( int i = 0; i < n.vl.size(); i++ ) {
+    for ( int i = 0; i < n.varDefinitionList.size(); i++ ) {
         n.vl.elementAt(i).accept(this);
     }
-    for ( int i = 0; i < n.sl.size(); i++ ) {
+    for ( int i = 0; i < n.statementList.size(); i++ ) {
         n.sl.elementAt(i).accept(this);
     }
-    n.e.accept(this);
+    n.expression.accept(this);
     return null;
   }
 
