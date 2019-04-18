@@ -27,6 +27,36 @@ public class TypeChecking implements TypeVisitor {
                     + currClass.getId() + "." + currMethod.getId());
     }
 
+    public Type visit(AssignStatement pAssignStatement) {
+        Type var = whatType(pAssignStatement.i.toString());
+        Type exp = pAssignStatement.expression.accept(this);
+        if (var instanceof IdentifierType) //Class
+        {
+            ClassTable c = programTable.getClass(Symbol.symbol(((IdentifierType) var).toString()));
+            if (c == null || !c.toString().equals(exp.toString()))
+                error.complain("Assign types not maching");
+        }
+        else
+        {
+            if (var == null || exp == null || !var.toString().equals(exp.toString()))
+                error.complain("Assign types not maching");
+        }
+        return null;
+    }
+
+    public Type visit(ArrayAssignStatement pArray) {
+        Type var = whatType(pArray.i.toString());
+        if (var == null)
+            error.complain("Array Type not declared");
+        else if (!(var instanceof IntegerType))
+            error.complain("Array must be integer");
+        if (! (pArray.expression1.accept(this) instanceof IntegerType))
+            error.complain("Iterator of Array must be integer");
+        if (! (pArray.expression2.accept(this) instanceof IntegerType))
+            error.complain("Right side expression of Array Assign must be integer");
+        return null;
+    }
+
     public void visit(AssignStatement pAssignStatement) {
         Type identifier = pAssignStatement.identifier.toString();
         Expression expression = pAssignStatement.e.accept(this);
@@ -35,42 +65,36 @@ public class TypeChecking implements TypeVisitor {
         return new IntegerType();
     }
 
-    public void visit(MethodDefinition pMethodDefinition){
-        Type methodType = pMethodDefinition.type.accept(this);
-        Identifier methodId = pMethodDefinition.identifier.toString();
-        if (currClass == null) {
-            if (!programTable.addVar(methodId, methodType))
-                error.complain(id + "is already defined in " + currClass.getId());
-        } else if (!currClass.addVar(id, type))
-            error.complain(id + "is already defined in "
-                    + currClass.getId() + "." + currMethod.getId());
 
-        for ( int i = 0; i < pMethodDefinition.formalList.size(); i++ ) {
-            pMethodDefinition.formalList.elementAt(i).visit(this);
-        }
-        for ( int i = 0; i < n.varDefinitionList.size(); i++ ) {
-            pMethodDefinition.varDefinitionList.elementAt(i).visit(this);
-        }
-        for ( int i = 0; i < n.statementList.size(); i++ ) {
-            pMethodDefinition.statementList.elementAt(i).visit(this);
-        }
-        pMethodDefinition.expression.accept(this);
+    public Type visit(And pAnd) {
+        if (! (pAnd.expression1.accept(this) instanceof BooleanType))
+            error.complain("Left side of operator && must be boolean");
+        if (! (pAnd.expression2.accept(this) instanceof BooleanType))
+            error.complain("Right side of operator && must be boolean");
+        return new BooleanType();
     }
 
-    public void visit(Class pClass) {
-        public VarDeclaration varDeclaration ;
-        public MethodDeclaration methodDeclaration;
-        VarDeclaration var = pClass.varDeclaration.accept(this);
-        VarDeclaration method = pClass.methodDeclaration.accept(this);
-        String id1 = pClass.identifier1.toString();
-        String id2 = pClass.identifier2.toString();
-        //TODO I dont know how we going to do in the table to add classes
-        if (!programTable.addVar(id1)) {
-            error.complain(id + "is already defined in " + programTable.getId());
-        }
-        if (!programTable.addVar(id2)) {
-            error.complain(id + "is already defined in " + programTable.getId());
-        }
+    public Type visit(LessExpression pLess) {
+        if (! (pLess.expression1.accept(this) instanceof IntegerType))
+            error.complain("Left side of operator < must be integer");
+        if (! (pLess.expression2.accept(this) instanceof IntegerType))
+            error.complain("Right side of operator < must be integer");
+        return new BooleanType();
+    }
+
+    public Type visit(IfStatement pIfStatement) {
+        if (! (pIfStatement.e.accept(this) instanceof BooleanType))
+            error.complain("If statement condition must be boolean");
+        pIfStatement.statement1.accept(this);
+        pIfStatement.statement2.accept(this);
+        return null;
+    }
+
+    public Type visit(WhileStatement pWhileStatement) {
+        if (! (pWhileStatement.expression.accept(this) instanceof BooleanType))
+            error.complain("While statement condition must be boolean");
+        pWhileStatement.statement.accept(this);
+        return null;
     }
 
     public Type visit(PlusExpression pPlus) {
@@ -97,5 +121,17 @@ public class TypeChecking implements TypeVisitor {
         return new IntegerType();
     }
 
+    public Type visit(IdentifierExpression pIdExpression) {
+        Type type = whatType(pIdExpression.statement);
+        if (type == null)
+            error.complain("Identifier not found");
+        return type;
+    }
+
+    public Type visit(This n) {
+        if (currentClass == null)
+            error.complain("Class Environment not found");
+        return new IdentifierType(currentClass.toString());
+    }
 
 }
