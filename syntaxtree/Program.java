@@ -4,10 +4,10 @@ import visitor.TypeVisitor;
 
 public class Program extends Goal {
     MainClass mainClass;
-    ClassDeclaration classDeclaration;
+    ClassList classList;
     public Program(MainClass pMainClass, ClassDeclaration pClassDeclaration) {
-        mainClass        = pMainClass;
-        classDeclaration = pClassDeclaration; 
+        mainClass = pMainClass;
+        classList = pClassDeclaration;
     }
 
     public void accept(Visitor v) {
