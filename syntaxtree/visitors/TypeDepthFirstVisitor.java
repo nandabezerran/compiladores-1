@@ -255,6 +255,11 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
     return null;
   }
 
+  //Não tinha no doc do minijava, mas acho que ta faatando
+  public void visit(BlockExpression n) {
+    n.e.accept(this);
+  }
+
   // String s;
   public Type visit(Identifier n) {
     return null;
