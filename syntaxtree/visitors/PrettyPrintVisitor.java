@@ -53,7 +53,7 @@ public class PrettyPrintVisitor implements Visitor {
   // Identifier j;
   // VarDeclList vl;
   // MethodDeclList ml;
-  public void visit(ClassDeclExtends n) {
+  public void visit(ClassDeclarationExtends n) {
     System.out.print("class ");
     n.i.accept(this);
     System.out.println(" extends ");

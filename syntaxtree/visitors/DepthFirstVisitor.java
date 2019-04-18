@@ -38,7 +38,7 @@ public class DepthFirstVisitor implements Visitor {
   // Identifier j;
   // VarDeclList vl;
   // MethodDeclList ml;
-  public void visit(ClassDeclExtends n) {
+  public void visit(ClassDeclarationExtends n) {
     n.i.accept(this);
     n.j.accept(this);
     for ( int i = 0; i < n.vl.size(); i++ ) {

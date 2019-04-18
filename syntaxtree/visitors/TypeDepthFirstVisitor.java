@@ -41,7 +41,7 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
   // Identifier j;
   // VarDeclList vl;
   // MethodDeclList ml;
-  public Type visit(ClassDeclExtends n) {
+  public Type visit(ClassDeclarationExtends n) {
     n.i.accept(this);
     n.j.accept(this);
     for ( int i = 0; i < n.vl.size(); i++ ) {
