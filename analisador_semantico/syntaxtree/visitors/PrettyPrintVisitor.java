@@ -315,8 +315,17 @@ public class PrettyPrintVisitor implements Visitor {
     n.e.accept(this);
   }
 
+  //Não tinha no doc do minijava, mas acho que ta faatando
+  public void visit(BlockExpression n) {
+    System.out.print("(");
+    n.e.accept(this);
+    System.out.print(")");
+  }
+
   // String s;
   public void visit(Identifier n) {
     System.out.print(n.s);
   }
+
+
 }
