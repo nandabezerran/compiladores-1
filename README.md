@@ -19,6 +19,8 @@ $ javac *.java
 $ java Parser minijava.java
 ```
 
-### 2. [Construção Árvore Sintática Abstrata](syntaxtree/)
-### 3. [Type Checking](typechecking/)
+### 2. [Análise Semântica](analisador_semantico/)
+#### a. [Árvore Sintática Abstrata]](analisador_semantico/syntaxtree/)
+#### c. [Tabela de símbolos - Ambientes](analisador_semantico/context/)
+#### c. [Type Checking](analisador_semantico/typechecking/)
 ---
