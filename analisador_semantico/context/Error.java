@@ -1,3 +1,4 @@
+package context;
 public class Error {
     boolean anyErrors;
     void complain(String msg) {

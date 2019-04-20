@@ -176,7 +176,7 @@ Formal Formal():{
   {return new Formal(type, id);}
 }
 
-void FormalList() :
+FormalList FormalList() :
 {
     FormalList list = new FormalList();
     Formal formal;

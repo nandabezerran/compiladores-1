@@ -10,7 +10,7 @@ public class PrintStatement extends Statement {
 	}
 
     public void accept(Visitor v) {
-        return v.visit(this);
+        v.visit(this);
     }
 
     public Type accept(TypeVisitor v) {
