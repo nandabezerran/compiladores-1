@@ -2,10 +2,10 @@ package syntaxtree;
 
 import java.util.Vector;
 
-public class ClassDeclList {
+public class ClassList {
     private Vector list;
 
-    public ClassDeclList() {
+    public ClassList() {
         list = new Vector();
     }
 

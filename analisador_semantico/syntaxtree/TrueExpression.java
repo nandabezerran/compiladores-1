@@ -3,7 +3,6 @@ import visitor.Visitor;
 import visitor.TypeVisitor;
 
 public class TrueExpression extends Expression {
-
     public void accept(Visitor v) {
         v.visit(this);
     }

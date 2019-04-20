@@ -3,7 +3,6 @@ import visitor.Visitor;
 import visitor.TypeVisitor;
 
 public class AndExpression extends Expression {
-
 	public Expression e1, e2;
 
 	public AndExpression(Expression e1, Expression e2){

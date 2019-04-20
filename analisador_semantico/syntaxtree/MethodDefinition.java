@@ -11,7 +11,7 @@ public class MethodDefinition {
   public Expression expression;
 
   public MethodDefinition(Type pType, Identifier pIdentifier, FormalList pFormalList,
-                    VarDeclaration pVarDeclaration, StatementList pStatementList,
+                    VarDeclarationList pVarDeclaration, StatementList pStatementList,
                     Expression pExpression) {
      type              = pType;
      identifier        = pIdentifier;
@@ -20,13 +20,12 @@ public class MethodDefinition {
      statementList     = pStatementList;
      expression        = pExpression;
   }
-
  
-    public void accept(Visitor v) {
-        return v.visit(this);
-    }
+  public void accept(Visitor v) {
+    return v.visit(this);
+  }
 
-    public Type accept(TypeVisitor v) {
-        return v.visit(this);
-    }
+  public Type accept(TypeVisitor v) {
+    return v.visit(this);
+  }
 }

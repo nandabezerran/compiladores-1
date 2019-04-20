@@ -3,7 +3,6 @@ import visitor.Visitor;
 import visitor.TypeVisitor;
 
 public class NewIntegerExpression extends Expression {
-
 	public Expression e1;
 
 	public NewIntegerExpression(Expression e1){

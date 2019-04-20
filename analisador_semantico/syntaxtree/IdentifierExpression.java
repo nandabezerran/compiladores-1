@@ -3,7 +3,6 @@ import visitor.Visitor;
 import visitor.TypeVisitor;
 
 public class IdentifierExpression extends Expression {
-
 	public String s;
 
 	public IdentifierExpression(String s){

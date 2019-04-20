@@ -3,7 +3,6 @@ import visitor.Visitor;
 import visitor.TypeVisitor;
 
 public class NewIdentifierExpression extends Expression {
-
 	public Identifier id;
 
 	public NewIdentifierExpression(Identifier id){

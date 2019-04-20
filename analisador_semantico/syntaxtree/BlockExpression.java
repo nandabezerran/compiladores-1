@@ -3,7 +3,6 @@ import visitor.Visitor;
 import visitor.TypeVisitor;
 
 public class BlockExpression extends Expression {
-
 	public Expression e1;
 
 	public BlockExpression(Expression e1){

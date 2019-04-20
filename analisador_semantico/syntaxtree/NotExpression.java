@@ -3,7 +3,6 @@ import visitor.Visitor;
 import visitor.TypeVisitor;
 
 public class NotExpression extends Expression {
-
 	public Expression e1;
 
 	public NotExpression(Expression e1){

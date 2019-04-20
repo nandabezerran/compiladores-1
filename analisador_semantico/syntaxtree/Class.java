@@ -3,7 +3,6 @@ import visitor.Visitor;
 import visitor.TypeVisitor;
 
 public class Class extends ClassDeclaration {
-
     public Identifier identifier1;
     public Identifier identifier2;
     public VarDeclaration varDeclaration ;  

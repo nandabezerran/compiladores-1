@@ -3,7 +3,6 @@ import visitor.Visitor;
 import visitor.TypeVisitor;
 
 public class PlusExpression extends Expression {
-
 	public Expression e1, e2;
 
 	public PlusExpression(Expression e1, Expression e2){

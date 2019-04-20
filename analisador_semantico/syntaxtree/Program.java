@@ -5,6 +5,7 @@ import visitor.TypeVisitor;
 public class Program extends Goal {
     MainClass mainClass;
     ClassList classList;
+    
     public Program(MainClass pMainClass, ClassDeclaration pClassDeclaration) {
         mainClass = pMainClass;
         classList = pClassDeclaration;

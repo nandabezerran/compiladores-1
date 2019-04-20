@@ -3,7 +3,6 @@ import visitor.Visitor;
 import visitor.TypeVisitor;
 
 public class Main extends MainClass {
-
     public Identifier identifier1, identifier2;
     public Statement statement;
 

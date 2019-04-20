@@ -6,7 +6,7 @@ public class VarDefinition extends VarDeclaration {
     public Type type;
     public Identifier identifier;
   
-    public VarDecl(Type pType, Identifier pIdentifier) {
+    public VarDefinition(Type pType, Identifier pIdentifier) {
         type       = pType;
         identifier = pIdentifier;
     }
