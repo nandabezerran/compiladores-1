@@ -1,5 +1,5 @@
-package syntaxtree;
-import visitor.*;
+//package syntaxtree;
+//import visitor.*;
 
 public class Identifier {
 	public String s;
@@ -8,13 +8,13 @@ public class Identifier {
     	this.s = s;
   	}
 
-  	public void accept(Visitor v) {
+  	/*public void accept(Visitor v) {
     	v.visit(this);
   	}
 
   	public Type accept(TypeVisitor v) {
     	return v.visit(this);
-  	}
+  	}*/
 
   	public String toString(){
     	return s;

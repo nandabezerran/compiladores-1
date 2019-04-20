@@ -1,12 +1,11 @@
-package syntaxtree;
-
+//package syntaxtree;
 import java.util.Vector;
 
 public class VarDefinitionList {
-   private Vector list;
+   private Vector<VarDeclaration> list;
 
    public VarDefinitionList() {
-      list = new Vector();
+      list = new Vector<VarDeclaration>();
    }
 
    public void addElement(VarDeclaration n) {
@@ -14,7 +13,7 @@ public class VarDefinitionList {
    }
 
    public VarDeclaration elementAt(int i)  { 
-      return (VarDeclaration)list.elementAt(i); 
+      return (VarDeclaration) list.elementAt(i); 
    }
 
    public int size() { 

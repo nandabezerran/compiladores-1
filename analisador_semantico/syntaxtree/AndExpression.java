@@ -1,5 +1,5 @@
-package syntaxtree;
-import visitor.*;
+//package syntaxtree;
+//import visitor.*;
 
 public class AndExpression extends Expression {
 	public Expression e1, e2;
@@ -9,11 +9,11 @@ public class AndExpression extends Expression {
 		this.e2 = e2;
 	}
 
-    public void accept(Visitor v) {
+    /*public void accept(Visitor v) {
         v.visit(this);
     }
 
     public Type accept(TypeVisitor v) {
         return v.visit(this);
-    }
+    }*/
 }

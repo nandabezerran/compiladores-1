@@ -1,5 +1,6 @@
 package syntaxtree;
-import visitor.*;
+//import visitor.*;
+//package syntaxtree;
 
 public class Class extends ClassDeclaration {
     public Identifier identifier1;
@@ -13,11 +14,11 @@ public class Class extends ClassDeclaration {
         methodDeclaration = pMethodDeclaration;
     }
 
-    public void accept(Visitor v) {
+    /*public void accept(Visitor v) {
         v.visit(this);
     }
 
     public Type accept(TypeVisitor v) {
         return v.visit(this);
-    }
+    }*/
 }

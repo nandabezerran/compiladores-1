@@ -1,12 +1,11 @@
-package syntaxtree;
-
+//package syntaxtree;
 import java.util.Vector;
 
 public class FormalList {
-   private Vector formalList;
+   private Vector<Formal> formalList;
 
    public FormalList() {
-      formalList = new Vector();
+      formalList = new Vector<Formal>();
    }
 
    public void addElement(Formal pFormal) {

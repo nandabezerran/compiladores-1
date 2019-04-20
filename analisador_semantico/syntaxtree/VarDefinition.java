@@ -1,5 +1,5 @@
-package syntaxtree;
-import visitor.*;
+//package syntaxtree;
+//import visitor.*;
 
 public class VarDefinition extends VarDeclaration {
     public Type type;
@@ -9,11 +9,13 @@ public class VarDefinition extends VarDeclaration {
         type       = pType;
         identifier = pIdentifier;
     }
-    public void accept(Visitor v) {
+    
+    /*public void accept(Visitor v) {
         v.visit(this);
     }
 
     public Type accept(TypeVisitor v) {
         return v.visit(this);
     }
+    */
 }

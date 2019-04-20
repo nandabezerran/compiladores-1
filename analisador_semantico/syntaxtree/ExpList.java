@@ -1,12 +1,11 @@
-package syntaxtree;
+//package syntaxtree;
 import java.util.Vector;
-import visitor.*;
 
 public class ExpList {
-   private Vector list;
+   private Vector<Expression> list;
 
    public ExpList() {
-      list = new Vector();
+      list = new Vector<Expression>();
    }
 
    public void addElement(Expression n) {
@@ -14,7 +13,7 @@ public class ExpList {
    }
 
    public Expression elementAt(int i)  { 
-      return (Expression)list.elementAt(i); 
+      return (Expression) list.elementAt(i); 
    }
 
    public int size() { 

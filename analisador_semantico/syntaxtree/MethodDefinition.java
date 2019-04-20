@@ -1,5 +1,5 @@
-package syntaxtree;
-import visitor.*;
+//package syntaxtree;
+//import visitor.*;
 
 public class MethodDefinition {
   public Type type;
@@ -20,11 +20,11 @@ public class MethodDefinition {
      expression        = pExpression;
   }
  
-  public void accept(Visitor v) {
+  /*public void accept(Visitor v) {
     v.visit(this);
   }
 
   public Type accept(TypeVisitor v) {
     return v.visit(this);
-  }
+  }*/
 }

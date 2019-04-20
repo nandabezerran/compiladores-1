@@ -1,5 +1,5 @@
-package syntaxtree;
-import visitor.*;
+//package syntaxtree;
+// import visitor.*;
 
 public class IdentifierType extends Type {
 	public String s;
@@ -8,11 +8,11 @@ public class IdentifierType extends Type {
 		this.s = s;
 	}
 
-    public void accept(Visitor v) {
+    /*public void accept(Visitor v) {
         v.visit(this);
     }
 
     public Type accept(TypeVisitor v) {
-        return v.visit(this);
-    }
+         return v.visit(this);
+    }*/
 }

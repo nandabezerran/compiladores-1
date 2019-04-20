@@ -1,12 +1,11 @@
-package syntaxtree;
-
+//package syntaxtree;
 import java.util.Vector;
 
 public class MethodDeclarationList {
-   private Vector list;
+   private Vector<MethodDeclaration> list;
 
    public MethodDeclarationList() {
-      list = new Vector();
+      list = new Vector<MethodDeclaration>();
    }
 
    public void addElement(MethodDeclaration n) {
@@ -14,7 +13,7 @@ public class MethodDeclarationList {
    }
 
    public MethodDeclaration elementAt(int i)  { 
-      return (MethodDeclaration)list.elementAt(i); 
+      return (MethodDeclaration) list.elementAt(i); 
    }
 
    public int size() { 

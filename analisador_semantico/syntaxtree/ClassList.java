@@ -1,12 +1,11 @@
-package syntaxtree;
-
+//package syntaxtree;
 import java.util.Vector;
 
 public class ClassList {
-    private Vector list;
+    private Vector<ClassDeclaration> list;
 
     public ClassList() {
-        list = new Vector();
+        list = new Vector<ClassDeclaration>();
     }
 
     public void addElement(ClassDeclaration n) {

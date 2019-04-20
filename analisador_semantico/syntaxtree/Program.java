@@ -1,20 +1,20 @@
-package syntaxtree;
-import visitor.*;
+//package syntaxtree;
+//import visitor.*;
 
 public class Program extends Goal {
     MainClass mainClass;
     ClassList classList;
     
-    public Program(MainClass pMainClass, ClassDeclaration pClassDeclaration) {
+    public Program(MainClass pMainClass, ClassList pClassDeclaration) {
         mainClass = pMainClass;
         classList = pClassDeclaration;
     }
 
-    public void accept(Visitor v) {
+    /*public void accept(Visitor v) {
         v.visit(this);
     }
 
     public Type accept(TypeVisitor v) {
         return v.visit(this);
-    }
+    }*/
 }

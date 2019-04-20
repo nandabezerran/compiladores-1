@@ -1,12 +1,11 @@
-package syntaxtree;
-
+//package syntaxtree;
 import java.util.Vector;
 
 public class StatementList {
-   private Vector statementList;
+   private Vector<Statement> statementList;
 
    public StatementList() {
-      statementList = new Vector();
+      statementList = new Vector<Statement>();
    }
 
    public void addElement(Statement pStatement) {
@@ -14,7 +13,7 @@ public class StatementList {
    }
 
    public Statement elementAt(int pElement)  { 
-      return (Statement)statementList.elementAt(pElement); 
+      return (Statement) statementList.elementAt(pElement); 
    }
 
    public int size() { 

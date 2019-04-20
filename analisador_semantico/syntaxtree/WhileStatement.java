@@ -1,5 +1,5 @@
-package syntaxtree;
-import visitor.*;
+//package syntaxtree;
+//import visitor.*;
 
 public class WhileStatement extends Statement {
     public Expression e;
@@ -10,11 +10,12 @@ public class WhileStatement extends Statement {
         this.s1 = s1;
     }
 
-    public void accept(Visitor v) {
+    /*public void accept(Visitor v) {
         v.visit(this);
     }
 
     public Type accept(TypeVisitor v) {
         return v.visit(this);
     }
+    */
 }

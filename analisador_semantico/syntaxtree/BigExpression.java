@@ -1,5 +1,6 @@
 package syntaxtree;
-import visitor.*;
+//import visitor.*;
+//package syntaxtree;
 
 public class BigExpression extends Expression {
 	public Expression e1;
@@ -12,11 +13,11 @@ public class BigExpression extends Expression {
 		this.el = el; 
 	}
 
-    public void accept(Visitor v) {
+    /*public void accept(Visitor v) {
         v.visit(this);
     }
 
     public Type accept(TypeVisitor v) {
         return v.visit(this);
-    }
+    }*/
 }

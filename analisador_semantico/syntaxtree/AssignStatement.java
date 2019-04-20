@@ -1,5 +1,5 @@
-package syntaxtree;
-import visitor.*;
+//package syntaxtree;
+//import visitor.*;
 
 public class AssignStatement extends Statement {
 	public Identifier id;
@@ -10,11 +10,11 @@ public class AssignStatement extends Statement {
 		this.id = id;
 	}
 
-    public void accept(Visitor v) {
+    /*public void accept(Visitor v) {
         v.visit(this);
     }
 
     public Type accept(TypeVisitor v) {
         return v.visit(this);
-    }
+    }*/
 }
