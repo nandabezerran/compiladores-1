@@ -11,7 +11,7 @@ public class MethodDefinition {
   public Expression expression;
 
   public MethodDefinition(Type pType, Identifier pIdentifier, FormalList pFormalList,
-                    VarDeclarationList pVarDeclaration, StatementList pStatementList,
+                    VarDefinitionList pVarDeclaration, StatementList pStatementList,
                     Expression pExpression) {
      type              = pType;
      identifier        = pIdentifier;
