@@ -199,14 +199,12 @@ Formal FormalTail():{
     {return new Formal(type, id);}
 }
 
-Type Type(): {
-    Identifier id;
-}{
+Type Type(): {}{
 
     LOOKAHEAD(2)
     <INT><LCOLCH><RCOLCH> {return new ArrayType();}
     | <INT> {return new IntegerType();}
-    | id = Identifier() {return id;} // dúvida aqui se eu retorno o Identifier mesmo ou IntegerLiteralExpression
+    | <IDENTIFIER> {return new IdentifierType(token.image);} 
     | <BOOLEAN> {return new BooleanType();}
 }
 
