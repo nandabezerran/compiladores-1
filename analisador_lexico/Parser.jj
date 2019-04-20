@@ -192,7 +192,7 @@ Formal FormalTail():{
     Type type;
     Identifier id;
 }
-{
+{ 
     <COMMA> 
     type = Type() 
     id = Identifier()
@@ -310,7 +310,7 @@ Expression Exp(Expression exp): {
     | <DOT> 
     {id = new Identifier();} 
     <LPAREN>
-    {expList = new ExpList();} 
+    {expList = ExpList();} 
     <RPAREN> 
     {bigExpression = new BigExpression(exp, id, expList);}
 	{return Exp(bigExpression);}
@@ -379,8 +379,30 @@ Expression Expression(): {
     {return Exp(exp4); }
 }
 
+ExpList ExpList():{
+    Expression exp1;
+    Expression exp2;
+    ExpList explist = new ExpList();
+}{
+    (exp1 = Expression() {expList.addElement(exp1);})
+    (exp2 = ExpTail() {expList.addElement(exp2); })
+    {return expList;}
+    |{return expList;}
+}
+
+
+Expression ExpTail():{
+    Expression exp1;
+}
+{
+    <COMMA>
+    exp1 = Expression()
+    {return exp1;}    
+}
+
 Identifier Identifier(): {}{
     <IDENTIFIER> 
     { return new Identifier(token.image); }
 }
+
 
