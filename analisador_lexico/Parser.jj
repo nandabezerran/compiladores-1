@@ -183,7 +183,7 @@ FormalList FormalList() :
 }
 {
   (formal = Formal(){ list.addElement(formal); }) 
-  (formal2 = FormalTail() {list.addElement(formal2);})
+  (formal2 = FormalTail() {list.addElement(formal2);})*
   {return list;}
   | {return list;}
 }
@@ -192,7 +192,7 @@ Formal FormalTail():{
     Type type;
     Identifier id;
 }
-{
+{ 
     <COMMA> 
     type = Type() 
     id = Identifier()
@@ -275,43 +275,43 @@ Expression Exp(Expression exp): {
     <AND> 
     exp2 = Expression() 
     {ad = new AndExpression(exp, exp2);}
-    {return Expression(ad);}  
+    {return Exp(ad);}  
     
     | <LESS_THEN> 
     exp2 = Expression() 
     {less = new LessExpression(exp, exp2);}
-    {return Expression(less);}
+    {return Exp(less);}
     
     | <PLUS> exp2 = Expression() 
     {plus = new PlusExpression(exp, exp2);}
-    {return Expression(plus);}
+    {return Exp(plus);}
     
     | <MINUS> exp2 = Expression()
     {minus =  new MinusExpression(exp, exp2);}
-    {return Expression(minus);}
+    {return Exp(minus);}
     
     | <STAR> exp2 = Expression() 
     {mult = new MultExpression(exp, exp2);}
-    {return Expression(mult);}
+    {return Exp(mult);}
 	
     | <LCOLCH> 
     exp2 = Expression() 
     <RCOLCH> 
     {arrayExpression = new ListExpression(exp, exp2);}
-    {return Expression(arrayExpression);}
+    {return Exp(arrayExpression);}
 	
     | LOOKAHEAD(3) <DOT> 
     <LENGTH> 
     {len = new LengthExpression(exp);}
-    {return Expression(len);}
+    {return Exp(len);}
 	
     | <DOT> 
-    {id = Identifier();} 
+    {id = new Identifier();} 
     <LPAREN>
     {expList = ExpList();} 
     <RPAREN> 
     {bigExpression = new BigExpression(exp, id, expList);}
-	{return Expression(bigExpression);}
+	{return Exp(bigExpression);}
     
     | {return exp;}	
 }
@@ -377,8 +377,30 @@ Expression Expression(): {
     {return Exp(exp4); }
 }
 
+ExpList ExpList():{
+    Expression exp1;
+    Expression exp2;
+    ExpList explist = new ExpList();
+}{
+    (exp1 = Expression() {expList.addElement(exp1);})
+    (exp2 = ExpTail() {expList.addElement(exp2); })*
+    {return expList;}
+    |{return expList;}
+}
+
+
+Expression ExpTail():{
+    Expression exp1;
+}
+{
+    <COMMA>
+    exp1 = Expression()
+    {return exp1;}    
+}
+
 Identifier Identifier(): {}{
     <IDENTIFIER> 
     { return new Identifier(token.image); }
 }
+
 
