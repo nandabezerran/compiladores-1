@@ -308,9 +308,9 @@ Expression Exp(Expression exp): {
     {return Exp(len);}
 	
     | <DOT> 
-    {id = Identifier();} 
+    {id = new Identifier();} 
     <LPAREN>
-    {expList = ExpList();} 
+    {expList = new ExpList();} 
     <RPAREN> 
     {bigExpression = new BigExpression(exp, id, expList);}
 	{return Exp(bigExpression);}
