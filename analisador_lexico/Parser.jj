@@ -278,35 +278,35 @@ Expression Exp(Expression exp): {
     <AND> 
     exp2 = Expression() 
     {ad = new AndExpression(exp, exp2);}
-    {return Expression(ad);}  
+    {return Exp(ad);}  
     
     | <LESS_THEN> 
     exp2 = Expression() 
     {less = new LessExpression(exp, exp2);}
-    {return Expression(less);}
+    {return Exp(less);}
     
     | <PLUS> exp2 = Expression() 
     {plus = new PlusExpression(exp, exp2);}
-    {return Expression(plus);}
+    {return Exp(plus);}
     
     | <MINUS> exp2 = Expression()
     {minus =  new MinusExpression(exp, exp2);}
-    {return Expression(minus);}
+    {return Exp(minus);}
     
     | <STAR> exp2 = Expression() 
     {mult = new MultExpression(exp, exp2);}
-    {return Expression(mult);}
+    {return Exp(mult);}
 	
     | <LCOLCH> 
     exp2 = Expression() 
     <RCOLCH> 
     {arrayExpression = new ListExpression(exp, exp2);}
-    {return Expression(arrayExpression);}
+    {return Exp(arrayExpression);}
 	
     | LOOKAHEAD(3) <DOT> 
     <LENGTH> 
     {len = new LengthExpression(exp);}
-    {return Expression(len);}
+    {return Exp(len);}
 	
     | <DOT> 
     {id = Identifier();} 
@@ -314,7 +314,7 @@ Expression Exp(Expression exp): {
     {expList = ExpList();} 
     <RPAREN> 
     {bigExpression = new BigExpression(exp, id, expList);}
-	{return Expression(bigExpression);}
+	{return Exp(bigExpression);}
     
     | {return exp;}	
 }
