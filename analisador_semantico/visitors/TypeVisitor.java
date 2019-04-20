@@ -13,8 +13,10 @@ public interface TypeVisitor {
   public Type visit(BooleanType n);
   public Type visit(Class n);
   public Type visit(ClassDeclaration n);
+  public void visit(ClassDeclarationExtends n);
   public Type visit(Expression n);
   public Type visit(FalseExpression n);
+  public Type visit(Formal n);
   public Type visit(Goal n);
   public Type visit(Identifier n);
   public Type visit(IdentifierExpression n);
@@ -22,8 +24,6 @@ public interface TypeVisitor {
   public Type visit(IfStatement n);
   public Type visit(IntegerLiteralExpression n);
   public Type visit(IntegerType n);
-  public Type visit(Call n);
-  public Type visit(IntegerLiteral n);
   public Type visit(LengthExpression n);
   public Type visit(LessExpression n);
   public Type visit(ListExpression n);
@@ -38,6 +38,8 @@ public interface TypeVisitor {
   public Type visit(NotExpression n);
   public Type visit(PlusExpression n);
   public Type visit(PrintStatement n);
+  public Type visit(Program n);
+  public Type visit(Statement n);
   public Type visit(ThisExpression n);
   public Type visit(TrueExpression n);
   public Type visit(Type n);

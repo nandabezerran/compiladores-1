@@ -13,8 +13,10 @@ public interface Visitor {
   public void visit(BooleanType n);
   public void visit(Class n);
   public void visit(ClassDeclaration n);
+  public void visit(ClassDeclarationExtends n);
   public void visit(Expression n);
   public void visit(FalseExpression n);
+  public void visit(Formal n);
   public void visit(Goal n);
   public void visit(Identifier n);
   public void visit(IdentifierExpression n);
@@ -22,8 +24,6 @@ public interface Visitor {
   public void visit(IfStatement n);
   public void visit(IntegerLiteralExpression n);
   public void visit(IntegerType n);
-  public void visit(Call n);
-  public void visit(IntegerLiteral n);
   public void visit(LengthExpression n);
   public void visit(LessExpression n);
   public void visit(ListExpression n);
@@ -38,6 +38,8 @@ public interface Visitor {
   public void visit(NotExpression n);
   public void visit(PlusExpression n);
   public void visit(PrintStatement n);
+  public void visit(Program n);
+  public void visit(Statement n);
   public void visit(ThisExpression n);
   public void visit(TrueExpression n);
   public void visit(Type n);
