@@ -183,7 +183,7 @@ FormalList FormalList() :
 }
 {
   (formal = Formal(){ list.addElement(formal); }) 
-  (formal2 = FormalTail() {list.addElement(formal2);})
+  (formal2 = FormalTail() {list.addElement(formal2);})*
   {return list;}
   | {return list;}
 }
@@ -385,7 +385,7 @@ ExpList ExpList():{
     ExpList explist = new ExpList();
 }{
     (exp1 = Expression() {expList.addElement(exp1);})
-    (exp2 = ExpTail() {expList.addElement(exp2); })
+    (exp2 = ExpTail() {expList.addElement(exp2); })*
     {return expList;}
     |{return expList;}
 }
