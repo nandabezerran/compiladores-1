@@ -5,7 +5,7 @@ import visitor.TypeVisitor;
 public class BlockStatement extends Statement {
 	public StatementList sl;
 
-	public BlockStatement(tatementLSist sl){
+	public BlockStatement(StatementLSist sl){
 		this.s1 = s1;
 	}
 

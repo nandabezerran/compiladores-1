@@ -2,7 +2,7 @@ package syntaxtree;
 import visitor.Visitor;
 import visitor.TypeVisitor;
 
-public class ClassDeclarationExtends extends Class {
+public class ClassDeclarationExtends extends ClassDeclaration {
     public Identifier i;
     public Identifier j;
     public VarDefinitionList vl;

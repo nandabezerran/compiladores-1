@@ -1,3 +1,5 @@
+import analisador_semantico.syntaxtree;
+
 PARSER_BEGIN(Parser)
 
 public class Parser{
@@ -74,57 +76,187 @@ SKIP : {        <"--"(["a"-"z"])*("\n" | "\r" | "\r\n")>
         |       "\r"
 }
 
-Program Goal(): {}{
+Program Goal(): {
     Main main;
     ClassDeclaration class_decl;
-    ClassList class_list;
-    main = MainClass() (class_decl = (ClassDeclaration() {class_list.addElement(class_decl);})* <EOF>
+    ClassList class_list = new ClassList();
+}{   
+    main = MainClass() 
+    (class_decl = (ClassDeclaration() {class_list.addElement(class_decl);})*) 
+    <EOF>
     {return new Program(main, class_list);}
 }
 
-MainClass MainClass(): {}{
+MainClass MainClass(): {
     Identifier id1;
     Identifier id2;
     Statement statement;
-
-    <CLASS> id1 = Identifier() <LBRACE> <PUBLIC> <STATIC> <VOID> <MAIN> <LPAREN> <STRING> <LCOLCH> <RCOLCH> id2 = Identifier() <RPAREN> <LBRACE> statement = Statement() <RBRACE> <RBRACE>
-    {return new Main(id1, id2, statement)}
+}{
+    <CLASS> 
+    id1 = Identifier()
+    <LBRACE> <PUBLIC> <STATIC> <VOID> <MAIN> <LPAREN> <STRING> <LCOLCH> <RCOLCH> 
+    id2 = Identifier() 
+    <RPAREN> <LBRACE> 
+    statement = Statement() 
+    <RBRACE> <RBRACE>
+    {return new MainClass(id1, id2, statement)}
 }
 
-ClassDeclaration ClassDeclaration(): {}{
+ClassDeclaration ClassDeclaration(): {
     Identifier id1;
     Identifier id2;
-    Va
-    <CLASS> Identifier() (<EXTENDS> Identifier())? <LBRACE> (LOOKAHEAD(2) VarDeclaration())* (MethodDeclaration())* <RBRACE>
+    VarDefinitionList var_list = new VarDefinitionList();
+    VarDeclaration var;
+    MethodDeclaration method;
+    MethodDeclarationList method_list = new MethodDeclarationList();
+}{
+    LOOKAHEAD(3)
+    <CLASS>
+    id1 = Identifier() 
+    <LBRACE>
+    (var = VarDeclaration() {var_list.addElement(var);})*
+    (method = MethodDeclaration() {method_list.addElement(method);})*
+    <RBRACE>
+    { return new Class(id1, var_list, method_list); }
+    
+    |   <CLASS>
+        id1 = Identifier() 
+        <EXTENDS> 
+        id2 = Identifier()
+        <LBRACE>
+        (var = VarDeclaration() {var_list.addElement(var);})*
+        (method = MethodDeclaration() {method_list.addElement(method);})*
+        <RBRACE>
+        { return new ClassDeclarationExtends(id1, id2, var_list, method_list); }
 }
 
-VarDeclaration VarDeclaration(): {}{
-    Type() Identifier () <SEMI_COMMA>
+VarDeclaration VarDeclaration(): {
+    Type type;
+    Identifier id1;
+}{
+    type = Type() 
+    id1 = Identifier() 
+    <SEMI_COMMA>
+    {return new VarDeclaration(type, id1);}
 }
 
-MethodDeclaration MethodDeclaration(): {}{
-    <PUBLIC> Type() Identifier() <LPAREN> (Type() Identifier() (<COMMA> Type() Identifier())*)? <RPAREN> <LBRACE> ( LOOKAHEAD(2) VarDeclaration())* (Statement())* <RETURN> Expression() <SEMI_COMMA> <RBRACE>
+MethodDeclaration MethodDeclaration(): {
+    Type type;
+    Identifier id1;
+    FormalList formal_list = new FormalList();
+    VarDeclaration var;
+    VarDefinitionList var_list = new VarDefinitionList();
+    Statement statement;
+    StatementList statement_list = new StatementList();
+    Expression exp;
+    ExpList exp_list = new ExpList();
+}{
+    <PUBLIC> 
+    type = Type() 
+    id1 = Identifier() 
+    <LPAREN> 
+    formal_list = FormalList();
+    <RPAREN> <LBRACE> 
+    (LOOKAHEAD(2) 
+    var = VarDeclaration() {var_list.addElement(var);})* 
+    (statement = Statement() {statement_list.addElement(statement);})* 
+    <RETURN> 
+    exp = Expression() 
+    <SEMI_COMMA> <RBRACE>
+	{ return new MethodDefinition(type, id1, formal_list, var_list, statement_list, exp); }
 }
 
-Type Type(): {}{
+Formal Formal():{
+    Type type;
+    Identifier id;
+}
+{
+  type = Type() 
+  id = Identifier()
+  {return new Formal(type, id);}
+}
+
+void FormalList() :
+{
+    FormalList list = new FormalList();
+    Formal formal;
+    Formal formal2;
+}
+{
+  (formal = Formal(){ list.addElement(formal); }) 
+  (formal2 = FormalTail() {list.addElement(formal2);})
+  {return list}
+  | {return list}
+}
+
+void FormalTail():{
+    Type type;
+    Identifier id;
+}
+{
+    <COMMA> 
+    type = Type() 
+    id = Identifier();
+    {return new Formal(type, id);}
+}
+
+Type Type(): {
+    Identifier id;
+}{
 
     LOOKAHEAD(2)
-    <INT> <LCOLCH><RCOLCH>
-    | <INT>
-    | Identifier()
-    | <BOOLEAN>
+    <INT><LCOLCH><RCOLCH> {return new ArrayType();}
+    | <INT> {return new IntegerType();}
+    | id = Identifier() {return id;} // dúvida aqui se eu retorno o Identifier mesmo ou IntegerLiteralExpression
+    | <BOOLEAN> {return new BooleanType();}
 }
 
-Statement Statement(): {}{
-    <LBRACE> (Statement())* <RBRACE>
-    | <IF> <LPAREN> Expression() <RPAREN> Statement() <ELSE> Statement()
-    | <WHILE> <LPAREN> Expression() <RPAREN> Statement()
-    | <PRINT> <LPAREN> Expression() <RPAREN> <SEMI_COMMA>
+Statement Statement(): {
+    Statement statement;
+    Statement statement2;
+    Identifier id;
+    StatementList statement_list = new StatementList();
+    Expression exp;
+    Expression exp2;
+}{
+    <LBRACE> 
+    (statement = Statement(){statement_list.addElement(statement)})* 
+    <RBRACE>
+    {return new BlockStatement(statement_list);}
     
-    | LOOKAHEAD(2) 
-    Identifier() <EQUAL> Expression() <SEMI_COMMA>
-    | Identifier() <LCOLCH> Expression() <RCOLCH> <EQUAL> Expression() <SEMI_COMMA>
-
+    |   <IF> <LPAREN> 
+        exp = Expression() 
+        <RPAREN> 
+        statement = Statement() 
+        <ELSE> 
+        statement2 = Statement()
+        {return new IfStatement(exp, statement, statement2);}
+    
+    |   <WHILE> <LPAREN> 
+        exp = Expression() 
+        <RPAREN> 
+        statement = Statement()
+        {return new WhileStatement(exp, statement);}
+    
+    |   <PRINT> <LPAREN> 
+        exp = Expression() 
+        <RPAREN> <SEMI_COMMA>
+        {return new PrintStatement(exp);}
+    
+    |   LOOKAHEAD(2) 
+        id = Identifier() 
+        <EQUAL> 
+        exp = Expression() 
+        <SEMI_COMMA>
+        {return new AssignStatement(exp, id);}
+    
+    |   id = Identifier() 
+        <LCOLCH> 
+        exp = Expression() 
+        <RCOLCH> <EQUAL> 
+        exp2 = Expression() 
+        <SEMI_COMMA>
+        {return new ArrayAssignStatement(exp, exp2, id);}
 }
 
 Expression Exp(): {}{
@@ -148,6 +280,7 @@ Expression Expression(): {}{
 }
 
 Identifier Identifier(): {}{
-	<IDENTIFIER>
+    <IDENTIFIER> 
+    { return new Identifier(token.image); }
 }
 
