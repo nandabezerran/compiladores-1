@@ -1,4 +1,5 @@
 package syntaxtree;
+
 import java.util.Vector;
 
 public class VarDefinitionList {
