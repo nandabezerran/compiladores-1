@@ -1,7 +1,7 @@
-import analisador_semantico.syntaxtree;
+
 
 PARSER_BEGIN(Parser)
-
+import analisador_semantico.syntaxtree;
 public class Parser{
     public static void main(String[] args) {
         try {
@@ -82,7 +82,7 @@ Program Goal(): {
     ClassList class_list = new ClassList();
 }{   
     main = MainClass() 
-    (class_decl = (ClassDeclaration() {class_list.addElement(class_decl);})*) 
+    (class_decl = ClassDeclaration() {class_list.addElement(class_decl);})*
     <EOF>
     {return new Program(main, class_list);}
 }
@@ -99,7 +99,7 @@ MainClass MainClass(): {
     <RPAREN> <LBRACE> 
     statement = Statement() 
     <RBRACE> <RBRACE>
-    {return new MainClass(id1, id2, statement)}
+    {return new MainClass(id1, id2, statement);}
 }
 
 ClassDeclaration ClassDeclaration(): {
@@ -155,7 +155,7 @@ MethodDeclaration MethodDeclaration(): {
     type = Type() 
     id1 = Identifier() 
     <LPAREN> 
-    formal_list = FormalList();
+    formal_list = FormalList()
     <RPAREN> <LBRACE> 
     (LOOKAHEAD(2) 
     var = VarDeclaration() {var_list.addElement(var);})* 
@@ -185,8 +185,8 @@ void FormalList() :
 {
   (formal = Formal(){ list.addElement(formal); }) 
   (formal2 = FormalTail() {list.addElement(formal2);})
-  {return list}
-  | {return list}
+  {return list;}
+  | {return list;}
 }
 
 void FormalTail():{
@@ -196,7 +196,7 @@ void FormalTail():{
 {
     <COMMA> 
     type = Type() 
-    id = Identifier();
+    id = Identifier()
     {return new Formal(type, id);}
 }
 
@@ -220,7 +220,7 @@ Statement Statement(): {
     Expression exp2;
 }{
     <LBRACE> 
-    (statement = Statement(){statement_list.addElement(statement)})* 
+    (statement = Statement(){statement_list.addElement(statement);})* 
     <RBRACE>
     {return new BlockStatement(statement_list);}
     
@@ -278,35 +278,35 @@ Expression Exp(Expression exp): {
     <AND> 
     exp2 = Expression() 
     {ad = new Plus(exp, exp2);}
-    {return Expression(ad)}  
+    {return Expression(ad);}  
     
     | <LESS_THEN> 
     exp2 = Expression() 
     {less = new Less_then(exp, exp2);}
-    {return Expression(less)}
+    {return Expression(less);}
     
     | <PLUS> exp2 = Expression() 
     {plus = new Plus(exp, exp2);}
-    {return Expression(plus)}
+    {return Expression(plus);}
     
     | <MINUS> exp2 = Expression()
     {minus =  new Minus(exp, exp2);}
-    {return Expression(minus)}
+    {return Expression(minus);}
     
     | <STAR> exp2 = Expression() 
     {star = new Star(exp, exp2);}
-    {return Expression(star)}
+    {return Expression(star);}
 	
     | <LCOLCH> 
     exp2 = Expression() 
     <RCOLCH> 
     {arrayExpression = new ArrayExpression(exp, exp2);}
-    {return Expression(arrayExpression)}
+    {return Expression(arrayExpression);}
 	
     | LOOKAHEAD(3) <DOT> 
     <LENGTH> 
     {len = new Length(exp);}
-    {return Expression(len)}
+    {return Expression(len);}
 	
     | <DOT> 
     {id = Identifier();} 
@@ -338,7 +338,7 @@ Expression Expression(): {
 
 	<INTEGER_LITERAL> 
     {int_li = new INTEGER_LITERAL(Integer.parseInt(token.image));} 
-    { return Exp(int_li; )}
+    { return Exp(int_li);}
 	
     | <TRUE>
     {t = new True();}
@@ -355,19 +355,19 @@ Expression Expression(): {
 	| <THIS> 
     Exp() 
     {thi = new This(); }
-    {return Exp(thi)}
+    {return Exp(thi);}
 
 	| LOOKAHEAD(2) <NEW> <INT> <LCOLCH>
     exp = Expression() 
     <RCOLCH>
      {newArray = new NewArray(exp);}
-    {return Exp(newArray)}
+    {return Exp(newArray);}
 
 	| <NEW> 
     {id2 = new Identifier();} 
     <LPAREN> <RPAREN> 
     {newObj = new NewObject(id2);}
-	{return Exp(newObj)}
+	{return Exp(newObj);}
 
     | <BANG> 
     exp3 = Expression()

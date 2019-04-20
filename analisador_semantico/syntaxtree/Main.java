@@ -6,11 +6,11 @@ public class Main extends MainClass {
     public Identifier identifier1, identifier2;
     public Statement statement;
 
-    public MainClass(Identifier pIdentifier1, Identifier pIdentifier2,
+    public Main(Identifier pIdentifier1, Identifier pIdentifier2,
                      Statement pStatement) {
         identifier1 = pIdentifier1;
         identifier2 = pIdentifier2;
-        statement   = statement;
+        statement = pStatement;
     }
 
     public void accept(Visitor v) {
