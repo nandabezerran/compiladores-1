@@ -15,6 +15,10 @@ public class MainProgram {
 		//Declarar o visitor pra construção da tabela de símbolos e chamar abaixo
 		//programa.visit(new SystemContext());
 
-		// Delcarar o visitor pra checagem de tipos e chamar abaixo
+		///--------------------------------------
+
+		// Declarar o visitor pra checagem de tipos e chamar abaixo
+		//TypeChecking checagem = new TypeCkecking(tabela de simbolo);
+		//checagem.visit(c)
 	}
 }

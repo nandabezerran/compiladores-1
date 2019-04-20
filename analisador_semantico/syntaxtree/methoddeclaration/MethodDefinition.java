@@ -10,7 +10,7 @@ public class MethodDefinition {
   public StatementList statementList;
   public Expression expression;
 
-  public MethodDecl(Type pType, Identifier pIdentifier, FormalList pFormalList,
+  public MethodDefinition(Type pType, Identifier pIdentifier, FormalList pFormalList,
                     VarDeclaration pVarDeclaration, StatementList pStatementList,
                     Expression pExpression) {
      type              = pType;

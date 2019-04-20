@@ -8,7 +8,7 @@ public class ClassDeclarationExtends extends Class {
     public VarDefinitionList vl;
     public MethodDefinitionList ml;
 
-    public ClassDeclExtends(Identifier ai, Identifier aj,
+    public ClassDeclarationExtends(Identifier ai, Identifier aj,
                             VarDefinitionList avl, MethodDefinitionList aml) {
         i=ai; j=aj; vl=avl; ml=aml;
     }

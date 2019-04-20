@@ -9,11 +9,11 @@ public class ClassDeclList {
         list = new Vector();
     }
 
-    public void addElement(ClassDecl n) {
+    public void addElement(ClassDeclaration n) {
         list.addElement(n);
     }
 
-    public ClassDecl elementAt(int i)  {
+    public ClassDeclaration elementAt(int i)  {
         return (ClassDeclaration)list.elementAt(i);
     }
 

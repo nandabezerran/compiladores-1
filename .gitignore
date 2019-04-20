@@ -1,9 +1,6 @@
 analisador_lexico/ParseException.java
-analisador_lexico/ParserConstants.java
-analisador_lexico/Parser.java
 analisador_lexico/ParserTokenManager.java
 analisador_lexico/SimpleCharStream.java
-analisador_lexico/Token.java
 analisador_lexico/TokenMgrError.java
 
 analisador_lexico/ParseException.class
