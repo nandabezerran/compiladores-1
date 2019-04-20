@@ -261,59 +261,59 @@ Statement Statement(): {
 
 Expression Exp(Expression exp): {
 
-     Expression exp2;
-    And ad;
-    Less_then less;
-    Plus plus;
-    Minus minus;
-    Star star;
-    ArrayExpression arrayExpression;
-    Length len;
+    Expression exp2;
+    AndExpression ad;
+    LessExpression less;
+    PlusExpression plus;
+    MinusExpression minus;
+    MultExpression mult;
+    ListExpression arrayExpression;
+    LengthExpression len;
     Identifier id;
-    ExpressionList expList; 
+    ExpList expList; 
     BigExpression bigExpression;
     
 }{ 
    
     <AND> 
     exp2 = Expression() 
-    {ad = new Plus(exp, exp2);}
+    {ad = new AndExpression(exp, exp2);}
     {return Expression(ad);}  
     
     | <LESS_THEN> 
     exp2 = Expression() 
-    {less = new Less_then(exp, exp2);}
+    {less = new LessExpression(exp, exp2);}
     {return Expression(less);}
     
     | <PLUS> exp2 = Expression() 
-    {plus = new Plus(exp, exp2);}
+    {plus = new PlusExpression(exp, exp2);}
     {return Expression(plus);}
     
     | <MINUS> exp2 = Expression()
-    {minus =  new Minus(exp, exp2);}
+    {minus =  new MinusExpression(exp, exp2);}
     {return Expression(minus);}
     
     | <STAR> exp2 = Expression() 
-    {star = new Star(exp, exp2);}
-    {return Expression(star);}
+    {mult = new MultExpression(exp, exp2);}
+    {return Expression(mult);}
 	
     | <LCOLCH> 
     exp2 = Expression() 
     <RCOLCH> 
-    {arrayExpression = new ArrayExpression(exp, exp2);}
+    {arrayExpression = new ListExpression(exp, exp2);}
     {return Expression(arrayExpression);}
 	
     | LOOKAHEAD(3) <DOT> 
     <LENGTH> 
-    {len = new Length(exp);}
+    {len = new LengthExpression(exp);}
     {return Expression(len);}
 	
     | <DOT> 
     {id = Identifier();} 
     <LPAREN>
-    {expList = ExpressionList();} 
+    {expList = ExpList();} 
     <RPAREN> 
-    {bigExpression = new BigExpression(e1, id, expList);}
+    {bigExpression = new BigExpression(exp, id, expList);}
 	{return Expression(bigExpression);}
     
     | {return exp;}	
@@ -321,31 +321,31 @@ Expression Exp(Expression exp): {
 
 Expression Expression(): {
 
-    INTEGER_LITERAL int_li;
-    True t;
-    False f;
+    IntegerLiteralExpression int_li;
+    TrueExpression t;
+    FalseExpression f;
     Identifier id;
-    This thi;
+    ThisExpression thi;
     Expression exp;
     Identifier id2;
     Expression exp2;
-    NewArray newArray;
-    NewObject newObj;
-    Not no;
+    NewIntegerExpression newInteger;
+    NewIdentifierExpression newIdentifier;
+    NotExpression no;
     Expression exp3, exp4;
 
 }{
 
 	<INTEGER_LITERAL> 
-    {int_li = new INTEGER_LITERAL(Integer.parseInt(token.image));} 
+    {int_li = new IntegerLiteralExpression(Integer.parseInt(token.image));} 
     { return Exp(int_li);}
 	
     | <TRUE>
-    {t = new True();}
+    {t = new TrueExpression();}
     { return Exp(t); }
 
 	| <FALSE> 
-    {f = new False();}
+    {f = new FalseExpression();}
     { return Exp(f); }
 
 	| Identifier() 
@@ -354,25 +354,25 @@ Expression Expression(): {
 
 	| <THIS> 
     Exp() 
-    {thi = new This(); }
+    {thi = new ThisExpression(); }
     {return Exp(thi);}
 
 	| LOOKAHEAD(2) <NEW> <INT> <LCOLCH>
     exp = Expression() 
     <RCOLCH>
-     {newArray = new NewArray(exp);}
-    {return Exp(newArray);}
+     {newInteger = new NewIntegerExpression(exp);}
+    {return Exp(newInteger);}
 
 	| <NEW> 
     {id2 = new Identifier();} 
     <LPAREN> <RPAREN> 
-    {newObj = new NewObject(id2);}
-	{return Exp(newObj);}
+    {newIdentifier = new NewIdentifierExpression(id2);}
+	{return Exp(newIdentifier);}
 
     | <BANG> 
     exp3 = Expression()
-    {no = new Not(exp3);}
-    {return Exp(exp3);}
+    {no = new NotExpression(exp3);}
+    {return Exp(no);}
 
 	| <LPAREN> 
     exp4 = Expression() 
