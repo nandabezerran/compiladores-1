@@ -1,7 +1,8 @@
-//package syntaxtree;
+package syntaxtree;
+import syntaxtree.*;
 //import visitor.*;
 
-public class MethodDefinition {
+public class MethodDefinition extends MethodDeclaration{
   public Type type;
   public Identifier identifier;
   public FormalList formalList;

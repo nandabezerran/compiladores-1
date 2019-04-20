@@ -1,4 +1,5 @@
-//package syntaxtree;
+package syntaxtree;
+import syntaxtree.*;
 import java.util.Vector;
 
 public class ExpList {

@@ -1,6 +1,6 @@
 package syntaxtree;
+import syntaxtree.*;
 //import visitor.*;
-//package syntaxtree;
 
 public class BigExpression extends Expression {
 	public Expression e1;

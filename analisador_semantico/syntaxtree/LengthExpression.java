@@ -1,12 +1,12 @@
-//package syntaxtree;
+package syntaxtree;
+import syntaxtree.*;
 //import visitor.*;
 
 public class LengthExpression extends Expression {
-	public Expression e1, e2;
+	public Expression e1;
 
-	public LengthExpression(Expression e1, Expression e2){
+	public LengthExpression(Expression e1){
 		this.e1 = e1;
-		this.e2 = e2;
 	}
 
     /*public void accept(Visitor v) {

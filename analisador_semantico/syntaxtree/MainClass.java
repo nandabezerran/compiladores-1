@@ -1,4 +1,5 @@
-//package syntaxtree;
+package syntaxtree;
+import syntaxtree.*;
 //import visitor.*;
 
 public abstract class MainClass {

@@ -1,14 +1,14 @@
 package syntaxtree;
+import syntaxtree.*;
 //import visitor.*;
-//package syntaxtree;
 
-public class Class extends ClassDeclaration {
+public class ClassSimple extends ClassDeclaration {
     public Identifier identifier1;
-    public VarDeclaration varDeclaration ;  
-    public MethodDeclaration methodDeclaration;
+    public VarDefinitionList varDeclaration ;  
+    public MethodDeclarationList methodDeclaration;
 
-    public Class(Identifier pIdentifier1, 
-                 VarDeclaration pVarDeclaration, MethodDeclaration pMethodDeclaration) {
+    public ClassSimple(Identifier pIdentifier1, 
+    VarDefinitionList pVarDeclaration, MethodDeclarationList pMethodDeclaration) {
         identifier1       = pIdentifier1; 
         varDeclaration    = pVarDeclaration; 
         methodDeclaration = pMethodDeclaration;
