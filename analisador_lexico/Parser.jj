@@ -1,7 +1,6 @@
-
-
 PARSER_BEGIN(Parser)
 import analisador_semantico.syntaxtree;
+
 public class Parser{
     public static void main(String[] args) {
         try {
@@ -189,7 +188,7 @@ FormalList FormalList() :
   | {return list;}
 }
 
-void FormalTail():{
+Formal FormalTail():{
     Type type;
     Identifier id;
 }
