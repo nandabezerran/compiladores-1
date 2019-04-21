@@ -23,4 +23,15 @@ $ java Parser minijava.java
 #### a. [Árvore Sintática Abstrata](analisador_semantico/syntaxtree/)
 #### b. [Tabela de símbolos - Ambientes](analisador_semantico/context/)
 #### c. [Type Checking](analisador_semantico/typechecking/)
+#### Instruções
+```sh
+$ javacc analisador_semantico/syntaxtree/*.java
+$ javac analisador_semantico/context/*.java
+$ javac analisador_semantico/visitors/*.java
+$ cd analisador_lexico/
+$ javacc Parser.jj
+$ cd ...
+$ javac analisador_lexico/*.java
+$ java Parser minijava.java
+```
 ---
