@@ -466,6 +466,7 @@ public class Parser implements ParserConstants {
     NewIdentifierExpression newIdentifier;
     NotExpression no;
     Expression exp3, exp4;
+    IdentifierExpression id3;
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case INTEGER_LITERAL:
       jj_consume_token(INTEGER_LITERAL);
@@ -484,8 +485,8 @@ public class Parser implements ParserConstants {
       break;
     case IDENTIFIER:
       jj_consume_token(IDENTIFIER);
-     id = new IdentifierExpression(token.image);
-      {if (true) return Exp(id);}
+     id3 = new IdentifierExpression(token.image);
+      {if (true) return Exp(id3);}
       break;
     case THIS:
       jj_consume_token(THIS);

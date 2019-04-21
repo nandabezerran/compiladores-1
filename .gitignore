@@ -2,6 +2,9 @@ analisador_lexico/ParseException.java
 analisador_lexico/ParserTokenManager.java
 analisador_lexico/SimpleCharStream.java
 analisador_lexico/TokenMgrError.java
+analisador_lexico/Parser.java
+analisador_lexico/ParserConstants.java
+analisador_lexico/Token.java
 
 analisador_lexico/ParseException.class
 analisador_lexico/ParserConstants.class
@@ -10,12 +13,20 @@ analisador_lexico/ParserTokenManager.class
 analisador_lexico/SimpleCharStream.class
 analisador_lexico/Token.class
 analisador_lexico/TokenMgrError.class
-analisador_lexico/Fac.class
-analisador_lexico/Factorial.class
 analisador_lexico/Parser$1.class
 analisador_lexico/JJCalls.class
 analisador_lexico/Parser$JJCalls.class
 analisador_lexico/Parser$LookaheadSuccess.class
-analisador_lexico/BinarySearch.class
-analisador_lexico/BS.class
-.idea/
+
+analisador_semantico/context/*.class
+analisador_semantico/syntaxtree/*.class
+analisador_semantico/visitors/*.class
+
+analisador_semantico/syntaxtree/ParseException.java
+analisador_semantico/syntaxtree/ParserTokenManager.java
+analisador_semantico/syntaxtree/SimpleCharStream.java
+analisador_semantico/syntaxtree/TokenMgrError.java
+analisador_semantico/syntaxtree/Parser.java
+analisador_semantico/syntaxtree/ParserConstants.java
+analisador_semantico/syntaxtree/Token.java
+*.class

@@ -20,7 +20,7 @@ $ java Parser minijava.java
 ```
 
 ### 2. [Análise Semântica](analisador_semantico/)
-#### a. [Árvore Sintática Abstrata]](analisador_semantico/syntaxtree/)
-#### c. [Tabela de símbolos - Ambientes](analisador_semantico/context/)
+#### a. [Árvore Sintática Abstrata](analisador_semantico/syntaxtree/)
+#### b. [Tabela de símbolos - Ambientes](analisador_semantico/context/)
 #### c. [Type Checking](analisador_semantico/typechecking/)
 ---

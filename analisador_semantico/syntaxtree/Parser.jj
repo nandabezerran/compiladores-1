@@ -329,6 +329,7 @@ Expression Expression(): {
     NewIdentifierExpression newIdentifier;
     NotExpression no;
     Expression exp3, exp4;
+    IdentifierExpression id3;
 
 }{
 
@@ -345,8 +346,8 @@ Expression Expression(): {
     { return Exp(f); }
 
     | <IDENTIFIER> 
-    {id = new IdentifierExpression(token.image);}
-    { return Exp(id); }
+    {id3 = new IdentifierExpression(token.image);}
+    { return Exp(id3); }
 
 	| <THIS> 
     {thi = new ThisExpression(); }
