@@ -56,13 +56,10 @@ public class SymbolTable implements Visitor{
         n.e1.accept(this);
         n.e2.accept(this);
         n.id.accept(this);
-
     }
 
     //nothing
-    public void visit(ArrayType n){
-
-    }
+    public void visit(ArrayType n){}
 
     // Identifier id;
 	// Expression e;
@@ -74,9 +71,7 @@ public class SymbolTable implements Visitor{
     // Expression e1;
 	// Identifier id1;
     // ExpList el;
-    //TODO
     public void visit(BigExpression n){
-        n.e1.accept(this);
         n.id1.accept(this);
         for(int i = 0; i < n.el.size(); i++){
             n.el.elementAt(i).accept(this);
@@ -86,28 +81,21 @@ public class SymbolTable implements Visitor{
     // Expression e1;
     public void visit(BlockExpression n){
         n.e1.accept(this);
-
     }
 
     // StatementList s1;
-    //TODO
     public void visit(BlockStatement n){
-        
         for(int i = 0; i < n.s1.size(); i++){
             n.s1.elementAt(i).accept(this);
         }
-
     }
 
     // nothing
-    public void visit(BooleanType n){
-
-    }
+    public void visit(BooleanType n){}
 
     // identifier1
     // VarDefinitionList varDeclaration
     // MethodDeclarationList methodDeclaration
-    //TODO
     public void visit(ClassSimple n){
         n.identifier1.accept(this);
 
@@ -131,15 +119,12 @@ public class SymbolTable implements Visitor{
     }
 
     // abstrato
-    public void visit(ClassDeclaration n){
-
-    }
+    public void visit(ClassDeclaration n){}
 
     // Identifier i;
     // Identifier j;
     // VarDefinitionList vl;
     // MethodDeclarationList ml;
-    //TODO
     public void visit(ClassDeclarationExtends n){
         n.i.accept(this);
         n.j.accept(this);
@@ -163,9 +148,7 @@ public class SymbolTable implements Visitor{
     }
 
     // abstrato
-    public void visit(Expression n){
-
-    }
+    public void visit(Expression n){}
 
     // nothing
     public void visit(FalseExpression n){}
@@ -175,28 +158,23 @@ public class SymbolTable implements Visitor{
     public void visit(Formal n){
         n.type.accept(this);
         n.identifier.accept(this);
+
+        if(!method.addParametro(n.type, Symbol.symbol(n.identifier.toString()))){
+            error.complain("Param " + n.identifier.toString() + " is defined");
+        }
     }
 
     // abstract
-    public void visit(Goal n){
-
-    }
+    public void visit(Goal n){}
 
     // String s;
-    public void visit(Identifier n){
-
-
-    }
+    public void visit(Identifier n){}
 
     // String s;
-    public void visit(IdentifierExpression n){
-
-    }
+    public void visit(IdentifierExpression n){}
 
     // String s;
-    public void visit(IdentifierType n){
-
-    }
+    public void visit(IdentifierType n){}
 
     // Expression e;
 	// Statement s1, s2;
@@ -241,13 +219,39 @@ public class SymbolTable implements Visitor{
     // VarDefinitionList varDefinitionList;
     // StatementList statementList;
     // Expression expression;
-    //TODO
+    // REGRA DO MÉTODO DECLARATION
     public void visit(MethodDefinition n){
         n.type.accept(this);
         n.identifier.accept(this);
-        n.formalList.accept(this);
-        n.varDefinitionList.accept(this);
-        n.statementList.accept(this);
+
+        // Criiando o novo método Type Identifier
+        Method newMethod = new Method(n.identifier.toString(), classe.toString(), n.type);
+
+        // Aí eu vejo se esse método já está declarado nessa classe atual, se não tiver eu addMethod e pego o metodo atual como esse metodo que criei
+        if (!classe.addMethod(newMethod, Symbol.symbol(n.identifier.toString()))){
+            error.complain("Method " + n.identifier.toString() + " already defined.");
+        }else{
+            method = newMethod;
+        }
+        
+        // Daí os type identifier posteriores (que estão na nossa lista formallist) são os parametros
+        // aí eu faço o accept deles que aí lá eles vão ser adicionados
+        for(int i = 0; i < n.formalList.size(); ++i){
+            n.formalList.elementAt(i).accept(this);
+        }
+
+        // Daí as variaveis declaradas para esse metodo estão na nossa lista varDefinitionList
+        // aí eu faço o accept deles que aí lá eles vão ser adicionados
+        for(int i = 0; i < n.varDefinitionList.size(); ++i){
+            n.varDefinitionList.elementAt(i).accept(this);
+        }
+
+        // Daí os statement para esse metodo estão na nossa lista statementList
+        // aí eu faço o accept deles que aí lá eles vão ser adicionados
+        for(int i = 0; i < n.statementList.size(); ++i){
+            n.statementList.elementAt(i).accept(this);
+        }
+
         n.expression.accept(this);
     }
 
@@ -291,10 +295,15 @@ public class SymbolTable implements Visitor{
 
     // MainClass mainClass;
     // ClassList classList;
-    //TODO
     public void visit(Program n){
+        // eu tenho que adicionar a mainclass no maincontext (mas isso ele já faz no visitor do Main)
         n.mainClass.accept(this);
         n.classList.accept(this);
+
+        // e adicionar as classes no maincontext thumbhem, que aí é uma lista e aí eu tenho que percorrer essa lista e dar os accept
+        for(int i = 0; i < n.classList.size(); ++i){
+            n.classList.elementAt(i).accept(this);
+        }
     }
 
     // abstract
@@ -307,19 +316,33 @@ public class SymbolTable implements Visitor{
     public void visit(TrueExpression n){}
 
     // abstract
-    public void visit(Type n){
-
-    }
+    public void visit(Type n){}
 
     // abstract
     public void visit(VarDeclaration n){}
 
-    //TODO
     // Type type;
     // Identifier identifier;
     public void visit(VarDefinition n){
         n.type.accept(this);
         n.identifier.accept(this);
+
+        // aqui a gente tem que ver se o this é um método ou classe na vdd
+        // pra saber se adicionaremos em um método ou em uma classe
+        // aí no caso eu verifico se o método atual é nulo, pq isso significa que teremos que adicionar na classe
+        if(method == null){
+            if(!classe.addVariavel(n.type, Symbol.symbol(n.identifier.toString()))){
+                error.complain("Variavel " + n.identifier.toString() + " already defined in the Class.");
+            }
+        } else {
+            if(!method.addVariavel(n.type, Symbol.symbol(n.identifier.toString()))){
+                error.complain("Variavel " + n.identifier.toString() + " already defined in the Method.");
+            }
+        }
+        
+
+        
+
     }
 
     // Expression e;
