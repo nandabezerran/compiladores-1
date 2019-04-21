@@ -3,8 +3,8 @@ import syntaxtree.*;
 //import visitor.*;
 
 public class Program extends Goal {
-    MainClass mainClass;
-    ClassList classList;
+    public MainClass mainClass;
+    public ClassList classList;
     
     public Program(MainClass pMainClass, ClassList pClassDeclaration) {
         mainClass = pMainClass;

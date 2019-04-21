@@ -4,13 +4,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public class Class {
+public class ClassContext {
     String nome;
-    Class pai;
+    ClassContext pai;
     Map<Symbol, Type> fields;
     Map<Symbol, Method> methods;
 
-    public Class(String nome, Class pai){
+    public ClassContext(String nome, ClassContext pai){
         this.nome = nome;
         this.pai = pai;
         this.local = new HashMap<Symbol, Type>();
@@ -59,7 +59,7 @@ public class Class {
         return this.nome;
     }
 
-    public Class getPai(){
+    public ClassContext getPai(){
         return this.pai;
     }
 

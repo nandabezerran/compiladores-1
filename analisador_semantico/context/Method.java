@@ -7,11 +7,11 @@ import java.util.Map;
 public class Method {
     String nome;
     Type tipo;
-    Class pai;
+    ClassContext pai;
     Map<Symbol, Type> params;
     Map<Symbol, Type> local;
 
-    public Method(String nome, Class pai, Type tipo){
+    public Method(String nome, ClassContext pai, Type tipo){
         this.nome = nome;
         this.pai = pai;
         this.tipo = tipo;
@@ -65,7 +65,7 @@ public class Method {
         return this.nome;
     }
 
-    public Class getPai(){
+    public ClassContext getPai(){
         return this.pai;
     }
 

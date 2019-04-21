@@ -1,7 +1,8 @@
 package context;
-public class Error {
+public class ErrorContext {
     boolean anyErrors;
-    void complain(String msg) {
+    
+    public void complain(String msg) {
         anyErrors = true;
         System.out.println(msg);
     }

@@ -11,7 +11,7 @@ public interface Visitor {
   public void visit(BlockExpression n);
   public void visit(BlockStatement n);
   public void visit(BooleanType n);
-  public void visit(Class n);
+  public void visit(ClassSimple n);
   public void visit(ClassDeclaration n);
   public void visit(ClassDeclarationExtends n);
   public void visit(Expression n);
