@@ -1,48 +1,71 @@
 package typechecking;
 import syntaxtree.*;
+import java.util.*;
+import context.*;
 import visitor.*;
-//The tables aren't defined yet so I assumed that:
-//addVar(id, type) -> Adds a variable at the table;
-//getVarType(id) -> Returns the type of the variable;
-//getVarValue(id) -> Returns the value of the variable;
-public class TypeChecking implements TypeVisitor {
 
-    private ClassTable currClass;
-    private MethodTable currMethod;
-    private ProgramTable programTable;
-    private Error error;
+public class TypeChecking implements TypeVisitor{
 
-    public TypeChecking(ProgramTable pProgramTable) {
-        this.programTable = pProgramTable;
+    private ClassContext currClass;
+    private MethodContext currMethod;
+    private MainContext programTable;
+    private Error error = new Error();
+
+    public Type visit(Program n){
+        n.m.accept(this);
+        for (int i = 0; i < n.cl.size(); i++) {
+            n.cl.elementAt(i).accept(this);
+        }
+        return null;
     }
 
     public void visit(VarDefinition pVarDefinition) {
         Type type = pVarDefinition.type.accept(this);
         String id = pVarDefinition.identifier.toString();
+        Symbol symbol = new Symbol(id);
         if (currMethod == null) {
-            if (!currClass.addVar(id, type))
-                error.complain(id + "is already defined in " + currClass.getId());
-        } else if (!currMethod.addVar(id, type))
+            if (!currClass.addVariavel(type, symbol))
+                error.complain(id + "is already defined in " + currClass.getNome());
+        } else if (!currMethod.addVar(type, symbol))
             error.complain(id + "is already defined in "
-                    + currClass.getId() + "." + currMethod.getId());
+                    + currClass.getNome() + "." + currMethod.getNome());
     }
 
     public Type visit(AssignStatement pAssignStatement) {
-        Type var = whatType(pAssignStatement.i.toString());
-        Type exp = pAssignStatement.expression.accept(this);
-        if (var instanceof IdentifierType) //Class
-        {
-            ClassTable c = programTable.getClass(Symbol.symbol(((IdentifierType) var).toString()));
-            if (c == null || !c.toString().equals(exp.toString()))
-                error.complain("Assign types not maching");
+        Type tipo;
+        Type exp = pAssignStatement.expressioon.accept(this);
+
+        if ((currMethod != null) ){
+            if (currMethod.getVar(Symbol.symbol(pAssignStatement.id.getValue()))!=null) {
+                tipo = currMethod.getVars(Symbol.symbol(pAssignStatement.id.getValue()));
+                if (exp == null || ! tipo.getTypeClass().equals(exp.getTypeClass())) {
+                    error.complain("Os tipos do Assign não são compativeis");
+                }
+            }
+            if (currMethod.getParam(Symbol.symbol(pAssignStatement.id.getValue()))!=null) {
+                tipo = currMethod.getParams(Symbol.symbol(pAssignStatement.id.getValue()));
+                if (exp == null || ! tipo.getTypeClass().equals(exp.getTypeClass())) {
+                    error.complain("Os tipos do Assign não são compativeis");
+                }
+            }
         }
-        else
-        {
-            if (var == null || exp == null || !var.toString().equals(exp.toString()))
-                error.complain("Assign types not maching");
+
+        if ((currClass != null) && currClass.getVars(Symbol.symbol(pAssignStatement.id.getValue()))!=null) {
+            tipo = currClass.getVars(Symbol.symbol(pAssignStatement.id.getValue()));
+            if (exp == null || ! tipo.getTypeClass().equals(exp.getTypeClass())) {
+                error.complain("Os tipos do Assign não são compativeis");
+            }
         }
+        if (programTable.getClasses(Symbol.symbol(pAssignStatement.id.getValue())) != null) {
+            tipo = new IdentifierType(pAssignStatement.id.getValue());
+            ClassTable nomeClasse = mainTable.getClasses(Symbol.symbol( ((IdentifierType) tipo).getValue()));
+            if (nomeClasse == null || !nomeClasse.get().equals(exp.getTypeClass()))
+                error.complain("Os tipos do Assign não são compativeis");
+        }
+
         return null;
     }
+
 
     public Type visit(ArrayAssignStatement pArray) {
         Type var = whatType(pArray.i.toString());
@@ -59,7 +82,7 @@ public class TypeChecking implements TypeVisitor {
 
     public void visit(AssignStatement pAssignStatement) {
         Type identifier = pAssignStatement.identifier.toString();
-        Expression expression = pAssignStatement.e.accept(this);
+        Expression expression = pAssignStatement.expression.accept(this);
         if (! (expression instanceof currClass.getType(identifier).toString()))
         error.complain("The assignment can't be done, they dont have the same type");
         return new IntegerType();
@@ -106,17 +129,17 @@ public class TypeChecking implements TypeVisitor {
     }
 
     public Type visit(MinusExpression pMinus) {
-        if (! (pMinus.e1.accept(this) instanceof IntegerType) )
+        if (! (pMinus.expression1.accept(this) instanceof IntegerType) )
             error.complain("Left side of LessThan must be of type integer");
-        if (! (pMinus.e2.accept(this) instanceof IntegerType) )
+        if (! (pMinus.expression2.accept(this) instanceof IntegerType) )
             error.complain("Right side of LessThan must be of type integer");
         return new IntegerType();
     }
 
     public Type visit(MultExpression pMult) {
-        if (! (pMult.e1.accept(this) instanceof IntegerType) )
+        if (! (pMult.expression1.accept(this) instanceof IntegerType) )
             error.complain("Left side of LessThan must be of type integer");
-        if (! (pMult.e2.accept(this) instanceof IntegerType) )
+        if (! (pMult.expression2.accept(this) instanceof IntegerType) )
             error.complain("Right side of LessThan must be of type integer");
         return new IntegerType();
     }

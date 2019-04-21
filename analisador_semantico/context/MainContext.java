@@ -13,6 +13,8 @@ public class MainContext {
         this.classes = new HashMap<Symbol, ClassContext>();
     }
 
+    public void getNome(){return nome;}
+
     public MainContext(){
         this.classes = new HashMap<Symbol, ClassContext>();
     }

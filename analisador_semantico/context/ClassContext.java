@@ -18,6 +18,7 @@ public class ClassContext {
         this.methods = new HashMap<Symbol, Method>();
     }
 
+
     // método para adicionar methods
     public boolean addMethod(Method method, Symbol symbol){
         if(this.methods.get(symbol) == null){
@@ -25,7 +26,6 @@ public class ClassContext {
             return true;
         }
         return false;
-    }
 
     // método para adicionar variavel
     public boolean addVariavel(Type tipo, Symbol simbol){
