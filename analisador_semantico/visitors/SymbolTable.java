@@ -78,7 +78,9 @@ public class SymbolTable implements Visitor{
     public void visit(BigExpression n){
         n.e1.accept(this);
         n.id1.accept(this);
-        n.el.accept(this);
+        for(int i = 0; i < n.el.size(); i++){
+            n.el.elementAt(i).accept(this);
+        }
     }
 
     // Expression e1;
@@ -90,7 +92,10 @@ public class SymbolTable implements Visitor{
     // StatementList s1;
     //TODO
     public void visit(BlockStatement n){
-        n.s1.accept(this);
+        
+        for(int i = 0; i < n.s1.size(); i++){
+            n.s1.elementAt(i).accept(this);
+        }
 
     }
 
@@ -99,14 +104,30 @@ public class SymbolTable implements Visitor{
 
     }
 
-    // Identifier identifier1
+    // identifier1
     // VarDefinitionList varDeclaration
     // MethodDeclarationList methodDeclaration
     //TODO
     public void visit(ClassSimple n){
         n.identifier1.accept(this);
-        n.varDeclaration.accept(this);
-        n.methodDeclaration.accept(this);
+
+        // Criando a classe class Identifier1 
+        ClassContext classeAux = new ClassContext(n.identifier1.toString(), null);
+
+        if (!mainContext.addClasse(classeAux, Symbol.symbol(n.identifier1.toString()))){
+            error.complain("Class " + n.identifier1.toString() + " already defined.");
+        }else{
+            classe = classeAux;
+            method = null;
+        }  
+
+        for(int i = 0; i < n.varDeclaration.size(); i++){
+            n.varDeclaration.elementAt(i).accept(this);
+        }
+
+        for(int i = 0; i < n.methodDeclaration.size(); i++){
+            n.methodDeclaration.elementAt(i).accept(this);
+        }
     }
 
     // abstrato
@@ -122,9 +143,23 @@ public class SymbolTable implements Visitor{
     public void visit(ClassDeclarationExtends n){
         n.i.accept(this);
         n.j.accept(this);
-        n.vl.accept(this);
-        n.ml.accept(this);
 
+        ClassContext classeAux = new ClassContext(n.i.toString(), n.j.toString() );
+
+        if (!mainContext.addClasse(classeAux, Symbol.symbol(n.i.toString()))){
+            error.complain("Class " + n.i.toString() + " already defined.");
+        }else{
+            classe = classeAux;
+            method = null;
+        }
+
+        for(int i = 0; i < n.vl.size(); i++){
+            n.vl.elementAt(i).accept(this);
+        }
+
+        for(int i = 0; i < n.ml.size(); i++){
+            n.ml.elementAt(i).accept(this);
+        }
     }
 
     // abstrato
