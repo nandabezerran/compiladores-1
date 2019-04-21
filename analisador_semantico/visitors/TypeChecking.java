@@ -1,11 +1,6 @@
-package typechecking;
-import analisador_semantico.context.ClassContext;
-import analisador_semantico.context.MainContext;
-import analisador_semantico.context.ErrorContext;
-import analisador_semantico.context.Method;
-import analisador_semantico.context.Symbol;
+package analisador_semantico.visitors;
 import analisador_semantico.syntaxtree.*;
-import analisador_semantico.visitors.*;
+import analisador_semantico.context.*;
 import java.util.*;
 
 public class TypeChecking implements TypeVisitor{
@@ -66,7 +61,7 @@ public class TypeChecking implements TypeVisitor{
 
         n.type.accept(this);
         n.identifier.accept(this);
-        currMethod = currClass.getMethods(Symbol.symbol(n.identifier.toString())););
+        currMethod = currClass.getMethods(Symbol.symbol(n.identifier.toString()));
         for (int i = 0; i < n.formalList.size(); i++ ){
             n.formalList.elementAt(i).accept(this);
         }
@@ -110,9 +105,8 @@ public class TypeChecking implements TypeVisitor{
     }
 
     public Type visit(BlockStatement n) {
-
-        for ( int i = 0; i < n.sl.size(); i++ ) {
-            n.sl.elementAt(i).accept(this);
+        for ( int i = 0; i < n.s1.size(); i++ ) {
+            n.s1.elementAt(i).accept(this);
         }
         return null;
 

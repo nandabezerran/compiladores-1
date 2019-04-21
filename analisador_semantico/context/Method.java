@@ -20,8 +20,6 @@ public class Method {
         this.local = new HashMap<Symbol, Type>();
     }
 
-    public void getNome(){return nome;}
-
     // método para adicionar parametro
     public boolean addParametro(Type tipo, Symbol symbol){
         if(this.params.get(symbol) == null){

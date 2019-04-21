@@ -14,7 +14,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SymbolTable.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SymbolTable.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/analisador_semantico/visitors/SymbolTable.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="237">
@@ -35,7 +35,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Method.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Method.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/analisador_semantico/context/Method.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="272">
@@ -255,16 +255,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1555870437114</updated>
-      <workItem from="1555870452653" duration="4569000" />
+      <workItem from="1555870452653" duration="5167000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4569000" />
+    <option name="totallyTimeSpent" value="5167000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -870,16 +869,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/analisador_semantico/visitors/SymbolTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="224" column="71" selection-start-line="224" selection-start-column="71" selection-end-line="224" selection-end-column="71" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/analisador_semantico/context/ClassContext.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -891,6 +880,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" column="23" lean-forward="true" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/visitors/SymbolTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="224" column="71" selection-start-line="224" selection-start-column="71" selection-end-line="224" selection-end-column="71" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

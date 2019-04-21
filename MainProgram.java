@@ -2,6 +2,7 @@ import analisador_lexico.*;
 import analisador_semantico.syntaxtree.*;
 import analisador_semantico.syntaxtree.Program;
 import analisador_semantico.visitors.SymbolTable;
+import analisador_semantico.visitors.TypeChecking;
 
 import java.io.*;
 
@@ -19,9 +20,8 @@ public class MainProgram {
         programa.accept(table);
 
 		///--------------------------------------
-
 		// Declarar o visitor pra checagem de tipos e chamar abaixo
-		//TypeChecking checagem = new TypeCkecking(tabela de simbolo);
-		//checagem.visit(c)
+		TypeChecking checking = new TypeChecking();
+        programa.accept(checking);
 	}
 }

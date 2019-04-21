@@ -26,6 +26,7 @@ public class ClassContext {
             return true;
         }
         return false;
+    }
 
     // método para adicionar variavel
     public boolean addVariavel(Type tipo, Symbol simbol){
