@@ -1,160 +1,281 @@
 package typechecking;
-import syntaxtree.*;
+import analisador_semantico.context.ClassContext;
+import analisador_semantico.context.MainContext;
+import analisador_semantico.context.ErrorContext;
+import analisador_semantico.context.Method;
+import analisador_semantico.context.Symbol;
+import analisador_semantico.syntaxtree.*;
+import analisador_semantico.visitors.*;
 import java.util.*;
-import context.*;
-import visitor.*;
 
 public class TypeChecking implements TypeVisitor{
-
     private ClassContext currClass;
-    private MethodContext currMethod;
+    private Method currMethod;
     private MainContext programTable;
-    private Error error = new Error();
+    private ErrorContext errorMsg;
+
 
     public Type visit(Program n){
-        n.m.accept(this);
-        for (int i = 0; i < n.cl.size(); i++) {
-            n.cl.elementAt(i).accept(this);
+        n.mainClass.accept(this);
+        for (int i = 0; i < n.classList.size(); i++) {
+            n.classList.elementAt(i).accept(this);
         }
         return null;
     }
 
-    public void visit(VarDefinition pVarDefinition) {
-        Type type = pVarDefinition.type.accept(this);
-        String id = pVarDefinition.identifier.toString();
-        Symbol symbol = new Symbol(id);
-        if (currMethod == null) {
-            if (!currClass.addVariavel(type, symbol))
-                error.complain(id + "is already defined in " + currClass.getNome());
-        } else if (!currMethod.addVar(type, symbol))
-            error.complain(id + "is already defined in "
-                    + currClass.getNome() + "." + currMethod.getNome());
+    public Type visit(Main n){
+        n.identifier1.accept(this);
+        currClass = programTable.getClasses(Symbol.symbol(n.identifier1.toString()));
+        n.identifier2.accept(this);
+        currMethod = currClass.getMethods(Symbol.symbol(n.identifier2.toString()));
+        n.statement.accept(this);
+        return null;
+    }
+
+    public Type visit(ClassSimple pClassSimple){
+        pClassSimple.identifier1.accept(this);
+        currClass = programTable.getClasses(Symbol.symbol(pClassSimple.identifier1.toString()));
+        currMethod = null;
+        for (int i = 0; i < pClassSimple.varDeclaration.size(); i++ ){
+            pClassSimple.varDeclaration.elementAt(i).accept(this);
+        }
+        for (int i = 0; i < pClassSimple.methodDeclaration.size(); i++ ){
+            pClassSimple.methodDeclaration.elementAt(i).accept(this);
+        }
+        return null;
+
+    }
+
+    public Type visit(ClassDeclarationExtends pClassDecExt){
+
+        pClassDecExt.i.accept(this);
+        currClass = programTable.getClasses(Symbol.symbol(pClassDecExt.i.toString()));
+        pClassDecExt.j.accept(this);
+        currMethod = null;
+        for (int i = 0; i < pClassDecExt.vl.size(); i++ ){
+            pClassDecExt.vl.elementAt(i).accept(this);
+        }
+        for (int i = 0; i < pClassDecExt.ml.size(); i++ ){
+            pClassDecExt.ml.elementAt(i).accept(this);
+        }
+        return null;
+
+    }
+
+    public Type visit(MethodDefinition n){
+
+        n.type.accept(this);
+        n.identifier.accept(this);
+        currMethod = currClass.getMethods(Symbol.symbol(n.identifier.toString())););
+        for (int i = 0; i < n.formalList.size(); i++ ){
+            n.formalList.elementAt(i).accept(this);
+        }
+        for (int i = 0; i < n.varDefinitionList.size(); i++ ){
+            n.varDefinitionList.elementAt(i).accept(this);
+        }
+        for (int i = 0; i < n.statementList.size(); i++ ){
+            n.statementList.elementAt(i).accept(this);
+        }
+        Type typeE = n.expression.accept(this); // O tipo que expressão retornou
+        if (!(typeE.toString()).equals(n.type.toString())){
+            errorMsg.complain("Tipo de retorno da expressão não é compativel com o retorno do método");
+        }
+        return null;
+    }
+
+    public Type visit(Formal n){
+
+        n.identifier.accept(this);
+        n.type.accept(this);
+        return null;
+
+    }
+
+    public Type visit(BooleanType n){
+
+        return new BooleanType();
+
+    }
+
+    public Type visit(IntegerType n){
+
+        return new IntegerType();
+
+    }
+
+    public Type visit(IdentifierType n) {
+
+        return n;
+
+    }
+
+    public Type visit(BlockStatement n) {
+
+        for ( int i = 0; i < n.sl.size(); i++ ) {
+            n.sl.elementAt(i).accept(this);
+        }
+        return null;
+
+    }
+
+
+    public Type visit(ArrayType n){
+
+        return new ArrayType();
+
+    }
+
+
+    public Type visit(VarDefinition n){
+
+        n.type.accept(this);
+        n.identifier.accept(this);
+        return null;
+
+    }
+    public Type visit(AndExpression n){
+
+        if(! (n.e1.accept(this) instanceof BooleanType) ){
+            errorMsg.complain ("Lado esquerdo do operador && deve ser do tipo Boolean");
+        }
+        if(! (n.e2.accept(this) instanceof BooleanType) ){
+            errorMsg.complain ("Lado direito do operador && deve ser do tipo Boolean");
+        }
+        return new BooleanType();
+
     }
 
     public Type visit(AssignStatement pAssignStatement) {
         Type tipo;
-        Type exp = pAssignStatement.expressioon.accept(this);
+        Type exp = pAssignStatement.e.accept(this);
 
         if ((currMethod != null) ){
-            if (currMethod.getVar(Symbol.symbol(pAssignStatement.id.getValue()))!=null) {
-                tipo = currMethod.getVars(Symbol.symbol(pAssignStatement.id.getValue()));
-                if (exp == null || ! tipo.getTypeClass().equals(exp.getTypeClass())) {
-                    error.complain("Os tipos do Assign não são compativeis");
+            if (currMethod.getVars(Symbol.symbol(pAssignStatement.id.toString()))!=null) {
+                tipo = currMethod.getVars(Symbol.symbol(pAssignStatement.id.toString()));
+                if (exp == null || ! tipo.toString().equals(exp.toString())) {
+                    errorMsg.complain("Os tipos do Assign não são compativeis");
                 }
             }
-            if (currMethod.getParam(Symbol.symbol(pAssignStatement.id.getValue()))!=null) {
-                tipo = currMethod.getParams(Symbol.symbol(pAssignStatement.id.getValue()));
-                if (exp == null || ! tipo.getTypeClass().equals(exp.getTypeClass())) {
-                    error.complain("Os tipos do Assign não são compativeis");
+            if (currMethod.getParams(Symbol.symbol(pAssignStatement.id.toString()))!=null) {
+                tipo = currMethod.getParams(Symbol.symbol(pAssignStatement.id.toString()));
+                if (exp == null || ! tipo.toString().equals(exp.toString())) {
+                    errorMsg.complain("Os tipos do Assign não são compativeis");
                 }
             }
         }
 
-        if ((currClass != null) && currClass.getVars(Symbol.symbol(pAssignStatement.id.getValue()))!=null) {
-            tipo = currClass.getVars(Symbol.symbol(pAssignStatement.id.getValue()));
-            if (exp == null || ! tipo.getTypeClass().equals(exp.getTypeClass())) {
-                error.complain("Os tipos do Assign não são compativeis");
+        if ((currClass != null) && currClass.getVars(Symbol.symbol(pAssignStatement.id.toString()))!=null) {
+            tipo = currClass.getVars(Symbol.symbol(pAssignStatement.id.toString()));
+            if (exp == null || ! tipo.toString().equals(exp.toString())) {
+                errorMsg.complain("Os tipos do Assign não são compativeis");
             }
         }
-        if (programTable.getClasses(Symbol.symbol(pAssignStatement.id.getValue())) != null) {
-            tipo = new IdentifierType(pAssignStatement.id.getValue());
-            ClassTable nomeClasse = mainTable.getClasses(Symbol.symbol( ((IdentifierType) tipo).getValue()));
-            if (nomeClasse == null || !nomeClasse.get().equals(exp.getTypeClass()))
-                error.complain("Os tipos do Assign não são compativeis");
+        if (programTable.getClasses(Symbol.symbol(pAssignStatement.id.toString())) != null) {
+            tipo = new IdentifierType(pAssignStatement.id.toString());
+            ClassContext nomeClasse = programTable.getClasses(Symbol.symbol( ((IdentifierType) tipo).toString()));
+            if (nomeClasse == null || !nomeClasse.toString().equals(exp.toString()))
+                errorMsg.complain("Os tipos do Assign não são compativeis");
         }
 
+        return null;
+    }
+
+    public Type visit(BigExpression n) {
         return null;
     }
 
 
     public Type visit(ArrayAssignStatement pArray) {
-        Type var = whatType(pArray.i.toString());
-        if (var == null)
-            error.complain("Array Type not declared");
-        else if (!(var instanceof IntegerType))
-            error.complain("Array must be integer");
-        if (! (pArray.expression1.accept(this) instanceof IntegerType))
-            error.complain("Iterator of Array must be integer");
-        if (! (pArray.expression2.accept(this) instanceof IntegerType))
-            error.complain("Right side expression of Array Assign must be integer");
+        Type var = null;
+        Type tipo = null;
+
+        if ((currMethod != null) ){
+            if (currMethod.getVars(Symbol.symbol(pArray.id.toString()))!=null) {
+                tipo = currMethod.getVars(Symbol.symbol(pArray.id.toString()));
+            }
+            if (currMethod.getParams(Symbol.symbol(pArray.id.toString()))!=null) {
+                tipo = currMethod.getParams(Symbol.symbol(pArray.id.toString()));
+            }
+        }
+        if ((currClass != null) && currClass.getVars(Symbol.symbol(pArray.id.toString()))!=null) {
+            tipo = currClass.getVars(Symbol.symbol(pArray.id.toString()));
+        }
+        if (programTable.getClasses(Symbol.symbol(pArray.id.toString())) != null) {
+            tipo = new IdentifierType(pArray.id.toString());
+        }
+
+        if(tipo == null) { //
+            errorMsg.complain("O array não foi declarado");
+        }
+
+        if( !(tipo instanceof IntegerType) ) {
+            errorMsg.complain("O array precisa ser inteiro");
+        }
+
+        if (! (pArray.e1.accept(this) instanceof IntegerType)) {
+            errorMsg.complain("A chave do array precisa ser inteiro");
+        }
+
+        if (! (pArray.e2.accept(this) instanceof IntegerType)) {
+            errorMsg.complain("O lado direito da atribuição precisa ser inteiro");
+        }
+
         return null;
     }
 
-    public void visit(AssignStatement pAssignStatement) {
-        Type identifier = pAssignStatement.identifier.toString();
-        Expression expression = pAssignStatement.expression.accept(this);
-        if (! (expression instanceof currClass.getType(identifier).toString()))
-        error.complain("The assignment can't be done, they dont have the same type");
-        return new IntegerType();
-    }
-
-
-    public Type visit(And pAnd) {
-        if (! (pAnd.expression1.accept(this) instanceof BooleanType))
-            error.complain("Left side of operator && must be boolean");
-        if (! (pAnd.expression2.accept(this) instanceof BooleanType))
-            error.complain("Right side of operator && must be boolean");
-        return new BooleanType();
-    }
 
     public Type visit(LessExpression pLess) {
-        if (! (pLess.expression1.accept(this) instanceof IntegerType))
-            error.complain("Left side of operator < must be integer");
-        if (! (pLess.expression2.accept(this) instanceof IntegerType))
-            error.complain("Right side of operator < must be integer");
+        if (! (pLess.e1.accept(this) instanceof IntegerType))
+            errorMsg.complain("Left side of operator < must be integer");
+        if (! (pLess.e2.accept(this) instanceof IntegerType))
+            errorMsg.complain("Right side of operator < must be integer");
         return new BooleanType();
     }
 
     public Type visit(IfStatement pIfStatement) {
         if (! (pIfStatement.e.accept(this) instanceof BooleanType))
-            error.complain("If statement condition must be boolean");
-        pIfStatement.statement1.accept(this);
-        pIfStatement.statement2.accept(this);
+            errorMsg.complain("If statement condition must be boolean");
+        pIfStatement.s1.accept(this);
+        pIfStatement.s2.accept(this);
         return null;
     }
 
     public Type visit(WhileStatement pWhileStatement) {
-        if (! (pWhileStatement.expression.accept(this) instanceof BooleanType))
-            error.complain("While statement condition must be boolean");
-        pWhileStatement.statement.accept(this);
+        if (! (pWhileStatement.e.accept(this) instanceof BooleanType))
+            errorMsg.complain("While statement condition must be boolean");
+        pWhileStatement.s1.accept(this);
         return null;
     }
 
     public Type visit(PlusExpression pPlus) {
         if (! (pPlus.e1.accept(this) instanceof IntegerType) )
-            error.complain("Left side of LessThan must be of type integer");
+            errorMsg.complain("Left side of LessThan must be of type integer");
         if (! (pPlus.e2.accept(this) instanceof IntegerType) )
-            error.complain("Right side of LessThan must be of type integer");
+            errorMsg.complain("Right side of LessThan must be of type integer");
         return new IntegerType();
     }
 
     public Type visit(MinusExpression pMinus) {
-        if (! (pMinus.expression1.accept(this) instanceof IntegerType) )
-            error.complain("Left side of LessThan must be of type integer");
-        if (! (pMinus.expression2.accept(this) instanceof IntegerType) )
-            error.complain("Right side of LessThan must be of type integer");
+        if (! (pMinus.e1.accept(this) instanceof IntegerType) )
+            errorMsg.complain("Left side of LessThan must be of type integer");
+        if (! (pMinus.e2.accept(this) instanceof IntegerType) )
+            errorMsg.complain("Right side of LessThan must be of type integer");
         return new IntegerType();
     }
 
     public Type visit(MultExpression pMult) {
-        if (! (pMult.expression1.accept(this) instanceof IntegerType) )
-            error.complain("Left side of LessThan must be of type integer");
-        if (! (pMult.expression2.accept(this) instanceof IntegerType) )
-            error.complain("Right side of LessThan must be of type integer");
+        if (! (pMult.e1.accept(this) instanceof IntegerType) )
+            errorMsg.complain("Left side of LessThan must be of type integer");
+        if (! (pMult.e2.accept(this) instanceof IntegerType) )
+            errorMsg.complain("Right side of LessThan must be of type integer");
         return new IntegerType();
     }
 
-    public Type visit(IdentifierExpression pIdExpression) {
-        Type type = whatType(pIdExpression.statement);
-        if (type == null)
-            error.complain("Identifier not found");
-        return type;
-    }
 
-    public Type visit(This n) {
-        if (currentClass == null)
-            error.complain("Class Environment not found");
-        return new IdentifierType(currentClass.toString());
+    public Type visit(ThisExpression n) {
+        if (currClass == null)
+            errorMsg.complain("Class Environment not found");
+        return new IdentifierType(currClass.toString());
     }
 
 }
