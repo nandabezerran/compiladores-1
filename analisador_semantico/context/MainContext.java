@@ -18,8 +18,12 @@ public class MainContext {
     }
 
     // método para adicionar classe
-    public void addClasse(ClassContext classe, Symbol simbol){
-        this.classes.put(simbol, classe);
+    public boolean addClasse(ClassContext classe, Symbol simbol){
+        if(this.classes.get(simbol) == null){
+            this.classes.put(simbol, classe);
+            return true;
+        }
+        return false;
     }
 
      // get classes

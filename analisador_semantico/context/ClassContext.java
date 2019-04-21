@@ -18,14 +18,22 @@ public class ClassContext {
         this.methods = new HashMap<Symbol, Method>();
     }
 
-    // método para adicionar parametro
-    public void addMethod(Method method, Symbol symbol){
-        this.methods.put(symbol, method);
+    // método para adicionar methods
+    public boolean addMethod(Method method, Symbol symbol){
+        if(this.methods.get(symbol) == null){
+            this.methods.put(symbol, method);
+            return true;
+        }
+        return false;
     }
 
     // método para adicionar variavel
-    public void addVariavel(Type tipo, Symbol simbol){
-        this.local.put(simbol, tipo);
+    public boolean addVariavel(Type tipo, Symbol simbol){
+        if(this.local.get(simbol) == null){
+            this.local.put(simbol, tipo);
+            return true;
+        }
+        return false;
     }
 
     // get parametros

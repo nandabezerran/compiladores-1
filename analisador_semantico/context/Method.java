@@ -21,13 +21,21 @@ public class Method {
     }
 
     // método para adicionar parametro
-    public void addParametro(Type tipo, Symbol simbol){
-        this.params.put(simbol, tipo);
+    public boolean addParametro(Type tipo, Symbol symbol){
+        if(this.params.get(symbol) == null){
+            this.params.put(symbol, tipo);
+            return true;
+        }
+        return false;
     }
 
     // método para adicionar variavel
-    public void addVariavel(Type tipo, Symbol simbol){
-        this.local.put(simbol, tipo);
+    public boolean addVariavel(Type tipo, Symbol symbol){
+        if(this.local.get(symbol) == null){
+            this.local.put(symbol, tipo);
+            return true;
+        }
+        return false;
     }
 
     // get parametros
