@@ -1,6 +1,6 @@
-package syntaxtree;
-import syntaxtree.*;
-//import visitor.*;
+package analisador_semantico.syntaxtree;
+import analisador_semantico.syntaxtree.*;
+import analisador_semantico.visitors.*;
 
 public class IntegerLiteralExpression extends Expression {
 	public int i;
@@ -9,11 +9,11 @@ public class IntegerLiteralExpression extends Expression {
 		this.i = i;
 	}
 	
-   	/*public void accept(Visitor v) {
+   	public void accept(Visitor v) {
         v.visit(this);
     }
 
     public Type accept(TypeVisitor v) {
         return v.visit(this);
-    }*/
+    }
 }

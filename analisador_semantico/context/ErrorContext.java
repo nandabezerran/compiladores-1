@@ -1,4 +1,5 @@
-package context;
+package analisador_semantico.context;
+
 public class ErrorContext {
     boolean anyErrors;
     

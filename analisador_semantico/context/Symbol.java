@@ -1,4 +1,7 @@
-package context;
+package analisador_semantico.context;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Symbol {
     private String name;

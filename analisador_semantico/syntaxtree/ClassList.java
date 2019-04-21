@@ -1,5 +1,5 @@
-package syntaxtree;
-import syntaxtree.*;
+package analisador_semantico.syntaxtree;
+import analisador_semantico.syntaxtree.*;
 import java.util.Vector;
 
 public class ClassList {

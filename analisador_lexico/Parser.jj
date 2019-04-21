@@ -1,5 +1,6 @@
 PARSER_BEGIN(Parser)
-import syntaxtree.*;
+package analisador_lexico;
+import analisador_semantico.syntaxtree.*;
 public class Parser{
     public static void main(String[] args) {
         try {

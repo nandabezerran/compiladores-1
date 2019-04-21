@@ -1,0 +1,1055 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6545e5b0-df13-486b-a20c-4d749f71d633" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/analisador_lexico/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_lexico/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_lexico/Parser.jj" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_lexico/Parser.jj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/context/ClassContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/context/ClassContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/context/ErrorContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/context/ErrorContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/context/MainContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/context/MainContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/context/Method.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/context/Method.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/context/Symbol.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/context/Symbol.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/AndExpression.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/AndExpression.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/AndExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/AndExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ArrayAssignStatement.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ArrayAssignStatement.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ArrayAssignStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ArrayAssignStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ArrayType.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ArrayType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ArrayType.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ArrayType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/AssignStatement.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/AssignStatement.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/AssignStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/AssignStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/BigExpression.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/BigExpression.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/BigExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/BigExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/BlockExpression.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/BlockExpression.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/BlockExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/BlockExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/BlockStatement.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/BlockStatement.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/BlockStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/BlockStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/BooleanType.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/BooleanType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/BooleanType.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/BooleanType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ClassDeclaration.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ClassDeclaration.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ClassDeclaration.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ClassDeclaration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ClassDeclarationExtends.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ClassDeclarationExtends.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ClassDeclarationExtends.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ClassDeclarationExtends.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ClassList.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ClassList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ClassList.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ClassList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ClassSimple.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ClassSimple.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ClassSimple.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ClassSimple.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ExpList.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ExpList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ExpList.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ExpList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/Expression.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/Expression.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/Expression.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/Expression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/FalseExpression.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/FalseExpression.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/FalseExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/FalseExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/Formal.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/Formal.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/Formal.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/Formal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/FormalList.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/FormalList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/FormalList.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/FormalList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/Goal.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/Goal.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/Goal.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/Goal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/Identifier.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/Identifier.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/Identifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/Identifier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/IdentifierExpression.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/IdentifierExpression.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/IdentifierExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/IdentifierExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/IdentifierType.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/IdentifierType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/IdentifierType.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/IdentifierType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/IfStatement.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/IfStatement.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/IfStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/IfStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/IntegerLiteralExpression.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/IntegerLiteralExpression.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/IntegerLiteralExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/IntegerLiteralExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/IntegerType.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/IntegerType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/IntegerType.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/IntegerType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/LengthExpression.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/LengthExpression.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/LengthExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/LengthExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/LessExpression.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/LessExpression.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/LessExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/LessExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ListExpression.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ListExpression.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ListExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ListExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/MainClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/MainClass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/MainClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/MainClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/MethodDeclaration.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/MethodDeclaration.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/MethodDeclaration.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/MethodDeclaration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/MethodDeclarationList.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/MethodDeclarationList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/MethodDeclarationList.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/MethodDeclarationList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/MethodDefinition.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/MethodDefinition.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/MethodDefinition.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/MethodDefinition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/MinusExpression.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/MinusExpression.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/MinusExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/MinusExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/MultExpression.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/MultExpression.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/MultExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/MultExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/NewIdentifierExpression.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/NewIdentifierExpression.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/NewIdentifierExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/NewIdentifierExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/NewIntegerExpression.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/NewIntegerExpression.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/NewIntegerExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/NewIntegerExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/NotExpression.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/NotExpression.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/NotExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/NotExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ParseException.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ParseException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ParseException.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ParseException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/Parser.jj" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/Parser.jj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ParserConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ParserConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ParserTokenManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ParserTokenManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/PlusExpression.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/PlusExpression.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/PlusExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/PlusExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/PrintStatement.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/PrintStatement.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/PrintStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/PrintStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/Program.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/Program.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/Program.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/Program.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/SimpleCharStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/SimpleCharStream.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/Statement.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/Statement.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/Statement.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/Statement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/StatementList.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/StatementList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/StatementList.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/StatementList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ThisExpression.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ThisExpression.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ThisExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/ThisExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/Token.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/Token.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/Token.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/TokenMgrError.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/TokenMgrError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/TrueExpression.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/TrueExpression.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/TrueExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/TrueExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/Type.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/Type.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/Type.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/Type.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/VarDeclaration.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/VarDeclaration.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/VarDeclaration.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/VarDeclaration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/VarDefinition.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/VarDefinition.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/VarDefinition.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/VarDefinition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/VarDefinitionList.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/VarDefinitionList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/VarDefinitionList.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/VarDefinitionList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/WhileStatement.class" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/WhileStatement.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/syntaxtree/WhileStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/syntaxtree/WhileStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/visitors/SymbolTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/visitors/SymbolTable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/visitors/TypeVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/visitors/TypeVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analisador_semantico/visitors/Visitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/analisador_semantico/visitors/Visitor.java" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="SymbolTable.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/analisador_semantico/visitors/SymbolTable.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="5375">
+              <caret line="336" column="9" selection-start-line="336" selection-start-column="9" selection-end-line="336" selection-end-column="9" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ClassContext.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/analisador_semantico/context/ClassContext.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainContext.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/analisador_semantico/context/MainContext.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="16" column="55" selection-start-line="16" selection-start-column="55" selection-end-line="16" selection-end-column="55" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/analisador_semantico/syntaxtree/MethodDeclarationList.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/syntaxtree/IntegerType.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/visitors/Visitor.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/syntaxtree/ClassList.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/visitors/TypeVisitor.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/context/Symbol.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/context/ClassContext.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/context/ErrorContext.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/context/Method.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/syntaxtree/BlockExpression.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/syntaxtree/BigExpression.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/syntaxtree/AssignStatement.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/syntaxtree/ArrayType.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/syntaxtree/ArrayAssignStatement.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/syntaxtree/AndExpression.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/syntaxtree/IdentifierType.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/syntaxtree/IdentifierExpression.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/syntaxtree/Identifier.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/syntaxtree/Goal.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/syntaxtree/Formal.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/syntaxtree/FalseExpression.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/syntaxtree/Expression.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/syntaxtree/ExpList.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/syntaxtree/ClassSimple.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/syntaxtree/Program.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/syntaxtree/PrintStatement.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/syntaxtree/PlusExpression.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/syntaxtree/NotExpression.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/syntaxtree/NewIntegerExpression.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/syntaxtree/NewIdentifierExpression.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/syntaxtree/MultExpression.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/syntaxtree/MinusExpression.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/syntaxtree/MethodDefinition.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/syntaxtree/WhileStatement.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/syntaxtree/VarDefinition.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/syntaxtree/VarDeclaration.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/syntaxtree/Type.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/syntaxtree/TrueExpression.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/syntaxtree/ThisExpression.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/syntaxtree/Statement.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/syntaxtree/IntegerLiteralExpression.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/syntaxtree/LengthExpression.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/syntaxtree/LessExpression.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/syntaxtree/ListExpression.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/syntaxtree/MethodDeclaration.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/syntaxtree/MainClass.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/syntaxtree/Main.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/syntaxtree/ClassDeclaration.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/syntaxtree/ClassDeclarationExtends.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/visitors/SymbolTable.java" />
+        <option value="$PROJECT_DIR$/analisador_semantico/context/MainContext.java" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-159" />
+    <option name="y" value="-20" />
+    <option name="width" value="1175" />
+    <option name="height" value="688" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="projeto-compiladores" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projeto-compiladores" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projeto-compiladores" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projeto-compiladores" type="462c0819:PsiDirectoryNode" />
+              <item name="analisador_semantico" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projeto-compiladores" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projeto-compiladores" type="462c0819:PsiDirectoryNode" />
+              <item name="analisador_semantico" type="462c0819:PsiDirectoryNode" />
+              <item name="context" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projeto-compiladores" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projeto-compiladores" type="462c0819:PsiDirectoryNode" />
+              <item name="analisador_semantico" type="462c0819:PsiDirectoryNode" />
+              <item name="visitors" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <properties />
+      <listeners />
+    </configuration>
+  </component>
+  <component name="SbtLocalSettings">
+    <option name="projectSyncType">
+      <map>
+        <entry key="$USER_HOME$/Downloads/example/example" value="PREVIEW" />
+        <entry key="$USER_HOME$/Downloads/example2/example" value="PREVIEW" />
+        <entry key="$USER_HOME$/Downloads/newProject" value="PREVIEW" />
+        <entry key="$USER_HOME$/Downloads/teste" value="PREVIEW" />
+      </map>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6545e5b0-df13-486b-a20c-4d749f71d633" name="Default" comment="" />
+      <created>1555870437114</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1555870437114</updated>
+      <workItem from="1555870452653" duration="2732000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="2732000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info anchor="right" id="Palette" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info id="Image Layers" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="right" id="Maven Projects" />
+      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info id="Capture Tool" />
+      <window_info id="Designer" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24963397" />
+      <window_info anchor="right" id="Database" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info id="UI Designer" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/AssignStatement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#341#342#0" expanded="true" />
+            <element signature="e#370#371#0" expanded="true" />
+            <element signature="e#411#412#0" expanded="true" />
+            <element signature="e#447#448#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/BlockExpression.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="39" />
+          <folding>
+            <element signature="e#293#294#0" expanded="true" />
+            <element signature="e#322#323#0" expanded="true" />
+            <element signature="e#363#364#0" expanded="true" />
+            <element signature="e#399#400#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/ArrayType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="5" lean-forward="true" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#196#197#0" expanded="true" />
+            <element signature="e#225#226#0" expanded="true" />
+            <element signature="e#266#267#0" expanded="true" />
+            <element signature="e#302#303#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/ArrayAssignStatement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="5" lean-forward="true" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#391#392#0" expanded="true" />
+            <element signature="e#420#421#0" expanded="true" />
+            <element signature="e#461#462#0" expanded="true" />
+            <element signature="e#497#498#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/AndExpression.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="5" lean-forward="true" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#323#324#0" expanded="true" />
+            <element signature="e#352#353#0" expanded="true" />
+            <element signature="e#393#394#0" expanded="true" />
+            <element signature="e#429#430#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/BlockStatement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/BooleanType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/IdentifierType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#272#273#0" expanded="true" />
+            <element signature="e#301#302#0" expanded="true" />
+            <element signature="e#342#343#0" expanded="true" />
+            <element signature="e#379#380#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/IdentifierExpression.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="39" selection-start-line="2" selection-start-column="39" selection-end-line="2" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#270#271#0" expanded="true" />
+            <element signature="e#299#300#0" expanded="true" />
+            <element signature="e#340#341#0" expanded="true" />
+            <element signature="e#376#377#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/Identifier.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#258#259#0" expanded="true" />
+            <element signature="e#283#284#0" expanded="true" />
+            <element signature="e#323#324#0" expanded="true" />
+            <element signature="e#355#356#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/Goal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/Formal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="3" selection-start-line="19" selection-start-column="3" selection-end-line="19" selection-end-column="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#345#346#0" expanded="true" />
+            <element signature="e#370#371#0" expanded="true" />
+            <element signature="e#409#410#0" expanded="true" />
+            <element signature="e#439#440#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/FalseExpression.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#208#209#0" expanded="true" />
+            <element signature="e#237#238#0" expanded="true" />
+            <element signature="e#278#279#0" expanded="true" />
+            <element signature="e#314#315#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/Expression.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/ExpList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="41" lean-forward="true" selection-start-line="1" selection-start-column="41" selection-end-line="1" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/ClassSimple.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#622#623#0" expanded="true" />
+            <element signature="e#651#652#0" expanded="true" />
+            <element signature="e#692#693#0" expanded="true" />
+            <element signature="e#728#729#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/IfStatement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/IntegerType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/MethodDeclarationList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/SimpleCharStream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/Program.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#413#414#0" expanded="true" />
+            <element signature="e#442#443#0" expanded="true" />
+            <element signature="e#483#484#0" expanded="true" />
+            <element signature="e#519#520#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/PrintStatement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#286#287#0" expanded="true" />
+            <element signature="e#315#316#0" expanded="true" />
+            <element signature="e#356#357#0" expanded="true" />
+            <element signature="e#392#393#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/PlusExpression.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="5" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#326#327#0" expanded="true" />
+            <element signature="e#355#356#0" expanded="true" />
+            <element signature="e#396#397#0" expanded="true" />
+            <element signature="e#432#433#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/NotExpression.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#289#290#0" expanded="true" />
+            <element signature="e#318#319#0" expanded="true" />
+            <element signature="e#359#360#0" expanded="true" />
+            <element signature="e#395#396#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/NewIntegerExpression.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#303#304#0" expanded="true" />
+            <element signature="e#332#333#0" expanded="true" />
+            <element signature="e#373#374#0" expanded="true" />
+            <element signature="e#409#410#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/NewIdentifierExpression.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#309#310#0" expanded="true" />
+            <element signature="e#338#339#0" expanded="true" />
+            <element signature="e#379#380#0" expanded="true" />
+            <element signature="e#415#416#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/MultExpression.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="5" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#326#327#0" expanded="true" />
+            <element signature="e#355#356#0" expanded="true" />
+            <element signature="e#396#397#0" expanded="true" />
+            <element signature="e#432#433#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/MinusExpression.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="5" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#328#329#0" expanded="true" />
+            <element signature="e#357#358#0" expanded="true" />
+            <element signature="e#398#399#0" expanded="true" />
+            <element signature="e#434#435#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/WhileStatement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#362#363#0" expanded="true" />
+            <element signature="e#391#392#0" expanded="true" />
+            <element signature="e#432#433#0" expanded="true" />
+            <element signature="e#468#469#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/VarDefinitionList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/VarDefinition.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#405#406#0" expanded="true" />
+            <element signature="e#434#435#0" expanded="true" />
+            <element signature="e#475#476#0" expanded="true" />
+            <element signature="e#511#512#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/VarDeclaration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/Type.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/TrueExpression.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#207#208#0" expanded="true" />
+            <element signature="e#236#237#0" expanded="true" />
+            <element signature="e#277#278#0" expanded="true" />
+            <element signature="e#313#314#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/ThisExpression.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#207#208#0" expanded="true" />
+            <element signature="e#236#237#0" expanded="true" />
+            <element signature="e#277#278#0" expanded="true" />
+            <element signature="e#313#314#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/StatementList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/Statement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/IntegerLiteralExpression.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#293#294#0" expanded="true" />
+            <element signature="e#322#323#0" expanded="true" />
+            <element signature="e#363#364#0" expanded="true" />
+            <element signature="e#399#400#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/LengthExpression.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#294#295#0" expanded="true" />
+            <element signature="e#323#324#0" expanded="true" />
+            <element signature="e#364#365#0" expanded="true" />
+            <element signature="e#400#401#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/LessExpression.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="5" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#325#326#0" expanded="true" />
+            <element signature="e#354#355#0" expanded="true" />
+            <element signature="e#395#396#0" expanded="true" />
+            <element signature="e#431#432#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/ListExpression.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="5" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#326#327#0" expanded="true" />
+            <element signature="e#355#356#0" expanded="true" />
+            <element signature="e#396#397#0" expanded="true" />
+            <element signature="e#432#433#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/MethodDeclaration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#499#500#0" expanded="true" />
+            <element signature="e#528#529#0" expanded="true" />
+            <element signature="e#569#570#0" expanded="true" />
+            <element signature="e#605#606#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/MethodDefinition.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="485">
+          <caret line="29" column="3" selection-start-line="29" selection-start-column="3" selection-end-line="29" selection-end-column="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#866#867#0" expanded="true" />
+            <element signature="e#889#890#0" expanded="true" />
+            <element signature="e#928#929#0" expanded="true" />
+            <element signature="e#958#959#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/MainClass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/ClassDeclaration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/ClassDeclarationExtends.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#531#532#0" expanded="true" />
+            <element signature="e#560#561#0" expanded="true" />
+            <element signature="e#601#602#0" expanded="true" />
+            <element signature="e#637#638#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/syntaxtree/ClassList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/visitors/SymbolTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5375">
+          <caret line="336" column="9" selection-start-line="336" selection-start-column="9" selection-end-line="336" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/context/ClassContext.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analisador_semantico/context/MainContext.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="16" column="55" selection-start-line="16" selection-start-column="55" selection-end-line="16" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>scala-sdk-2.12.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

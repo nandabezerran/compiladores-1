@@ -1,9 +1,9 @@
-package syntaxtree;
-import syntaxtree.*;
-//import visitor.*;
+package analisador_semantico.syntaxtree;
+import analisador_semantico.syntaxtree.*;
+import analisador_semantico.visitors.*;
 
 public abstract class Goal {
-    //public abstract void accept(Visitor v);
-    //public abstract Type accept(TypeVisitor v);
+    public abstract void accept(Visitor v);
+    public abstract Type accept(TypeVisitor v);
     
 }

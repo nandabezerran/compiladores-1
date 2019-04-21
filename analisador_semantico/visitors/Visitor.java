@@ -1,6 +1,5 @@
-package visitor;
-
-import syntaxtree.*;
+package analisador_semantico.visitors;
+import analisador_semantico.syntaxtree.*;
 
 public interface Visitor {
   public void visit(AndExpression n);

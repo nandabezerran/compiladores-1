@@ -1,34 +1,34 @@
-package context;
+package analisador_semantico.context;
+
+import analisador_semantico.context.*;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 public class MainContext {
     String nome;
-    Map<Symbol, Class> classes;
+    Map<Symbol, ClassContext> classes;
 
     public MainContext(String nome){
         this.nome = nome;
-        this.classes = new HashMap<Symbol, Class>();
+        this.classes = new HashMap<Symbol, ClassContext>();
     }
 
     public MainContext(){
-        this.classes = new HashMap<Symbol, Class>();
+        this.classes = new HashMap<Symbol, ClassContext>();
     }
 
     // método para adicionar classe
-    public void addClasse(Class classe, Symbol simbol){
+    public void addClasse(ClassContext classe, Symbol simbol){
         this.classes.put(simbol, classe);
     }
 
      // get classes
-     public Map<Symbol, Class> getClasses(){
+     public Map<Symbol, ClassContext> getClasses(){
         return this.classes;
     }
 
     // get classe
-    public Class getClasses(Symbol symbol){
+    public ClassContext getClasses(Symbol symbol){
         return this.classes.get(symbol);
     }
 

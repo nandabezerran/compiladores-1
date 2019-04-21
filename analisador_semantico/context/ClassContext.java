@@ -1,13 +1,14 @@
-package context;
+package analisador_semantico.context;
+
+import analisador_semantico.syntaxtree.*;
+import analisador_semantico.context.*;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 public class ClassContext {
     String nome;
     String pai;
-    Map<Symbol, Type> fields;
+    Map<Symbol, Type> local;
     Map<Symbol, Method> methods;
 
     public ClassContext(String nome, String pai){
@@ -66,7 +67,7 @@ public class ClassContext {
     public boolean removeVar(Symbol symbol){
         if(this.local.get(symbol) == null)
             return false;
-        this.fields.remove(symbol);
+        this.local.remove(symbol);
         return true;
     }
 

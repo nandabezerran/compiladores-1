@@ -1,5 +1,5 @@
-package syntaxtree;
-import syntaxtree.*;
+package analisador_semantico.syntaxtree;
+import analisador_semantico.syntaxtree.*;
 //import visitor.*;
 
 public class IntegerType extends Type {

@@ -1,6 +1,5 @@
-package visitor;
-
-import syntaxtree.*;
+package analisador_semantico.visitors;
+import analisador_semantico.syntaxtree.*;
 
 public interface TypeVisitor {
   public Type visit(AndExpression n);
@@ -13,7 +12,7 @@ public interface TypeVisitor {
   public Type visit(BooleanType n);
   public Type visit(ClassSimple n);
   public Type visit(ClassDeclaration n);
-  public void visit(ClassDeclarationExtends n);
+  public Type visit(ClassDeclarationExtends n);
   public Type visit(Expression n);
   public Type visit(FalseExpression n);
   public Type visit(Formal n);

@@ -1,9 +1,6 @@
-package visitor;
-
-import java.util.*;
-import syntaxtree.*;
-import context.*;
-
+package analisador_semantico.visitors;
+import analisador_semantico.syntaxtree.*;
+import analisador_semantico.context.*;
 public class SymbolTable implements Visitor{
     private MainContext mainContext;
     private ClassContext classe;
@@ -298,7 +295,6 @@ public class SymbolTable implements Visitor{
     public void visit(Program n){
         // eu tenho que adicionar a mainclass no maincontext (mas isso ele já faz no visitor do Main)
         n.mainClass.accept(this);
-        n.classList.accept(this);
 
         // e adicionar as classes no maincontext thumbhem, que aí é uma lista e aí eu tenho que percorrer essa lista e dar os accept
         for(int i = 0; i < n.classList.size(); ++i){
@@ -339,10 +335,6 @@ public class SymbolTable implements Visitor{
                 error.complain("Variavel " + n.identifier.toString() + " already defined in the Method.");
             }
         }
-        
-
-        
-
     }
 
     // Expression e;

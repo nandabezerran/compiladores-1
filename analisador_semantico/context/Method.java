@@ -1,7 +1,8 @@
-package context;
+package analisador_semantico.context;
+
+import analisador_semantico.syntaxtree.*;
+import analisador_semantico.context.*;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 public class Method {
@@ -58,7 +59,7 @@ public class Method {
     }
 
     public Type getType(){
-        return this.type;
+        return this.tipo;
     }
 
     public String toString(){
