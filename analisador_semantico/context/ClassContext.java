@@ -6,11 +6,11 @@ import java.util.Map;
 
 public class ClassContext {
     String nome;
-    ClassContext pai;
+    String pai;
     Map<Symbol, Type> fields;
     Map<Symbol, Method> methods;
 
-    public ClassContext(String nome, ClassContext pai){
+    public ClassContext(String nome, String pai){
         this.nome = nome;
         this.pai = pai;
         this.local = new HashMap<Symbol, Type>();
@@ -59,7 +59,7 @@ public class ClassContext {
         return this.nome;
     }
 
-    public ClassContext getPai(){
+    public String getPai(){
         return this.pai;
     }
 
