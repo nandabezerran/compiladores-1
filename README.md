@@ -27,11 +27,13 @@ $ java Parser minijava.java
 ```sh
 $ javacc analisador_semantico/syntaxtree/*.java
 $ javac analisador_semantico/context/*.java
+// aqui sera botado o comando pra executar o typecheking
 $ javac analisador_semantico/visitors/*.java
 $ cd analisador_lexico/
 $ javacc Parser.jj
 $ cd ...
 $ javac analisador_lexico/*.java
-$ java Parser minijava.java
+$ javac MainProgram.java
+$ java MainProgram arquivos_teste/minijava.java
 ```
 ---
