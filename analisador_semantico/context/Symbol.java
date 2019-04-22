@@ -15,11 +15,15 @@ public class Symbol {
 
     public static Symbol symbol(String n) {
         String u = n.intern();
-        Symbol s = null;
-        if (!dict.containsKey(u)) {
-            s = new Symbol(u);
-            dict.put(u,s);
-        }
+        Symbol s = (Symbol) dict.get(u);
+		if (s == null) {
+			s = new Symbol(u);
+			dict.put(u, s);
+		}
         return s;
+    }
+
+    public static Symbol getSymbol(String n) {
+        return dict.get(n);
     }
 }
