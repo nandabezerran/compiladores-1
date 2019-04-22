@@ -9,6 +9,9 @@ public class TypeChecking implements TypeVisitor{
     private MainContext programTable;
     private ErrorContext errorMsg;
 
+    public TypeChecking(MainContext pProgramT){
+        programTable = pProgramT;
+    }
 
     public Type visit(Program n){
         n.mainClass.accept(this);
