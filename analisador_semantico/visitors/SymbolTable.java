@@ -14,6 +14,10 @@ public class SymbolTable implements Visitor{
         classe = null;
     }
 
+    public MainContext getTable(){
+        return this.mainContext;
+    }
+
     // Identifier identifier1, identifier2
     // Statement statement
     public void visit(Main n){

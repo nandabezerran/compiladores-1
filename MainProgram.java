@@ -21,7 +21,7 @@ public class MainProgram {
 
 		///--------------------------------------
 		// Declarar o visitor pra checagem de tipos e chamar abaixo
-		TypeChecking checking = new TypeChecking();
+		TypeChecking checking = new TypeChecking(table.getTable());
         programa.accept(checking);
 	}
 }
