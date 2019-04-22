@@ -289,18 +289,22 @@ public class TypeChecking implements TypeVisitor{
     }
 
     public Type visit(PrintStatement n){
+        n.e.accept(this);
         return null;
     }
 
     public Type visit(NotExpression n){
+        n.e1.accept(this);
         return null;
     }
 
     public Type visit(NewIntegerExpression n){
+        n.e1.accept(this);
         return null;
     }
 
     public Type visit(NewIdentifierExpression n){
+        n.id.accept(this);
         return null;
     }
 
@@ -313,10 +317,13 @@ public class TypeChecking implements TypeVisitor{
     }
 
     public Type visit(ListExpression n){
+        n.e1.accept(this);
+        n.e2.accept(this);
         return null;
     }
 
     public Type visit(LengthExpression n){
+        n.e1.accept(this);
         return null;
     }
 
@@ -325,6 +332,7 @@ public class TypeChecking implements TypeVisitor{
     }
 
     public Type visit(IdentifierExpression n){
+        
         return null;
     }
 
@@ -349,6 +357,7 @@ public class TypeChecking implements TypeVisitor{
     }
     
     public Type visit(BlockExpression n){
+        n.e1.accept(this);
         return null;
     }
 }
