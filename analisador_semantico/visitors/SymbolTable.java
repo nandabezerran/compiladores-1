@@ -88,7 +88,8 @@ public class SymbolTable implements Visitor{
     }
 
     // nothing
-    public void visit(BooleanType n){}
+    public void visit(BooleanType n){
+    }
 
     // identifier1
     // VarDefinitionList varDeclaration
@@ -101,7 +102,7 @@ public class SymbolTable implements Visitor{
 
         if (!mainContext.addClasse(classeAux, Symbol.symbol(n.identifier1.toString()))){
             error.complain("Class " + n.identifier1.toString() + " already defined.");
-        }else{
+        } else{
             classe = classeAux;
             method = null;
         }  
@@ -116,7 +117,8 @@ public class SymbolTable implements Visitor{
     }
 
     // abstrato
-    public void visit(ClassDeclaration n){}
+    public void visit(ClassDeclaration n){
+    }
 
     // Identifier i;
     // Identifier j;
@@ -157,7 +159,7 @@ public class SymbolTable implements Visitor{
         n.identifier.accept(this);
 
         if(!method.addParametro(n.type, Symbol.symbol(n.identifier.toString()))){
-            error.complain("Param " + n.identifier.toString() + " is defined");
+            error.complain("Param " + n.identifier.toString() + " is defined in the Method " + method.toString());
         }
     }
 
@@ -328,12 +330,10 @@ public class SymbolTable implements Visitor{
         // aí no caso eu verifico se o método atual é nulo, pq isso significa que teremos que adicionar na classe
         if(method == null){
             if(!classe.addVariavel(n.type, Symbol.symbol(n.identifier.toString()))){
-                error.complain("Variavel " + n.identifier.toString() + " already defined in the Class.");
+                error.complain("Variavel " + n.identifier.toString() + " already defined in the Class " + classe.toString());
             }
-        } else {
-            if(!method.addVariavel(n.type, Symbol.symbol(n.identifier.toString()))){
-                error.complain("Variavel " + n.identifier.toString() + " already defined in the Method.");
-            }
+        } else if(!method.addVariavel(n.type, Symbol.symbol(n.identifier.toString()))){
+                error.complain("Variavel " + n.identifier.toString() + " already defined in the Method " + method.toString() + " Class " + classe.toString());
         }
     }
 

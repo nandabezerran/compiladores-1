@@ -272,4 +272,83 @@ public class TypeChecking implements TypeVisitor{
         return new IdentifierType(currClass.toString());
     }
 
+    public Type visit(VarDeclaration n){
+        return null;
+    }
+
+    public Type visit(Type n){
+        return null;
+    }
+
+    public Type visit(TrueExpression n){
+        return null;
+    }
+
+    public Type visit(Statement n){
+        return null;
+    }
+
+    public Type visit(PrintStatement n){
+        return null;
+    }
+
+    public Type visit(NotExpression n){
+        return null;
+    }
+
+    public Type visit(NewIntegerExpression n){
+        return null;
+    }
+
+    public Type visit(NewIdentifierExpression n){
+        return null;
+    }
+
+    public Type visit(MethodDeclaration n){
+        return null;
+    }
+
+    public Type visit(MainClass n){
+        return null;
+    }
+
+    public Type visit(ListExpression n){
+        return null;
+    }
+
+    public Type visit(LengthExpression n){
+        return null;
+    }
+
+    public Type visit(IntegerLiteralExpression n){
+        return null;
+    }
+
+    public Type visit(IdentifierExpression n){
+        return null;
+    }
+
+    public Type visit(Identifier n){
+        return null;
+    }
+    
+    public Type visit(Goal n){
+        return null;
+    }
+    
+    public Type visit(FalseExpression n){
+        return null;
+    }
+    
+    public Type visit(Expression n){
+        return null;
+    }
+    
+    public Type visit(ClassDeclaration n){
+        return null;
+    }
+    
+    public Type visit(BlockExpression n){
+        return null;
+    }
 }
