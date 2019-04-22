@@ -1,6 +1,6 @@
 package analisador_semantico.visitors;
-import analisador_semantico.syntaxtree.*;
 import analisador_semantico.context.*;
+import analisador_semantico.syntaxtree.*;
 public class SymbolTable implements Visitor{
     private MainContext mainContext;
     private ClassContext classe;
@@ -20,6 +20,7 @@ public class SymbolTable implements Visitor{
 
     // Identifier identifier1, identifier2
     // Statement statement
+    @Override
     public void visit(Main n){
         n.identifier1.accept(this);
         
@@ -46,6 +47,7 @@ public class SymbolTable implements Visitor{
     }
 
     // Expression e1, e2
+    @Override
     public void visit(AndExpression n){
         n.e1.accept(this);
         n.e2.accept(this);
@@ -53,6 +55,7 @@ public class SymbolTable implements Visitor{
 
      // Expression e1, e2
      // Identifier id
+    @Override
     public void visit(ArrayAssignStatement n){
         n.e1.accept(this);
         n.e2.accept(this);
@@ -60,10 +63,12 @@ public class SymbolTable implements Visitor{
     }
 
     //nothing
+    @Override
     public void visit(ArrayType n){}
 
     // Identifier id;
 	// Expression e;
+    @Override
     public void visit(AssignStatement n){
         n.e.accept(this);
         n.id.accept(this);
@@ -72,6 +77,7 @@ public class SymbolTable implements Visitor{
     // Expression e1;
 	// Identifier id1;
     // ExpList el;
+    @Override
     public void visit(BigExpression n){
         n.id1.accept(this);
         for(int i = 0; i < n.el.size(); i++){
@@ -80,11 +86,13 @@ public class SymbolTable implements Visitor{
     }
 
     // Expression e1;
+    @Override
     public void visit(BlockExpression n){
         n.e1.accept(this);
     }
 
     // StatementList s1;
+    @Override
     public void visit(BlockStatement n){
         for(int i = 0; i < n.s1.size(); i++){
             n.s1.elementAt(i).accept(this);
@@ -92,12 +100,14 @@ public class SymbolTable implements Visitor{
     }
 
     // nothing
+    @Override
     public void visit(BooleanType n){
     }
 
     // identifier1
     // VarDefinitionList varDeclaration
     // MethodDeclarationList methodDeclaration
+    @Override
     public void visit(ClassSimple n){
         n.identifier1.accept(this);
 
@@ -121,6 +131,7 @@ public class SymbolTable implements Visitor{
     }
 
     // abstrato
+    @Override
     public void visit(ClassDeclaration n){
     }
 
@@ -128,6 +139,7 @@ public class SymbolTable implements Visitor{
     // Identifier j;
     // VarDefinitionList vl;
     // MethodDeclarationList ml;
+    @Override
     public void visit(ClassDeclarationExtends n){
         n.i.accept(this);
         n.j.accept(this);
@@ -151,13 +163,16 @@ public class SymbolTable implements Visitor{
     }
 
     // abstrato
+    @Override
     public void visit(Expression n){}
 
     // nothing
+    @Override
     public void visit(FalseExpression n){}
 
     // Type type;
     // Identifier identifier;
+    @Override
     public void visit(Formal n){
         n.type.accept(this);
         n.identifier.accept(this);
@@ -168,19 +183,24 @@ public class SymbolTable implements Visitor{
     }
 
     // abstract
+    @Override
     public void visit(Goal n){}
 
     // String s;
+    @Override
     public void visit(Identifier n){}
 
     // String s;
+    @Override
     public void visit(IdentifierExpression n){}
 
     // String s;
+    @Override
     public void visit(IdentifierType n){}
 
     // Expression e;
 	// Statement s1, s2;
+    @Override
     public void visit(IfStatement n){
         n.e.accept(this);
         n.s1.accept(this);
@@ -188,32 +208,39 @@ public class SymbolTable implements Visitor{
     }
 
     // int i;
+    @Override
     public void visit(IntegerLiteralExpression n){}
 
     // nothing
+    @Override
     public void visit(IntegerType n){}
 
     // Expression e1;
+    @Override
     public void visit(LengthExpression n){
         n.e1.accept(this);
     }
 
     // Expression e1, e2;
+    @Override
     public void visit(LessExpression n){
         n.e1.accept(this);
         n.e2.accept(this);
     }
 
     // Expression e1, e2;
+    @Override
     public void visit(ListExpression n){
         n.e1.accept(this);
         n.e2.accept(this);
     }
 
     // abstract
+    @Override
     public void visit(MainClass n){}
 
     // abstract
+    @Override
     public void visit(MethodDeclaration n){}
 
     // Type type;
@@ -223,6 +250,7 @@ public class SymbolTable implements Visitor{
     // StatementList statementList;
     // Expression expression;
     // REGRA DO MÉTODO DECLARATION
+    @Override
     public void visit(MethodDefinition n){
         n.type.accept(this);
         n.identifier.accept(this);
@@ -259,45 +287,53 @@ public class SymbolTable implements Visitor{
     }
 
     // Expression e1, e2;
+    @Override
     public void visit(MinusExpression n){
         n.e1.accept(this);
         n.e2.accept(this);
     }
 
     // Expression e1, e2;
+    @Override
     public void visit(MultExpression n){
         n.e1.accept(this);
         n.e2.accept(this);
     }
 
     // Identifier id;
+    @Override
     public void visit(NewIdentifierExpression n){
         n.id.accept(this);
     }
 
     //  Expression e1;
+    @Override
     public void visit(NewIntegerExpression n){
         n.e1.accept(this);
     }
 
     // Expression e1;
+    @Override
     public void visit(NotExpression n){
         n.e1.accept(this);
     }
 
     // Expression e1, e2;
+    @Override
     public void visit(PlusExpression n){
         n.e1.accept(this);
         n.e2.accept(this);
     }
 
     // Expression e;
+    @Override
     public void visit(PrintStatement n){
         n.e.accept(this);
     }
 
     // MainClass mainClass;
     // ClassList classList;
+    @Override
     public void visit(Program n){
         // eu tenho que adicionar a mainclass no maincontext (mas isso ele já faz no visitor do Main)
         n.mainClass.accept(this);
@@ -309,22 +345,28 @@ public class SymbolTable implements Visitor{
     }
 
     // abstract
+    @Override
     public void visit(Statement n){}
 
     // nothing 
+    @Override
     public void visit(ThisExpression n){}
 
     // nothing 
+    @Override
     public void visit(TrueExpression n){}
 
     // abstract
+    @Override
     public void visit(Type n){}
 
     // abstract
+    @Override
     public void visit(VarDeclaration n){}
 
     // Type type;
     // Identifier identifier;
+    @Override
     public void visit(VarDefinition n){
         n.type.accept(this);
         n.identifier.accept(this);
@@ -336,13 +378,18 @@ public class SymbolTable implements Visitor{
             if(!classe.addVariavel(n.type, Symbol.symbol(n.identifier.toString()))){
                 error.complain("Variavel " + n.identifier.toString() + " already defined in the Class " + classe.toString());
             }
-        } else if(!method.addVariavel(n.type, Symbol.symbol(n.identifier.toString()))){
+        } 
+        if( method != null){
+            if(!method.addVariavel(n.type, Symbol.symbol(n.identifier.toString()))){
                 error.complain("Variavel " + n.identifier.toString() + " already defined in the Method " + method.toString() + " Class " + classe.toString());
+            }
         }
+        
     }
 
     // Expression e;
     // Statement s1;
+    @Override
     public void visit(WhileStatement n){
         n.e.accept(this);
         n.s1.accept(this);
