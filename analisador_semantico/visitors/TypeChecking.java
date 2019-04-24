@@ -222,6 +222,7 @@ public class TypeChecking implements TypeVisitor{
 
 
     public Type visit(LessExpression pLess) {
+        System.out.println(pLess.e1.accept(this));
         if (! (pLess.e1.accept(this) instanceof IntegerType))
             errorMsg.complain("Left side of operator < must be integer");
         if (! (pLess.e2.accept(this) instanceof IntegerType))
@@ -284,7 +285,7 @@ public class TypeChecking implements TypeVisitor{
     }
 
     public Type visit(TrueExpression n){
-        return null;
+        return new BooleanType();
     }
 
     public Type visit(Statement n){
@@ -297,13 +298,15 @@ public class TypeChecking implements TypeVisitor{
     }
 
     public Type visit(NotExpression n){
-        n.e1.accept(this);
-        return null;
+        if(! (n.e1.accept(this) instanceof BooleanType) ){
+            errorMsg.complain ("Lado direito do operador deve ser do tipo Boolean");
+        }
+        return new BooleanType();
     }
 
     public Type visit(NewIntegerExpression n){
         n.e1.accept(this);
-        return null;
+        return new IntegerType();
     }
 
     public Type visit(NewIdentifierExpression n){
