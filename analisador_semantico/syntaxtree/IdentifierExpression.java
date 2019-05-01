@@ -16,4 +16,8 @@ public class IdentifierExpression extends Expression {
     public Type accept(TypeVisitor v) {
         return v.visit(this);
     }
+
+    public String toString(){
+	    return s;
+    }
 }
