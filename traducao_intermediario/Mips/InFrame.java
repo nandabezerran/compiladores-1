@@ -1,7 +1,7 @@
 package traducao_intermediario.Mips;
 import traducao_intermediario.Tree.*;
  
-public class InFrame extends Frame.Access {
+public class InFrame extends Access {
     int offset;
     InFrame(int o) {
     offset = o;

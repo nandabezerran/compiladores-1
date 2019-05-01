@@ -1,14 +1,12 @@
 package traducao_intermediario.Mips;
 import traducao_intermediario.Tree.*;
-import traducao_intermediario.Temp.Temp;
+import traducao_intermediario.Temp.*;
 import analisador_semantico.context.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.LinkedList;
 import java.util.Iterator;
 import java.util.ListIterator;
-import Frame.Frame;
-import Frame.Access;
 import java.util.Arrays;
  
 public class MipsFrame extends Frame {

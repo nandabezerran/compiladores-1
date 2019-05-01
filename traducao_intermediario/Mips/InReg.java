@@ -1,8 +1,8 @@
 package traducao_intermediario.Mips;
 import traducao_intermediario.Tree.*;
-import traducao_intermediario.Temp.Temp;
+import traducao_intermediario.Temp.*;
  
-public class InReg extends Frame.Access {
+public class InReg extends Access {
     Temp temp;
     InReg(Temp t) {
     temp = t;
