@@ -1,6 +1,8 @@
 package analisador_semantico.visitors;
 import analisador_semantico.syntaxtree.*;
 import analisador_semantico.context.*;
+
+import java.awt.im.spi.InputMethodContext;
 import java.util.*;
 
 public class TypeChecking implements TypeVisitor{
@@ -178,7 +180,48 @@ public class TypeChecking implements TypeVisitor{
     }
 
     public Type visit(BigExpression n) {
-        return null;
+        Type exp = n.e1.accept(this);
+        if(exp == null ||  !(exp instanceof IdentifierType) ) {
+            errorMsg.complain ("Classe do objeto é inexistente.");
+        }
+        IdentifierType exp1 = (IdentifierType) exp;
+        ClassContext classeExp = programTable.getClasses(Symbol.symbol(exp1.toString()));
+        Method metodoId = classeExp.getMethods(Symbol.symbol(n.id1.toString()));
+        if(metodoId == null) {
+            errorMsg.complain ("Método não encontrado.");
+        }
+        if(n.el.size() != metodoId.getParamsSize()) {
+            errorMsg.complain ("Quantidade de parametros inconsistente.");
+        }
+
+        Set chavesParam =  metodoId.getParams().entrySet();
+        Symbol s;
+        Map.Entry<Symbol, Type> me;
+        Iterator it = chavesParam.iterator();
+        for(int i = 0; i < n.el.size(); i++) {
+            Type tipoChamado = n.el.elementAt(i).accept(this);
+            me = (Map.Entry<Symbol, Type>) it.next();
+            s = (Symbol) me.getKey();
+            Type tipoParam = metodoId.getParams(s);
+
+            if(tipoChamado instanceof IdentifierType) {
+                IdentifierType tipo1 = (IdentifierType) tipoChamado;
+                ClassContext classeChamada = programTable.getClasses(Symbol.symbol(tipo1.toString()));
+                if(tipoParam.toString().equals("IdentifierType")) {
+                    if(classeChamada == null || !classeChamada.toString().equals( ((IdentifierType) tipoParam).toString())) {
+                        errorMsg.complain ("Tipo do argumento passado:" + classeChamada.toString() + "não compatível com o tipo esperado:" + tipoParam.toString());
+                    }
+                }
+                else {
+                    errorMsg.complain ("Tipo do argumento passado:" + classeChamada.toString() + "não compatível com o tipo esperado:" + tipoParam.toString());
+                }
+            }
+            else if (tipoChamado == null || !tipoChamado.toString().equals(tipoParam.toString()) ) {
+                errorMsg.complain ("Tipo do argumento passado:" + tipoChamado.toString() + "não compatível com o tipo esperado:" + tipoParam.toString() );
+            }
+        }
+
+        return metodoId.getType();
     }
 
 
@@ -310,8 +353,11 @@ public class TypeChecking implements TypeVisitor{
     }
 
     public Type visit(NewIdentifierExpression n){
-        n.id.accept(this);
-        return null;
+        currClass = programTable.getClasses(Symbol.symbol(n.id.toString()));
+        if (currClass == null){
+            errorMsg.complain("Classe usada no objeto não existe");
+        }
+        return new IdentifierType(currClass.toString());
     }
 
     public Type visit(MethodDeclaration n){
@@ -334,15 +380,50 @@ public class TypeChecking implements TypeVisitor{
     }
 
     public Type visit(IntegerLiteralExpression n){
-        return null;
+        return new IntegerType();
     }
 
-    public Type visit(IdentifierExpression n){
-        
-        return null;
+    public Type visit(IdentifierExpression n) {
+        Type tipo = null;
+        if ((currMethod != null) ){
+            if (currMethod.getVars(Symbol.symbol(n.toString()))!=null) {
+                tipo = currMethod.getVars(Symbol.symbol(n.toString()));
+            }
+            if (currMethod.getParams(Symbol.symbol(n.toString()))!=null) {
+                tipo =  currMethod.getParams(Symbol.symbol(n.toString()));
+            }
+        }
+        if ((currClass != null) && currClass.getVars(Symbol.symbol(n.toString()))!=null) {
+            tipo = currClass.getVars(Symbol.symbol(n.toString()));
+        }
+        if (programTable.getClasses(Symbol.symbol(n.toString())) != null) {
+            tipo = new IdentifierType(n.toString());
+        }
+
+        if(tipo == null) {
+            errorMsg.complain("Identificador não encontrado");
+        }
+
+        return tipo;
     }
 
-    public Type visit(Identifier n){
+    public Type visit(Identifier n) {
+
+        if ((currMethod != null) ){
+            if (currMethod.getVars(Symbol.symbol(n.toString()))!=null) {
+                return currMethod.getVars(Symbol.symbol(n.toString()));
+            }
+            if (currMethod.getParams(Symbol.symbol(n.toString()))!=null) {
+                return currMethod.getParams(Symbol.symbol(n.toString()));
+            }
+        }
+        if ((currClass != null) && currClass.getVars(Symbol.symbol(n.toString()))!=null) {
+            return currClass.getVars(Symbol.symbol(n.toString()));
+        }
+        if (programTable.getClasses(Symbol.symbol(n.toString())) != null) {
+            return new IdentifierType(n.toString());
+        }
+
         return null;
     }
     
@@ -355,7 +436,7 @@ public class TypeChecking implements TypeVisitor{
     }
     
     public Type visit(Expression n){
-        return null;
+        return new IntegerType();
     }
     
     public Type visit(ClassDeclaration n){

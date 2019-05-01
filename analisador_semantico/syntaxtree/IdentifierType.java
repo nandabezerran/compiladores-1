@@ -17,7 +17,7 @@ public class IdentifierType extends Type {
          return v.visit(this);
     }
     public String toString(){
-        return "IdentifierType";
+        return s;
     }
 
 }
