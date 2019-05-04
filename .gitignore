@@ -10,3 +10,4 @@ analisador_semantico/syntaxtree/Parser.java
 analisador_semantico/syntaxtree/ParserConstants.java
 analisador_semantico/syntaxtree/Token.java
 *.class
+?/
