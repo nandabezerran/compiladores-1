@@ -80,22 +80,21 @@ public class ImplIR implements VisitorIR {
     // Identifier id
     @Override
     public Exp visit(ArrayAssignStatement n) {
-        n.e1.accept(this);
-        n.e2.accept(this);
-        n.id.accept(this);
+        return new MOVE(new BINOP(BINOP.PLUS, new MEM(new TEMP(n.id.toString())), n.e1.accept(this)),
+                n.e2.accept(this));
     }
 
     // nothing
     @Override
     public Exp visit(ArrayType n) {
+        return null;
     }
 
     // Identifier id;
     // Expression e;
     @Override
     public Exp visit(AssignStatement n) {
-        n.e.accept(this);
-        n.id.accept(this);
+        return new MOVE(new TEMP(n.id.toString()), n.e.accept(this));
     }
 
     // Expression e1;
@@ -118,9 +117,15 @@ public class ImplIR implements VisitorIR {
     // StatementList s1;
     @Override
     public Exp visit(BlockStatement n) {
-        for (int i = 0; i < n.s1.size(); i++) {
-            n.s1.elementAt(i).accept(this);
+        Stm atual, prox;
+        SEQ seq;
+        atual = n.s1.elementAt(0).accept(this);
+
+        for (int i = 1; i < n.s1.size(); i++) {
+            prox = n.s1.elementAt(i).accept(this);
+            seq = new SEQ(seq,prox);
         }
+        return (Exp) seq;
     }
 
     // nothing
