@@ -18,8 +18,16 @@ public class SymbolTable implements Visitor{
         return this.mainContext;
     }
 
-    // Identifier identifier1, identifier2
-    // Statement statement
+
+    public Expr visit(Program pProgram) {
+        pProgram.mainClass.accept(this);
+        for ( int i = 0; i < pProgram.classList.size(); i++ ) {
+            pProgram.classList.elementAt(i).accept(this);
+        }
+        return null;
+    }
+
+
     @Override
     public void visit(Main n){
         n.identifier1.accept(this);
