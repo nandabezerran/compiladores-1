@@ -1,6 +1,9 @@
 package analisador_semantico.syntaxtree;
+
 import analisador_semantico.syntaxtree.*;
 import analisador_semantico.visitors.*;
+import traducao_intermediario.visitor.*;
+import traducao_intermediario.Translate.*;
 
 public class IntegerType extends Type {
     public void accept(Visitor v) {
@@ -11,7 +14,11 @@ public class IntegerType extends Type {
         return v.visit(this);
     }
 
-    public String toString(){
+    public String toString() {
         return "IntegerType";
+    }
+
+    public Exp accept(VisitorIR v) {
+        return v.visit(this);
     }
 }

@@ -1,4 +1,5 @@
 package analisador_semantico.syntaxtree;
+
 import analisador_semantico.syntaxtree.*;
 import java.util.Vector;
 
@@ -13,11 +14,11 @@ public class MethodDeclarationList {
       list.addElement(n);
    }
 
-   public MethodDeclaration elementAt(int i)  { 
-      return (MethodDeclaration) list.elementAt(i); 
+   public MethodDeclaration elementAt(int i) {
+      return (MethodDeclaration) list.elementAt(i);
    }
 
-   public int size() { 
-      return list.size(); 
+   public int size() {
+      return list.size();
    }
 }
