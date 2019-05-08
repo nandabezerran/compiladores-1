@@ -75,7 +75,7 @@ public class ImplIR implements VisitorIR {
         Exp e1 = n.e1.accept(this);
         Exp e2 = n.e2.accept(this);
 
-        BINOP binop = new BINOP(BINOP.PLUS, e1, e2.unEX());
+        BINOP binop = new BINOP(BINOP.PLUS, e1.unEX(), e2.unEX());
         return new Exp(binop);
     }
 
@@ -216,6 +216,8 @@ public class ImplIR implements VisitorIR {
     // nothing
     @Override
     public Exp visit(FalseExpression n) {
+        CONST falseConst = new CONST(0);
+        return new Exp(falseConst);
     }
 
     // Type type;
@@ -238,6 +240,7 @@ public class ImplIR implements VisitorIR {
     // String s;
     @Override
     public Exp visit(IdentifierExpression n) {
+
     }
 
     // String s;
@@ -273,6 +276,7 @@ public class ImplIR implements VisitorIR {
     // int i;
     @Override
     public Exp visit(IntegerLiteralExpression n) {
+        return new Exp(new CONST(n.i));
     }
 
     // nothing
@@ -302,10 +306,11 @@ public class ImplIR implements VisitorIR {
 
         MEM men1 = new MEM(exp2.unEx());
         //Dúvida se o mipsFrame.wordSize funciona
-        BINOP binop1 = (BINOP.MUL, men1, MipsFrame.wordSize)
+        CONST ws = new CONST(MipsFrame.wordSize)
+        BINOP binop1 = (BINOP.MUL, men1, ws)
         MEM men2 = new MEM(exp1.unEx());
         BINOP binop2 = (BINOP.PLUS, men2, binop1);
-        //Duvida se era pra retornar o binop ou o mem
+
         MEN men3 = new MEM(binop2);
 
         return(new Exp(men3));
@@ -373,7 +378,7 @@ public class ImplIR implements VisitorIR {
         Exp e1 = n.e1.accept(this);
         Exp e2 = n.e2.accept(this);
 
-        BINOP binop = new BINOP(BINOP.MINUS, e1, e2.unEX());
+        BINOP binop = new BINOP(BINOP.MINUS, e1.unEX(), e2.unEX());
         return new Exp(binop);
     }
 
@@ -383,7 +388,7 @@ public class ImplIR implements VisitorIR {
         Exp e1 = n.e1.accept(this);
         Exp e2 = n.e2.accept(this);
 
-        BINOP binop = new BINOP(BINOP.MUL, e1, e2.unEX());
+        BINOP binop = new BINOP(BINOP.MUL, e1.unEX(), e2.unEX());
         return new Exp(binop);
     }
 
@@ -400,18 +405,21 @@ public class ImplIR implements VisitorIR {
     }
 
     // Expression e1;
+    //nao tenho certeza
     @Override
     public Exp visit(NotExpression n) {
-        n.e1.accept(this);
+        Exp exp1 = n.e1.accept(this);
+        BINOP binop = new BINOP(BINOP.MINUS, new CONST(1), exp1.unEX());
+        return new Exp(binop);
     }
 
     // Expression e1, e2;
     @Override
     public Exp visit(PlusExpression n) {
-        Exp e1 = n.e1.accept(this);
-        Exp e2 = n.e2.accept(this);
+        Exp exp1 = n.e1.accept(this);
+        Exp exp2 = n.e2.accept(this);
 
-        BINOP binop = new BINOP(BINOP.PLUS, e1, e2.unEX());
+        BINOP binop = new BINOP(BINOP.PLUS, exp1.unEx(), exp2.unEX());
         return new Exp(binop);
     }
 
@@ -439,6 +447,8 @@ public class ImplIR implements VisitorIR {
     // nothing
     @Override
     public Exp visit(TrueExpression n) {
+        CONST trueConst = new CONST(1);
+        return new Exp(trueConst);
     }
 
     // abstract
