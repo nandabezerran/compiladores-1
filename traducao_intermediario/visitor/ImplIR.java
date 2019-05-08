@@ -250,11 +250,20 @@ public class ImplIR implements VisitorIR {
         Stm stm1 = new EXP(n.s1.accept(this).unEx());
         Stm stm2 = new EXP(n.s2.accept(this).unEx());
 
-        Label true = new Label();
-        Label false = new Label();
+        Label tru = new Label();
+        Label fals = new Label();
         Label endif = new Label();
 
-        return null;
+        SEQ falseStm = new SEQ(stm2, new LABEL(fals));
+        SEQ trueStm = new SEQ(stm1, new LABEL(tru));
+        SEQ seqTrueFalse = new SEQ(trueStm, falseStm);
+
+        CJUMP cjump = new CJUMP(CJUMP.EQ, new CONST(1), exp.unEx(), tru, fals);
+        SEQ condicional = new SEQ(new LABEL(endif), cjump);
+        SEQ secondSeq = new SEQ(condicional, seqTrueFalse);
+        SEQ mainSeq = new SEQ(secondSeq, new LABEL(endif));
+
+        return new Exp(new ESEQ(mainSeq, null));
     }
 
     // int i;
@@ -451,19 +460,22 @@ public class ImplIR implements VisitorIR {
     @Override
     public Exp visit(WhileStatement n) {
         Expr exp = n.e.accept(this).unEx();
-        Exp stm = n.s1.accept(this);
+        Stm stm = new EXP(n.s1.accept(this).unEx());
 
         Label loop = new Label();
-        Label fim = new Label();
-        Label inicio = new Label();
+        Label done = new Label();
+        Label body = new Label();
 
-        SEQ seqInicio = new SEQ(new JUMP(inicio), new LABEL(fim));
-        SEQ seqLoop = new SEQ(new LABEL(loop), seqInicio);
-        SEQ seqCJump = new SEQ(new CJUMP(CJUMP.EQ, new CONST(1), exp, loop, fim), seqLoop);
-        SEQ seqMain = new SEQ(new LABEL(inicio), seqCJump);
+        SEQ bodyStm = new SEQ(stm, new LABEL(body));
+        JUMP jump = new JUMP(done);
+        SEQ seqExec = new SEQ(bodyStm, jump);
+        CJUMP cjump = new CJUMP(CJUMP.EQ, new CONST(1), exp, body, done); // TODO; ve se n troquei a ordem do body e
+                                                                          // done
+        SEQ seqTeste = new SEQ(new LABEL(loop), cjump);
+        SEQ secondSeq = new SEQ(seqTeste, seqExec);
+        SEQ mainSeq = new SEQ(secondSeq, new LABEL(done));
 
-        // convertendo pra ESEQ -> Exp
-        return new Exp(new ESEQ(seqMain, null));
+        return new Exp(new ESEQ(mainSeq, null));
     }
 
 }
