@@ -7,6 +7,7 @@ import traducao_intermediario.Frame.*;
 import traducao_intermediario.Translate.*;
 import traducao_intermediario.Tree.*;
 import traducao_intermediario.Temp.*;
+import traducao_intermediario.Mips.*;
 import java.util.List;
 import java.util.LinkedList;
 
@@ -71,8 +72,11 @@ public class ImplIR implements VisitorIR {
     // Expression e1, e2
     @Override
     public Exp visit(AndExpression n) {
-        n.e1.accept(this);
-        n.e2.accept(this);
+        Exp e1 = n.e1.accept(this);
+        Exp e2 = n.e2.accept(this);
+
+        BINOP binop = new BINOP(BINOP.PLUS, e1, e2.unEX());
+        return new Exp(binop);
     }
 
     // Expression e1, e2
@@ -293,8 +297,18 @@ public class ImplIR implements VisitorIR {
     // Expression e1, e2;
     @Override
     public Exp visit(ListExpression n) {
-        n.e1.accept(this);
-        n.e2.accept(this);
+        Exp exp1 = n.e1.accept(this);
+        Exp exp2 = n.e2.accept(this);
+
+        MEM men1 = new MEM(exp2.unEx());
+        //Dúvida se o mipsFrame.wordSize funciona
+        BINOP binop1 = (BINOP.MUL, men1, MipsFrame.wordSize)
+        MEM men2 = new MEM(exp1.unEx());
+        BINOP binop2 = (BINOP.PLUS, men2, binop1);
+        //Duvida se era pra retornar o binop ou o mem
+        MEN men3 = new MEM(binop2);
+
+        return(new Exp(men3));
     }
 
     // abstract
@@ -356,15 +370,21 @@ public class ImplIR implements VisitorIR {
     // Expression e1, e2;
     @Override
     public Exp visit(MinusExpression n) {
-        n.e1.accept(this);
-        n.e2.accept(this);
+        Exp e1 = n.e1.accept(this);
+        Exp e2 = n.e2.accept(this);
+
+        BINOP binop = new BINOP(BINOP.MINUS, e1, e2.unEX());
+        return new Exp(binop);
     }
 
     // Expression e1, e2;
     @Override
     public Exp visit(MultExpression n) {
-        n.e1.accept(this);
-        n.e2.accept(this);
+        Exp e1 = n.e1.accept(this);
+        Exp e2 = n.e2.accept(this);
+
+        BINOP binop = new BINOP(BINOP.MUL, e1, e2.unEX());
+        return new Exp(binop);
     }
 
     // Identifier id;
@@ -388,8 +408,11 @@ public class ImplIR implements VisitorIR {
     // Expression e1, e2;
     @Override
     public Exp visit(PlusExpression n) {
-        n.e1.accept(this);
-        n.e2.accept(this);
+        Exp e1 = n.e1.accept(this);
+        Exp e2 = n.e2.accept(this);
+
+        BINOP binop = new BINOP(BINOP.PLUS, e1, e2.unEX());
+        return new Exp(binop);
     }
 
     // Expression e;
