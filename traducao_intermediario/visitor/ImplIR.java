@@ -7,6 +7,8 @@ import traducao_intermediario.Frame.*;
 import traducao_intermediario.Translate.*;
 import traducao_intermediario.Tree.*;
 import traducao_intermediario.Temp.*;
+import java.util.List;
+import java.util.LinkedList;
 
 public class ImplIR implements VisitorIR {
     private Frame currFrame;
@@ -32,24 +34,13 @@ public class ImplIR implements VisitorIR {
     // MainClass mainClass;
     // ClassList classList;
     @Override
-    public Exp visit(Program n) {
-        n.mainClass.accept(this);
-
-        for (int i = 0; i < n.classList.size(); ++i) {
-            n.classList.elementAt(i).accept(this);
-        }
-        return null;
-    }
-
-
-    public Expr visit(Program pProgram) {
+    public Exp visit(Program pProgram) {
         pProgram.mainClass.accept(this);
-        for ( int i = 0; i < pProgram.classList.size(); i++ ) {
+        for (int i = 0; i < pProgram.classList.size(); i++) {
             pProgram.classList.elementAt(i).accept(this);
         }
         return null;
     }
-
 
     @Override
     public Exp visit(Main n) {
@@ -88,8 +79,17 @@ public class ImplIR implements VisitorIR {
     // Identifier id
     @Override
     public Exp visit(ArrayAssignStatement n) {
-        return new MOVE(new BINOP(BINOP.PLUS, new MEM(new TEMP(n.id.toString())), n.e1.accept(this)),
-                n.e2.accept(this));
+        Exp e1 = n.e1.accept(this);
+        Exp e2 = n.e2.accept(this);
+
+        // TEMP temp = new TEMP(n.id.toString()); // Vê oq eu faço aquiiiiiiii
+        TEMP temp = new TEMP(new Temp()); // TODO: Vê se isso tá certo
+        MEM mem = new MEM(temp);
+        BINOP binop = new BINOP(BINOP.PLUS, mem, e1.unEx());
+        MOVE move = new MOVE(binop, e2.unEx());
+
+        return new Exp(new ESEQ(move, null)); // só pra converter pra Exp
+
     }
 
     // nothing
@@ -102,7 +102,11 @@ public class ImplIR implements VisitorIR {
     // Expression e;
     @Override
     public Exp visit(AssignStatement n) {
-        return new MOVE(new TEMP(n.id.toString()), n.e.accept(this));
+        Exp e1 = n.e.accept(this);
+        TEMP temp = new TEMP(new Temp()); // TODO: Vê se isso tá certo
+        MOVE move = new MOVE(temp, e1.unEx());
+
+        return new Exp(new ESEQ(move, null));
     }
 
     // Expression e1;
@@ -125,15 +129,15 @@ public class ImplIR implements VisitorIR {
     // StatementList s1;
     @Override
     public Exp visit(BlockStatement n) {
-        Stm atual, prox;
+        Stm atual = new EXP(n.s1.elementAt(0).accept(this).unEx()); // problema de tipo
+        Stm prox;
         SEQ seq;
-        atual = n.s1.elementAt(0).accept(this);
 
         for (int i = 1; i < n.s1.size(); i++) {
-            prox = n.s1.elementAt(i).accept(this);
-            seq = new SEQ(seq,prox);
+            prox = new EXP(n.s1.elementAt(i).accept(this).unEx());
+            seq = new SEQ(seq, prox);
         }
-        return (Exp) seq;
+        return new Exp(new ESEQ(seq, null));
     }
 
     // nothing
@@ -213,13 +217,8 @@ public class ImplIR implements VisitorIR {
     // Type type;
     // Identifier identifier;
     @Override
-    public Exp visit(Formal n) {
-        n.type.accept(this);
-        n.identifier.accept(this);
-
-        if (!method.addParametro(n.type, Symbol.symbol(n.identifier.toString()))) {
-            error.complain("Param " + n.identifier.toString() + " is defined in the Method " + method.toString());
-        }
+    public Exp visit(Formal n) { // TODO: ve se isso aqui é nulo msms
+        return null;
     }
 
     // abstract
@@ -240,15 +239,22 @@ public class ImplIR implements VisitorIR {
     // String s;
     @Override
     public Exp visit(IdentifierType n) {
+        return null;
     }
 
     // Expression e;
     // Statement s1, s2;
     @Override
     public Exp visit(IfStatement n) {
-        n.e.accept(this);
-        n.s1.accept(this);
-        n.s2.accept(this);
+        Exp exp = n.e.accept(this);
+        Stm stm1 = new EXP(n.s1.accept(this).unEx());
+        Stm stm2 = new EXP(n.s2.accept(this).unEx());
+
+        Label true = new Label();
+        Label false = new Label();
+        Label endif = new Label();
+
+        return null;
     }
 
     // int i;
@@ -380,12 +386,17 @@ public class ImplIR implements VisitorIR {
     // Expression e;
     @Override
     public Exp visit(PrintStatement n) {
-        n.e.accept(this);
+        Exp exp = n.e.accept(this);
+        List<Expr> args = new LinkedList<Expr>();
+        args.add(exp.unEx());
+        Expr ex = currFrame.externalCall("print", args);
+        return new Exp(ex);
     }
 
     // abstract
     @Override
     public Exp visit(Statement n) {
+        return null;
     }
 
     // nothing
@@ -451,8 +462,8 @@ public class ImplIR implements VisitorIR {
         SEQ seqCJump = new SEQ(new CJUMP(CJUMP.EQ, new CONST(1), exp, loop, fim), seqLoop);
         SEQ seqMain = new SEQ(new LABEL(inicio), seqCJump);
 
-        // mas o tipo vai ser Stm ou Exp?
-        return seqMain;
+        // convertendo pra ESEQ -> Exp
+        return new Exp(new ESEQ(seqMain, null));
     }
 
 }
