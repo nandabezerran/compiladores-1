@@ -10,6 +10,7 @@ import traducao_intermediario.Temp.*;
 import traducao_intermediario.Mips.*;
 import java.util.List;
 import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class ImplIR implements VisitorIR {
     private Frame currFrame;
@@ -71,7 +72,7 @@ public class ImplIR implements VisitorIR {
 
     @Override
     public Exp visit(VarDefinition pVarDef) {
-        //NUM SEI FAZE
+        // NUM SEI FAZE
         return null;
     }
 
@@ -188,12 +189,10 @@ public class ImplIR implements VisitorIR {
         return null;
     }
 
-
     // abstrato
     @Override
     public Exp visit(ClassDeclaration n) {
     }
-
 
     // abstrato
     @Override
@@ -222,12 +221,15 @@ public class ImplIR implements VisitorIR {
     // String s;
     @Override
     public Exp visit(Identifier n) {
+        TEMP registrador = new TEMP(new Temp());
+        return new Exp(registrador);
     }
 
     // String s;
     @Override
     public Exp visit(IdentifierExpression n) {
-
+        TEMP registrador = new TEMP(new Temp());
+        return new Exp(registrador);
     }
 
     // String s;
@@ -389,16 +391,25 @@ public class ImplIR implements VisitorIR {
     @Override
     public Exp visit(NewIntegerExpression n) {
         Exp exp1 = n.e1.accept(this);
-        
+        ArrayList<MOVE> moves = new ArrayList<MOVE>();
+        TEMP temp = new TEMP(new Temp());
+        for (int i = exp1.unEx(); i < 0; i--) {
+            BINOP binopMult = new BINOP(BINOP.MUL, i, MipsFrame.wordSize);
+            BINOP binopPlus = new BINOP(BINOP.PLUS, temp, binopMult);
+            MOVE move = new MOVE(new MEM(binopPlus), new CONST(0));
+            moves.add(move);
+        }
+        // colocar tamanho do vetor no primeiro elemento
+        MOVE moveTamanho = new MOVE(new MEM(new BINOP(BINOP.PLUS, temp, new CONST(0))), exp1.unEx());
+
     }
 
-
     // Expression e1;
-    //nao tenho certeza
+    // nao tenho certeza
     @Override
     public Exp visit(NotExpression n) {
         Exp exp1 = n.e1.accept(this);
-        BINOP binop = new BINOP(BINOP.MINUS, new CONST(1), exp1.unEX());
+        BINOP binop = new BINOP(BINOP.MINUS, new CONST(1), exp1.unEx());
         return new Exp(binop);
     }
 
