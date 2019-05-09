@@ -401,8 +401,10 @@ public class ImplIR implements VisitorIR {
     // Expression e1;
     @Override
     public Exp visit(NewIntegerExpression n) {
-        n.e1.accept(this);
+        Exp exp1 = n.e1.accept(this);
+        
     }
+
 
     // Expression e1;
     //nao tenho certeza
