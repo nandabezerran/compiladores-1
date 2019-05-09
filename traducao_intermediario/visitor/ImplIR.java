@@ -44,6 +44,44 @@ public class ImplIR implements VisitorIR {
     }
 
     @Override
+    public Exp visit(ClassSimple pClassDeclaration) {
+        currClass = mainContext.getClass(Symbol.symbol(pClassDeclaration.identifier.getValue()));
+        currMethod = null;
+        for (int i = 0; i < pClassDeclaration.varDeclaration.size(); i++) {
+            pClassDeclaration.vld.elementAt(i).accept(this);
+        }
+        for (int i = 0; i < pClassDeclaration.methodDeclaration.size(); i++) {
+            pClassDeclaration.methodDeclaration.elementAt(i).accept(this);
+        }
+        return null;
+    }
+
+    @Override
+    public Exp visit(ClassDeclarationExtends pClassDecExt) {
+        currClass = mainTable.getClass(Symbol.symbol(pClassDecExt.i.getValue()));
+        currMethod = null;
+        for (int i = 0; i < pClassDecExt.vl.size(); i++) {
+            pClassDecExt.vl.elementAt(i).accept(this);
+        }
+        for (int i = 0; i < pClassDecExt.m1.size(); i++) {
+            pClassDecExt.m1.elementAt(i).accept(this);
+        }
+        return null;
+    }
+
+    @Override
+    public Exp visit(VarDefinition pVarDef) {
+        //NUM SEI FAZE
+        return null;
+    }
+
+    @Override
+    public Exp visit(MethodDefinition n) {
+
+        return null;
+    }
+
+    @Override
     public Exp visit(Main n) {
         n.identifier1.accept(this);
 
@@ -150,63 +188,12 @@ public class ImplIR implements VisitorIR {
         return null;
     }
 
-    // identifier1
-    // VarDefinitionList varDeclaration
-    // MethodDeclarationList methodDeclaration
-    @Override
-    public Exp visit(ClassSimple n) {
-        n.identifier1.accept(this);
-
-        // Criando a classe class Identifier1
-        ClassContext classeAux = new ClassContext(n.identifier1.toString(), null);
-
-        if (!mainContext.addClasse(classeAux, Symbol.symbol(n.identifier1.toString()))) {
-            error.complain("Class " + n.identifier1.toString() + " already defined.");
-        } else {
-            classe = classeAux;
-            method = null;
-        }
-
-        for (int i = 0; i < n.varDeclaration.size(); i++) {
-            n.varDeclaration.elementAt(i).accept(this);
-        }
-
-        for (int i = 0; i < n.methodDeclaration.size(); i++) {
-            n.methodDeclaration.elementAt(i).accept(this);
-        }
-    }
 
     // abstrato
     @Override
     public Exp visit(ClassDeclaration n) {
     }
 
-    // Identifier i;
-    // Identifier j;
-    // VarDefinitionList vl;
-    // MethodDeclarationList ml;
-    @Override
-    public Exp visit(ClassDeclarationExtends n) {
-        n.i.accept(this);
-        n.j.accept(this);
-
-        ClassContext classeAux = new ClassContext(n.i.toString(), n.j.toString());
-
-        if (!mainContext.addClasse(classeAux, Symbol.symbol(n.i.toString()))) {
-            error.complain("Class " + n.i.toString() + " already defined.");
-        } else {
-            classe = classeAux;
-            method = null;
-        }
-
-        for (int i = 0; i < n.vl.size(); i++) {
-            n.vl.elementAt(i).accept(this);
-        }
-
-        for (int i = 0; i < n.ml.size(); i++) {
-            n.ml.elementAt(i).accept(this);
-        }
-    }
 
     // abstrato
     @Override
