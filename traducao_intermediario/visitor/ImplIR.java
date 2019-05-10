@@ -114,7 +114,7 @@ public class ImplIR implements VisitorIR {
         Exp e1 = n.e1.accept(this);
         Exp e2 = n.e2.accept(this);
 
-        BINOP binop = new BINOP(BINOP.PLUS, e1.unEX(), e2.unEX());
+        BINOP binop = new BINOP(BINOP.PLUS, e1.unEx(), e2.unEx());
         return new Exp(binop);
     }
 
@@ -293,14 +293,8 @@ public class ImplIR implements VisitorIR {
         Exp exp1 = n.e1.accept(this);
         Exp exp2 = n.e2.accept(this);
 
-        MEM men1 = new MEM(exp2.unEx());
-        //Dúvida se o mipsFrame.wordSize funciona
-        CONST ws = new CONST(MipsFrame.wordSize)
-        BINOP binop1 = (BINOP.MUL, men1, ws)
-        MEM men2 = new MEM(exp1.unEx());
-        BINOP binop2 = (BINOP.PLUS, men2, binop1);
-
-        MEN men3 = new MEM(binop2);
+        MEM men3 = new MEM(new BINOP(BINOP.PLUS, exp1.unEx(),
+                           new BINOP(BINOP.MUL, exp2.unEx(), new CONST(currFrame.wordSize()))));
 
         return(new Exp(men3));
     }
@@ -367,7 +361,7 @@ public class ImplIR implements VisitorIR {
         Exp e1 = n.e1.accept(this);
         Exp e2 = n.e2.accept(this);
 
-        BINOP binop = new BINOP(BINOP.MINUS, e1.unEX(), e2.unEX());
+        BINOP binop = new BINOP(BINOP.MINUS, e1.unEx(), e2.unEx());
         return new Exp(binop);
     }
 
@@ -377,7 +371,7 @@ public class ImplIR implements VisitorIR {
         Exp e1 = n.e1.accept(this);
         Exp e2 = n.e2.accept(this);
 
-        BINOP binop = new BINOP(BINOP.MUL, e1.unEX(), e2.unEX());
+        BINOP binop = new BINOP(BINOP.MUL, e1.unEx(), e2.unEx());
         return new Exp(binop);
     }
 
@@ -394,7 +388,7 @@ public class ImplIR implements VisitorIR {
         ArrayList<MOVE> moves = new ArrayList<MOVE>();
         TEMP temp = new TEMP(new Temp());
         for (int i = exp1.unEx(); i < 0; i--) {
-            BINOP binopMult = new BINOP(BINOP.MUL, i, MipsFrame.wordSize);
+            BINOP binopMult = new BINOP(BINOP.MUL, new CONST(i), new CONST(currFrame.wordSize()));
             BINOP binopPlus = new BINOP(BINOP.PLUS, temp, binopMult);
             MOVE move = new MOVE(new MEM(binopPlus), new CONST(0));
             moves.add(move);
@@ -419,7 +413,7 @@ public class ImplIR implements VisitorIR {
         Exp exp1 = n.e1.accept(this);
         Exp exp2 = n.e2.accept(this);
 
-        BINOP binop = new BINOP(BINOP.PLUS, exp1.unEx(), exp2.unEX());
+        BINOP binop = new BINOP(BINOP.PLUS, exp1.unEx(), exp2.unEx());
         return new Exp(binop);
     }
 
