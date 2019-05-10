@@ -69,43 +69,75 @@ public class ImplIR implements VisitorIR {
         }
         return null;
     }
-
+    
     @Override
     public Exp visit(VarDefinition pVarDef) {
-        // NUM SEI FAZE
         return null;
+    }
+
+
+    public procEntryExit (Exp body)
+    {
+        ProcFrag f = new ProcFrag(body, currFrame);
+        frags.addNext(f);
+        frags = frags.getNext();
     }
 
     @Override
     public Exp visit(MethodDefinition n) {
+        currFrame = new Mips.MipsFrame();
+        ArrayList<Boolean> varEscapes = new ArrayList<Boolean>();
+        method = currClass.getMethod(Symbol.symbol(n.identifier.toString()));
+        for (int i = 0; i < n.formalList.size(); i++) {
+            varEscapes.add(false);//false porque no minijava variáveis nao escapam
+        }
+        currFrame = currFrame.newFrame(Symbol.symbol(n.identifier.toString()), varEscapes);
+        //accept para as variaveis do metodo
+        for (int i = 0; i < n.varDefinitionList.size(); i++) {
+            n.varDefinitionList.elementAt(i).accept(this);
+        }
 
+        Tree.Stm body =  null;
+        Tree.Exp rExp = null;
+
+        if (!n.statementList.size())
+        {
+            rExp = n.expression.accept(this);
+            body = new MOVE( new Tree.TEMP(currFrame.RV()) , new Tree.ESEQ( null , rtExp ) );
+        }
+        else
+        {
+            body = n.statementList.elementAt(0).accept(this);
+            for ( int i = 1; i < n.statementList.size(); i++ ) {
+                body = new SEQ(body, n.statementList.elementAt(i).accept(this));
+            }
+            rExp = n.expression.accept(this);
+            body = new MOVE( new Tree.TEMP(currFrame.RV()) , new Tree.ESEQ( body , rExp ) );
+        }
+
+        body = new Tree.MOVE(new Tree.TEMP(currFrame.RV()), new Tree.ESEQ(body, rExp));
+        procEntryExit(body);
         return null;
     }
 
     @Override
     public Exp visit(Main n) {
         n.identifier1.accept(this);
-
-        // Criando a classe class Identifier1
-        ClassContext classeAux = new ClassContext(n.identifier1.toString(), null);
-        // Essa classe contém o método main
-
-        if (!mainContext.addClasse(classeAux, Symbol.symbol(n.identifier1.toString())))
-            error.complain("Class " + n.identifier1.toString() + " already defined.");
-        else
-            classe = classeAux;
-
-        Method methodAux = new Method("main", null, null);
-
-        if (!classe.addMethod(methodAux, Symbol.symbol("main")))
-            error.complain("Method main in class " + n.identifier1.toString() + " already defined.");
-        else {
-            method = methodAux;
-            method.addParametro(null, Symbol.symbol(n.identifier2.toString()));
+        classe = mainContext.getClasses(Symbol.symbol(n.identifier1.toString()));
+        method = classe.getMethods(Symbol.symbol(n.identifier2.toString()));
+        Frame mFrame = currFrame(Symbol.symbol(n.identifier2.toString()));
+        ArrayList<Boolean> varEscapes = new ArrayList<Boolean>();
+        for (int i = 0; i < n.formalList.size(); i++) {
+            varEscapes.add(false);//false porque no minijava variáveis nao escapam
         }
+        Frame f = currFrame(Symbol.symbol(n.identifier2.toString()), varEscapes);
+        currFrame = f;
 
-        n.identifier2.accept(this);
-        n.statement.accept(this);
+        Translate.Exp st = n.statement.accept(this);
+        Translate.Exp rExp = new CONST(0);
+        Translate.Exp body = new MOVE( new Tree.TEMP(currentFrame.RV()) , new Tree.ESEQ( st , rExp ) );
+        procEntryExit(body);
+        return null;
     }
 
     // Expression e1, e2
