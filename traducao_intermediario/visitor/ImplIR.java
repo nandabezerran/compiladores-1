@@ -46,7 +46,7 @@ public class ImplIR implements VisitorIR {
 
     @Override
     public Exp visit(ClassSimple pClassDeclaration) {
-        currClass = mainContext.getClass(Symbol.symbol(pClassDeclaration.identifier.toString()));
+        currClass = mainContext.getClass(Symbol.symbol(pClassDeclaration.identifier.getValue()));
         currMethod = null;
         for (int i = 0; i < pClassDeclaration.varDeclaration.size(); i++) {
             pClassDeclaration.vld.elementAt(i).accept(this);
@@ -59,7 +59,7 @@ public class ImplIR implements VisitorIR {
 
     @Override
     public Exp visit(ClassDeclarationExtends pClassDecExt) {
-        currClass = mainTable.getClass(Symbol.symbol(pClassDecExt.i.toString()));
+        currClass = mainTable.getClass(Symbol.symbol(pClassDecExt.i.getValue()));
         currMethod = null;
         for (int i = 0; i < pClassDecExt.vl.size(); i++) {
             pClassDecExt.vl.elementAt(i).accept(this);
@@ -76,38 +76,9 @@ public class ImplIR implements VisitorIR {
         return null;
     }
 
-
-    public Exp seqStmMethod(StatementList sl, int i){
-        if (sl.size() == 0) {
-            return new Tree.EXP(new Tree.CONST(0));
-        }
-
-        if (i < sl.size() - 1) {
-            return new Tree.SEQ(new Tree.EXP(sl.elementAt(i).accept(this).unEx()), seqBodyMethod(sl, i + 1));
-        }
-
-        return new Tree.EXP(sl.elementAt(i).accept(this).unEx());
-    }
-
     @Override
     public Exp visit(MethodDefinition n) {
-        currFrame = new Mips.MipsFrame();
-        ArrayList<Boolean> varEscapes = new ArrayList<Boolean>();
-        method = currClass.getMethod(Symbol.symbol(n.identifier.toString()));
-        for (int i = 0; i < n.formalList.size(); i++) {
-            varEscapes.add(false);//false porque no minijava variáveis nao escapam
-        }
-        currFrame = currFrame.newFrame(Symbol.symbol(n.identifier.toString()), varEscapes);
-        //accept para as variaveis do metodo
-        for (int i = 0; i < n.varDefinitionList.size(); i++) {
-            n.varDefinitionList.elementAt(i).accept(this);
-        }
 
-        Tree.Stm body =  seqStmMethod(StatementList sl, int i);
-        Tree.Exp rExp = n.expression.accept(this).unEx();
-
-        body = new Tree.MOVE(new Tree.TEMP(currFrame.RV()), new Tree.ESEQ(body, retExp));
-        translate.procEntryExit(body, currFrame);
         return null;
     }
 
@@ -339,6 +310,52 @@ public class ImplIR implements VisitorIR {
     // abstract
     @Override
     public Exp visit(MethodDeclaration n) {
+    }
+
+    // Type type;
+    // Identifier identifier;
+    // FormalList formalList;
+    // VarDefinitionList varDefinitionList;
+    // StatementList statementList;
+    // Expression expression;
+    // REGRA DO MÉTODO DECLARATION
+    @Override
+    public Exp visit(MethodDefinition n) {
+        n.type.accept(this);
+        n.identifier.accept(this);
+
+        // Criiando o novo método Type Identifier
+        Method newMethod = new Method(n.identifier.toString(), classe.toString(), n.type);
+
+        // Aí eu vejo se esse método já está declarado nessa classe atual, se não tiver
+        // eu addMethod e pego o metodo atual como esse metodo que criei
+        if (!classe.addMethod(newMethod, Symbol.symbol(n.identifier.toString()))) {
+            error.complain("Method " + n.identifier.toString() + " already defined.");
+        } else {
+            method = newMethod;
+        }
+
+        // Daí os type identifier posteriores (que estão na nossa lista formallist) são
+        // os parametros
+        // aí eu faço o accept deles que aí lá eles vão ser adicionados
+        for (int i = 0; i < n.formalList.size(); ++i) {
+            n.formalList.elementAt(i).accept(this);
+        }
+
+        // Daí as variaveis declaradas para esse metodo estão na nossa lista
+        // varDefinitionList
+        // aí eu faço o accept deles que aí lá eles vão ser adicionados
+        for (int i = 0; i < n.varDefinitionList.size(); ++i) {
+            n.varDefinitionList.elementAt(i).accept(this);
+        }
+
+        // Daí os statement para esse metodo estão na nossa lista statementList
+        // aí eu faço o accept deles que aí lá eles vão ser adicionados
+        for (int i = 0; i < n.statementList.size(); ++i) {
+            n.statementList.elementAt(i).accept(this);
+        }
+
+        n.expression.accept(this);
     }
 
     // Expression e1, e2;
