@@ -277,7 +277,10 @@ public class ImplIR implements VisitorIR {
     // Expression e1;
     @Override
     public Exp visit(LengthExpression n) {
-        n.e1.accept(this);
+
+        Exp exp1 = n.e1.accept(this);
+        // não precisamos multiplicar por w pois queremos acessar a posição 0. A primeira posição guarda o tamanho do vetor
+        MEM mem = new MEM(exp1.unEx());
     }
 
     // Expression e1, e2;
@@ -384,7 +387,7 @@ public class ImplIR implements VisitorIR {
     // Expression e1;
     @Override
     public Exp visit(NewIntegerExpression n) {
-        Exp exp1 = n.e1.accept(this);
+        /*Exp exp1 = n.e1.accept(this);
         ArrayList<MOVE> moves = new ArrayList<MOVE>();
         TEMP temp = new TEMP(new Temp());
         for (int i = exp1.unEx(); i < 0; i--) {
@@ -394,8 +397,19 @@ public class ImplIR implements VisitorIR {
             moves.add(move);
         }
         // colocar tamanho do vetor no primeiro elemento
-        MOVE moveTamanho = new MOVE(new MEM(new BINOP(BINOP.PLUS, temp, new CONST(0))), exp1.unEx());
-
+        MOVE moveTamanho = new MOVE(new MEM(new BINOP(BINOP.PLUS, temp, new CONST(0))), exp1.unEx());*/
+        Exp exp1 = n.e1.accept(this);
+        //Adicionar 1 ao tamanho para guardar o tamanho do array
+        BINOP binop1 = new BINOP(BINOP.PLUS, exp1.unEx(), new CONST(1));
+        Expr tamanhoVet = new BINOP(BINOP.MUL, binop1, new CONST(currFrame.wordSize()));
+        ArrayList<Expr> args = new ArrayList<>();
+        args.add(tamanhoVet);
+        Expr alocacao = currFrame.externalCall("alloc", args);
+        TEMP t = new TEMP(new Temp());
+        MOVE move = new MOVE(t, alocacao);
+        //Nao tenho certeza dessa parte
+        ESEQ eseq = new ESEQ(move, t);
+        return new Exp(eseq);
     }
 
     // Expression e1;
