@@ -334,45 +334,54 @@ public class MipsFrame extends Frame {
         assignCallees(0, body);
     }
 
-    /*
-     * private static Assem.Instr OPER(String a, Temp[] d, Temp[] s) { return new
-     * Assem.OPER(a, d, s, null); }
-     * 
-     * 
-     * public void procEntryExit2(List<Assem.Instr> body) {
-     * body.add(OPER("#\treturn", null, returnSink)); }
-     * 
-     * public void procEntryExit3(List<Assem.Instr> body) { int frameSize =
-     * maxArgOffset - offset; ListIterator<Assem.Instr> cursor =
-     * body.listIterator(); cursor.add(OPER("\t.text", null, null));
-     * cursor.add(OPER(name + ":", null, null)); cursor.add(OPER(name +
-     * "_framesize=" + frameSize, null, null)); if (frameSize != 0) {
-     * cursor.add(OPER("\tsubu $sp " + name + "_framesize", new Temp[]{SP}, new
-     * Temp[]{SP})); body.add(OPER("\taddu $sp " + name + "_framesize", new
-     * Temp[]{SP}, new Temp[]{SP})); } body.add(OPER("\tj $ra", null, new
-     * Temp[]{RA})); }
-     */
+    private static Assem.Instr OPER(String a, Temp[] d, Temp[] s) {
+        return new Assem.OPER(a, d, s, null);
+    }
+
+    public void procEntryExit2(List<Assem.Instr> body) {
+        body.add(OPER("#\treturn", null, returnSink));
+    }
+
+    public void procEntryExit3(List<Assem.Instr> body) {
+        int frameSize = maxArgOffset - offset;
+        ListIterator<Assem.Instr> cursor = body.listIterator();
+        cursor.add(OPER("\t.text", null, null));
+        cursor.add(OPER(name + ":", null, null));
+        cursor.add(OPER(name + "_framesize=" + frameSize, null, null));
+        if (frameSize != 0) {
+            cursor.add(OPER("\tsubu $sp " + name + "_framesize", new Temp[] { SP }, new Temp[] { SP }));
+            body.add(OPER("\taddu $sp " + name + "_framesize", new Temp[] { SP }, new Temp[] { SP }));
+        }
+        body.add(OPER("\tj $ra", null, new Temp[] { RA }));
+    }
 
     public Temp[] registers() {
         return registers;
     }
 
-    /*
-     * // set spilling to true when the spill method is implemented public void
-     * spill(List<Assem.Instr> insns, Temp[] spills) { if (spills != null) { if
-     * (!spilling) { for (int s = 0; s < spills.length; s++)
-     * System.err.println("Need to spill " + spills[s]); throw new
-     * Error("Spilling unimplemented"); } else for (int s = 0; s < spills.length;
-     * s++) { Tree.Exp exp = allocLocal(true).exp(TEMP(FP)); for
-     * (ListIterator<Assem.Instr> i = insns.listIterator(); i.hasNext(); ) {
-     * Assem.Instr insn = i.next(); Temp[] use = insn.use; if (use != null) for (int
-     * u = 0; u < use.length; u++) { if (use[u] == spills[s]) { Temp t = new Temp();
-     * t.spillTemp = true; Tree.Stm stm = MOVE(TEMP(t), exp); i.previous();
-     * stm.accept(new Codegen(this, i)); if (insn != i.next()) throw new Error();
-     * insn.replaceUse(spills[s], t); break; } } Temp[] def = insn.def; if (def !=
-     * null) for (int d = 0; d < def.length; d++) { if (def[d] == spills[s]) { Temp
-     * t = new Temp(); t.spillTemp = true; insn.replaceDef(spills[s], t); Tree.Stm
-     * stm = MOVE(exp, TEMP(t)); stm.accept(new Codegen(this, i)); break; } } } } }
-     * }
-     */
+    // set spilling to true when the spill method is implemented public void
+    // public void spill(List<Assem.Instr> insns, Temp[] spills) {
+    // if (spills != null) {
+    // if(!spilling) {
+    // for (int s = 0; s < spills.length; s++)
+    // System.err.println("Need to spill " + spills[s]);
+    // throw new Error("Spilling unimplemented");
+    // } else
+    // for (int s = 0; s < spills.length;s++) {
+    // Tree.Exp exp = allocLocal(true).exp(TEMP(FP));
+    // for(ListIterator<Assem.Instr> i = insns.listIterator(); i.hasNext(); ) {
+    // Assem.Instr insn = i.next();
+    // Temp[] use = insn.use;
+    // if (use != null)
+    // for (int u = 0; u < use.length; u++) {
+    // if (use[u] == spills[s]) {
+    // Temp t = new Temp();
+    // t.spillTemp = true; Tree.Stm stm = MOVE(TEMP(t), exp); i.previous();
+    // stm.accept(new Codegen(this, i)); if (insn != i.next()) throw new Error();
+    // insn.replaceUse(spills[s], t); break; } } Temp[] def = insn.def; if (def !=
+    // null) for (int d = 0; d < def.length; d++) { if (def[d] == spills[s]) { Temp
+    // t = new Temp(); t.spillTemp = true; insn.replaceDef(spills[s], t); Tree.Stm
+    // stm = MOVE(exp, TEMP(t)); stm.accept(new Codegen(this, i)); break; } } } } }
+    // }
+
 }

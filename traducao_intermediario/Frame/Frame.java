@@ -30,13 +30,17 @@ public abstract class Frame implements TempMap {
 
     public abstract String tempMap(Temp temp);
 
-    // public abstract List<Assem.Instr> codegen(List<Stm> stms);
+    public abstract List<Assem.Instr> codegen(List<Stm> stms);
+
     public abstract void procEntryExit1(List<Stm> body);
 
-    // public abstract void procEntryExit2(List<Assem.Instr> body);
-    // public abstract void procEntryExit3(List<Assem.Instr> body);
+    public abstract void procEntryExit2(List<Assem.Instr> body);
+
+    public abstract void procEntryExit3(List<Assem.Instr> body);
+
     public abstract Temp[] registers();
 
-    // public abstract void spill(List<Assem.Instr> insns, Temp[] spills);
+    public abstract void spill(List<Assem.Instr> insns, Temp[] spills);
+
     public abstract String programTail(); // append to end of target code
 }

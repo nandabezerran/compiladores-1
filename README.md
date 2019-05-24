@@ -37,3 +37,5 @@ $ java MainProgram arquivos_teste/minijava.java
 ```
 ---
 ### 3. [Tradução para Código Intermediário](traducao_intermediario/)
+---
+### 4. [IR Canônica](Canon/) e [Tradução Assembly](Assem/)
