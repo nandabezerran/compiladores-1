@@ -1,17 +1,17 @@
-# Projeto Final - Construção de Compiladores
-### Universidade Federal do Ceará, Departamento de Computação, Disciplina Construção de Compiladores
+# Final Project - Compilers Construction
+### Federal University of Ceará, Computer Department, Compilers Construction Course
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
-## Equipe:
+## Team:
   - Andreza Fernandes
   - Arina Sanches
   - Fernanda Bezerra
 
 ---
 
-## Fases:
-### 1. [Analisador Léxico e Sintático](analisador_lexico/)
-#### Instruções
+## Phases:
+### 1. [Lexical and Syntactic Analysis](analisador_lexico/)
+#### Instructions
 ```sh
 $ cd analisador_lexico
 $ javacc Parser.jj
@@ -19,11 +19,11 @@ $ javac *.java
 $ java Parser minijava.java
 ```
 
-### 2. [Análise Semântica](analisador_semantico/)
-#### a. [Árvore Sintática Abstrata](analisador_semantico/syntaxtree/)
-#### b. [Tabela de símbolos - Ambientes](analisador_semantico/visitors/SymbolTable.java)
+### 2. [Semantic Analysis](analisador_semantico/)
+#### a. [Abstract Syntax Tree](analisador_semantico/syntaxtree/)
+#### b. [Symbol table - Environments](analisador_semantico/visitors/SymbolTable.java)
 #### c. [Type Checking](analisador_semantico/visitors/TypeChecking.java)
-#### Instruções
+#### Instructions
 ```sh
 $ javacc analisador_semantico/syntaxtree/*.java
 $ javac analisador_semantico/context/*.java
@@ -36,6 +36,6 @@ $ javac MainProgram.java
 $ java MainProgram arquivos_teste/minijava.java
 ```
 ---
-### 3. [Tradução para Código Intermediário](traducao_intermediario/)
+### 3. [Translation to intermediate code](traducao_intermediario/)
 ---
-### 4. [IR Canônica](Canon/) e [Tradução Assembly](Assem/)
+### 4. [IR Canônica](Canon/) e [Assembly translation](Assem/)
